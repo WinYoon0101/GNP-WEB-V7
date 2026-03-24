@@ -150,8 +150,7 @@ export function StudentAchievementsCarousel() {
                           fill
                           className="object-cover object-top transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                         />
-                        {/* Solid Overlay for Text Readability */}
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-black/60 opacity-80" />
+
 
                         {/* Title Overlay inside card */}
                         <div className="absolute bottom-4 left-0 w-full text-center px-2">
