@@ -1,0 +1,56 @@
+"use client";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { BranchesCarousel } from "./branches-carousel";
+import MagicBento from "./MagicBento";
+
+export function About() {
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.1,
+  });
+
+  return (
+    <section
+      id="about"
+      className="bg-white py-20 md:py-32"
+    >
+      <div className="container mx-auto px-4">
+        <div
+          ref={sectionRef}
+          className={`mx-auto mb-16 max-w-3xl text-center transition-all duration-700 ${
+            isIntersecting
+              ? "translate-y-0 opacity-100"
+              : "translate-y-10 opacity-0"
+          }`}
+        >
+          <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+            Vì sao chọn chúng tôi
+          </div>
+          <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl">
+            GNP English Academy
+          </h2>
+          <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
+            Đồng hành cùng hành trình chinh phục tiếng Anh của bạn với chương
+            trình đào tạo chất lượng cao và đội ngũ giảng viên tận tâm.
+          </p>
+        </div>
+
+        <div className="flex justify-center items-center w-full mx-auto my-12">
+          <MagicBento
+            textAutoHide={false}
+            enableStars={true}
+            enableSpotlight={true}
+            enableBorderGlow={true}
+            enableTilt={false}
+            enableMagnetism={false}
+            clickEffect={true}
+            spotlightRadius={400}
+            particleCount={12}
+            glowColor="242, 112, 26"
+            disableAnimations={false}
+          />
+        </div>
+        <BranchesCarousel />
+      </div>
+    </section>
+  );
+}
