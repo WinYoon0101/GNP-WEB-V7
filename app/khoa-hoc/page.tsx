@@ -16,25 +16,33 @@ export default function CoursesPage() {
           HERO SECTION 
           - Updated: Removed gradients and blurs
         */}
-        <section className="bg-orange-600 py-20 md:py-28 relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white opacity-5 rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
+        <section className="bg-secondary py-24 md:py-32 relative overflow-hidden">
+           {/* Modern Decorative Backgrounds */}
+           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2" />
+           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -translate-x-1/3 translate-y-1/3" />
            
-           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-700 rounded-full opacity-5 pointer-events-none -translate-x-1/3 translate-y-1/3" />
+           {/* Subtle Grid Pattern */}
+           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                style={{backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px'}} />
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <span className="block text-orange-50 font-extrabold tracking-[0.2em] uppercase text-sm md:text-base mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <span className="inline-block text-primary font-black tracking-[0.3em] uppercase text-xs md:text-sm mb-6 px-4 py-1 border-x border-primary/30 animate-in fade-in slide-in-from-bottom-4 duration-700">
                 Lộ trình chuẩn quốc tế
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight drop-shadow-md animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-                HỆ THỐNG ĐÀO TẠO <br className="hidden md:block"/>
-                <span className="text-white bg-blue-900/40 px-6 py-2 rounded-2xl border border-white/20 inline-block mt-2">
-                   CHUẨN CAMBRIDGE & IELTS
-                </span>
+              
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tighter animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 uppercase">
+                Hệ Thống <span className="text-primary italic">Đào Tạo</span> <br className="hidden md:block"/>
+                <div className="inline-block mt-4 bg-white/5 backdrop-blur-md px-8 py-3 rounded-3xl border border-white/10 shadow-2xl">
+                   <span className="text-white">CHUẨN </span>
+                   <span className="text-primary">CAMBRIDGE & IELTS</span>
+                </div>
               </h1>
-              <div className="w-24 h-1.5 bg-white mx-auto rounded-full mb-6 animate-in fade-in zoom-in duration-700 delay-200 shadow-lg" />
-              <p className="text-lg md:text-xl text-orange-50 max-w-2xl mx-auto font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
-                Cam kết kết quả đầu ra theo từng trình độ, xây dựng nền tảng vững chắc cho tương lai toàn cầu.
+              
+              <div className="w-20 h-1.5 bg-primary mx-auto rounded-full mb-8 animate-in fade-in zoom-in duration-700 delay-200" />
+              
+              <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 italic">
+                "Cam kết kết quả đầu ra theo từng trình độ, xây dựng nền tảng vững chắc cho tương lai toàn cầu."
               </p>
             </div>
           </div>
