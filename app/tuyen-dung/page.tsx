@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Clock, DollarSign, Users, Heart, TrendingUp, GraduationCapIcon as GraduateCapIcon, Building2, AlertCircle, Upload, Briefcase } from "lucide-react"
+import { MapPin, Clock, DollarSign, Users, Heart, TrendingUp, GraduationCapIcon as GraduateCapIcon, Building2, AlertCircle, Upload, Briefcase, ArrowRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export default function TuyenDungPage() {
@@ -124,16 +124,21 @@ export default function TuyenDungPage() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <section className="py-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <GraduateCapIcon className="h-20 w-20 mx-auto mb-6 animate-bounce" />
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Tuyển Dụng</h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Gia nhập đội ngũ GNP English Academy - Nơi tài năng được tôn vinh và phát triển
+        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+          {/* Decorative Pattern */}
+          <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
+            style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <GraduateCapIcon className="h-24 w-24 mx-auto mb-8 text-primary animate-bounce" />
+            <h1 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tight">Tuyển Dụng</h1>
+            <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-slate-300 font-medium font-serif italic">
+              "Gia nhập đội ngũ GNP English Academy - Nơi tài năng được tôn vinh và phát triển"
             </p>
             <Button
               size="lg"
-              className="bg-white text-indigo-600 hover:bg-gray-100 font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+              className="bg-primary hover:bg-orange-600 text-white font-black px-12 py-8 text-xl shadow-2xl hover:shadow-primary/20 transition-all hover:scale-105 rounded-2xl"
               onClick={(e) => openApplicationForm(e, "GNP English Academy")}
             >
               Ứng Tuyển Ngay
@@ -141,101 +146,128 @@ export default function TuyenDungPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-white">
+        <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 text-indigo-600">Tại Sao Chọn GNP?</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-slate-900 uppercase tracking-tight">
+              Tại Sao Chọn <span className="text-primary">GNP?</span>
+            </h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="text-center p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-purple-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="text-center p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 group"
                 >
-                  <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
-                    <benefit.icon className="h-8 w-8 text-white" />
+                  <div className="bg-primary shadow-lg shadow-primary/20 rounded-2xl sm:rounded-[2rem] w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center mb-4 sm:mb-6 mx-auto group-hover:scale-110 transition-transform">
+                    <benefit.icon className="h-7 w-7 sm:h-10 sm:h-10 text-white" />
                   </div>
-                  <h3 className="font-bold text-xl mb-2 text-gray-900">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+                  <h3 className="font-black text-sm sm:text-xl mb-2 sm:mb-3 text-slate-900 uppercase tracking-wide">{benefit.title}</h3>
+                  <p className="text-slate-600 leading-relaxed text-xs sm:text-base">{benefit.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50">
+        <section className="py-24 bg-white border-y border-slate-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 text-indigo-600">Vị Trí Tuyển Dụng</h2>
-            <div className="max-w-5xl mx-auto grid gap-6">
+            <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
+              <div className="max-w-2xl text-center md:text-left">
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter mb-4 flex items-center justify-center md:justify-start gap-4">
+                  <div className="w-3 h-12 bg-primary rounded-full hidden md:block" />
+                  VỊ TRÍ TUYỂN DỤNG
+                </h2>
+                <p className="text-slate-500 text-lg font-medium">Khám phá cơ hội nghề nghiệp và đồng hành cùng sứ mệnh giáo dục tại GNP.</p>
+              </div>
+              
+              <div className="bg-slate-50 px-8 py-4 rounded-[2rem] border border-slate-100 shadow-sm flex items-center gap-6 group hover:shadow-xl transition-all duration-500">
+                <div className="flex -space-x-4">
+                  {["/co_nguyen.jpg", "/co_thuy.jpg", "/thay-ho.jpg", "/thay_bao.jpg"].map((src, i) => (
+                    <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden shadow-md group-hover:scale-110 transition-transform" style={{ transitionDelay: `${i * 50}ms` }}>
+                      <Image src={src} alt="Team member" width={48} height={48} className="object-cover w-full h-full" />
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <p className="text-sm font-black text-slate-900">+100 Đồng nghiệp</p>
+                  <p className="text-[10px] font-bold text-primary uppercase tracking-widest">Đang chờ đón bạn</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-5xl mx-auto grid gap-10">
               {positions.map((position, index) => (
                 <Card
                   key={position.id}
-                  className="p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-fade-in-up border-2 border-transparent hover:border-indigo-200 group relative"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="p-10 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 border-none bg-slate-50 hover:bg-white group relative overflow-hidden rounded-[2.5rem]"
                 >
-                  <Link href={`/tuyen-dung/${position.id}`} className="absolute inset-0 z-0 rounded-xl" aria-label={`Xem chi tiết ${position.title}`} />
-
-                  <div className="flex flex-col md:flex-row items-start gap-4 relative z-10 pointer-events-none">
-                    <div className="flex-1 flex flex-col md:flex-row items-start gap-4">
-                      <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center">
+                  <Link href={`/tuyen-dung/${position.id}`} className="absolute inset-0 z-0" aria-label={`Xem chi tiết ${position.title}`} />
+                  
+                  <div className="flex flex-col lg:flex-row items-start gap-8 relative z-10 pointer-events-none">
+                    <div className="flex-1 flex flex-col md:flex-row items-start gap-6 w-full">
+                      <div className="flex-shrink-0 w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center border border-slate-200 group-hover:border-primary/20 transition-colors">
                         <Image
                           src="/images/gnp-logo.png"
                           alt="GNP"
                           width={60}
                           height={60}
-                          className="w-12 h-12 object-contain"
+                          className="w-14 h-14 object-contain"
                         />
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start flex-wrap gap-2 mb-2">
+                        <div className="flex items-start flex-wrap gap-3 mb-3">
                           {position.urgent && (
-                            <div className="flex-shrink-0 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                            <div className="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-1.5 shadow-lg shadow-primary/20">
                               <AlertCircle className="h-3 w-3" />
                               <span>Urgent</span>
                             </div>
                           )}
-                          <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                          <h3 className="text-2xl font-black text-slate-900 group-hover:text-primary transition-colors uppercase tracking-tight">
                             {position.title}
                           </h3>
                         </div>
 
-                        <p className="text-gray-600 text-sm md:text-base mb-3 flex items-center gap-2">
-                          <Building2 className="h-4 w-4 flex-shrink-0" />
+                        <p className="text-slate-500 text-base mb-6 flex items-center gap-2 font-medium">
+                          <Building2 className="h-5 w-5 text-primary" />
                           {position.company}
                         </p>
 
-                        <div className="flex flex-wrap gap-3 md:gap-4 text-sm text-gray-600 mb-3">
-                          <div className="flex items-center gap-1.5">
-                            <DollarSign className="h-4 w-4 text-coral-500 flex-shrink-0" />
-                            <span className="font-semibold text-coral-500">{position.salary}</span>
+                        <div className="flex flex-wrap gap-6 text-sm text-slate-600 mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center">
+                              <DollarSign className="h-4 w-4 text-primary" />
+                            </div>
+                            <span className="font-bold text-slate-900">{position.salary}</span>
                           </div>
-                          <div className="flex items-center gap-1.5">
-                            <MapPin className="h-4 w-4 flex-shrink-0" />
-                            <span>{position.location}</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center">
+                              <MapPin className="h-4 w-4 text-slate-600" />
+                            </div>
+                            <span className="font-medium">{position.location}</span>
                           </div>
-                          <div className="flex items-center gap-1.5">
-                            <Clock className="h-4 w-4 flex-shrink-0" />
-                            <span>Còn {position.postedDays} ngày</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center">
+                              <Clock className="h-4 w-4 text-slate-600" />
+                            </div>
+                            <span className="font-medium">Còn {position.postedDays} ngày</span>
                           </div>
                         </div>
 
-                        <p className="text-sm text-gray-600 line-clamp-2">{position.description}</p>
+                        <p className="text-slate-600 leading-relaxed font-medium">{position.description}</p>
                       </div>
                     </div>
 
-                    <div className="flex md:flex-col items-center md:items-end gap-3 flex-shrink-0 self-start mt-4 md:mt-0 w-full md:w-auto z-10 pointer-events-auto">
+                    <div className="flex flex-row lg:flex-col items-center gap-4 w-full lg:w-auto z-10 pointer-events-auto mt-6 lg:mt-0 lg:pt-2">
                       <Button
-                        size="sm"
-                        className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-md flex-1 md:flex-none"
+                        size="lg"
+                        className="bg-slate-900 hover:bg-primary text-white shadow-xl flex-1 lg:flex-none px-8 py-6 text-lg font-black rounded-2xl group/btn transition-all"
                         onClick={(e) => openApplicationForm(e, position.title)}
                       >
-                        <Briefcase className="h-4 w-4 mr-2" />
                         Ứng Tuyển
+                        <ArrowRight className="h-5 w-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                       </Button>
-                      <button
-                        className="text-gray-400 hover:text-red-500 transition-colors p-2 md:p-0"
-                      >
-                        <Heart className="h-5 w-5 md:h-6 md:w-6" />
+                      <button className="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all hover:shadow-xl">
+                        <Heart className="h-6 w-6" />
                       </button>
                     </div>
                   </div>
@@ -245,15 +277,32 @@ export default function TuyenDungPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Sẵn Sàng Tham Gia Đội Ngũ GNP?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Gửi CV của bạn về email: <span className="font-bold">tuyendung@gnp.edu.vn</span>
-            </p>
-            <p className="text-lg">
-              Hoặc liên hệ hotline: <span className="font-bold">0286.286.2934</span>
-            </p>
+        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tight">
+              Sẵn Sàng Tham Gia <br /> Đội Ngũ <span className="text-primary italic">GNP?</span>
+            </h2>
+            <div className="flex flex-col md:flex-row justify-center gap-8 items-center">
+              <div className="bg-white/5 backdrop-blur-md px-8 py-6 rounded-[2rem] border border-white/10 flex items-center gap-4 hover:bg-white/10 transition-colors group">
+                <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
+                  <Upload className="h-6 w-6 text-white" />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Gửi CV qua Email</p>
+                  <p className="text-xl font-black group-hover:text-primary transition-colors">tuyendung@gnp.edu.vn</p>
+                </div>
+              </div>
+              <div className="bg-white/5 backdrop-blur-md px-8 py-6 rounded-[2rem] border border-white/10 flex items-center gap-4 hover:bg-white/10 transition-colors group">
+                <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center">
+                  <Users className="h-6 w-6 text-slate-900" />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Hotline Tuyển dụng</p>
+                  <p className="text-xl font-black group-hover:text-primary transition-colors">0286.286.2934</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
