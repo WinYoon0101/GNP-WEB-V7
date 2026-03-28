@@ -123,7 +123,7 @@ export function GPSPhilosophy() {
                 fill="transparent"
               />
               <text
-                className="font-black fill-slate-800 tracking-tight"
+                className="font-black fill-slate-900 tracking-tight"
                 style={{ fontSize: "85px" }}
               >
                 <textPath
@@ -197,7 +197,7 @@ export function GPSPhilosophy() {
 
                 {/* --- Back Side --- */}
                 <div
-                  className={`absolute inset-0 backface-hidden rotate-y-180 rounded-[2.5rem] p-6 lg:p-8 flex flex-col justify-start text-left shadow-inner ${card.backBg} border-4 border-white overflow-hidden`}
+                  className={`absolute inset-0 backface-hidden rotate-y-180 rounded-[2.5rem] p-6 lg:p-8 flex flex-col justify-start text-left shadow-inner bg-slate-900 border-4 border-slate-800 overflow-hidden`}
                 >
                   {/* Soft Background Patches */}
                   <div className="absolute inset-0 opacity-40 pointer-events-none">
@@ -207,16 +207,16 @@ export function GPSPhilosophy() {
 
                   <div className="relative z-10 h-full flex flex-col justify-between pt-2 pb-1">
                     <div className="text-center">
-                      <h3 className="text-3xl md:text-4xl font-black text-slate-800 mb-1 leading-none tracking-tight">
+                      <h3 className="text-3xl md:text-4xl font-black text-white mb-1 leading-none tracking-tight">
                         {card.title}
                       </h3>
-                      <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mt-1">
+                      <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mt-1">
                         {card.subtitle}
                       </p>
                     </div>
 
-                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-[0_2px_15px_rgb(0,0,0,0.03)] border border-white/50 mx-1">
-                      <p className="text-slate-700 text-[14px] md:text-[15px] font-semibold italic text-center leading-snug">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 shadow-[0_2px_15px_rgb(0,0,0,0.1)] border border-white/10 mx-1">
+                      <p className="text-white text-[14px] md:text-[15px] font-semibold italic text-center leading-snug">
                         "{card.description}"
                       </p>
                     </div>
@@ -234,16 +234,16 @@ export function GPSPhilosophy() {
                         {card.highlights.map((highlight, idx) => (
                           <li
                             key={idx}
-                            className="flex items-center gap-3 bg-white/70 backdrop-blur-sm p-3 md:p-3.5 rounded-xl transition-all shadow-sm border border-white/60 group/item hover:bg-white hover:shadow-md hover:-translate-y-0.5"
+                            className="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-3 md:p-3.5 rounded-xl transition-all shadow-sm border border-white/10 group/item hover:bg-white/10 hover:shadow-md hover:-translate-y-0.5"
                           >
                             <div
-                              className={`p-1 rounded-full bg-white shadow-[0_2px_10px_rgb(0,0,0,0.05)] flex-shrink-0 group-hover/item:scale-110 transition-transform`}
+                              className={`p-1 rounded-full bg-slate-800 shadow-[0_2px_10px_rgb(0,0,0,0.2)] flex-shrink-0 group-hover/item:scale-110 transition-transform`}
                             >
                               <CheckCircle2
                                 className={`w-4 h-4 md:w-5 md:h-5 ${card.dotColor}`}
                               />
                             </div>
-                            <span className="text-[13px] md:text-[14px] lg:text-[15px] text-slate-800 leading-tight font-semibold">
+                            <span className="text-[13px] md:text-[14px] lg:text-[15px] text-slate-200 leading-tight font-semibold">
                               {highlight}
                             </span>
                           </li>

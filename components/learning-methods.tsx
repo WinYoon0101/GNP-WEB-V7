@@ -48,17 +48,17 @@ const methods = [
 
 export function LearningMethods() {
   return (
-    <section className="py-20 md:py-8 bg-slate-50 relative overflow-hidden font-sans">
+    <section className="py-20 md:py-32 bg-slate-900 relative overflow-hidden font-sans">
       {/* Background Decor */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#F2701A]/5 via-white to-white pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[1000px] h-[1000px] bg-[#F2701A]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#F2701A]/10 via-slate-900 to-slate-900 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[1000px] h-[1000px] bg-[#F2701A]/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="text-center mb-2 relative z-10 px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-extrabold text-[#0a2540] mb-6 tracking-tight md:translate-y-[120px]"
+            className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight md:translate-y-[120px]"
           >
             Phương Pháp{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F2701A] to-[#ff9853]">
@@ -69,7 +69,7 @@ export function LearningMethods() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-slate-600 md:text-lg max-w-2xl mx-auto leading-relaxed md:translate-y-[140px]"
+            className="text-slate-400 md:text-lg max-w-2xl mx-auto leading-relaxed md:translate-y-[140px]"
           >
             GNP English Academy áp dụng các phương pháp giảng dạy tiên tiến, kết
             hợp chặt chẽ giữa lý thuyết và thực hành để giúp học viên phát triển
@@ -80,9 +80,9 @@ export function LearningMethods() {
         {/* Desktop Interactive Circular Graph */}
         <div className="hidden lg:flex relative w-full h-[900px] items-center justify-center mt-[-40px]">
           {/* Concentric Rings */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-[#F2701A]/10 z-0" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-[#F2701A]/10 z-0 border-dashed" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[840px] h-[840px] rounded-full border border-[#F2701A]/10 z-0" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-white/5 z-0" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-white/5 z-0 border-dashed" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[840px] h-[840px] rounded-full border border-white/10 z-0" />
 
           {/* Center Logo */}
           <motion.div
@@ -136,10 +136,10 @@ export function LearningMethods() {
 
                   {/* Text Content Block (Always Visible) */}
                   <div className="text-center relative">
-                    <h3 className="font-bold text-[15.5px] mb-2 text-[#0a2540] group-hover:text-[#F2701A] transition-colors">
+                    <h3 className="font-bold text-[15.5px] mb-2 text-white group-hover:text-[#F2701A] transition-colors">
                       {method.title}
                     </h3>
-                    <p className="text-slate-500 text-[13.5px] leading-relaxed px-2">
+                    <p className="text-slate-400 text-[13.5px] leading-relaxed px-2">
                       {method.description}
                     </p>
                   </div>
@@ -158,19 +158,19 @@ export function LearningMethods() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-[0_10px_30px_rgba(242,112,26,0.12)] hover:border-[#F2701A]/30 transition-all flex items-start gap-4 group cursor-pointer overflow-hidden relative"
+              className="bg-slate-800 rounded-2xl p-5 border border-slate-700 shadow-sm hover:shadow-[0_10px_30px_rgba(242,112,26,0.12)] hover:border-[#F2701A]/30 transition-all flex items-start gap-4 group cursor-pointer overflow-hidden relative"
             >
               {/* Subtle hover background line */}
               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#F2701A] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-r-sm" />
 
-              <div className="w-14 h-14 shrink-0 rounded-full bg-orange-50 group-hover:bg-[#F2701A] flex items-center justify-center transition-colors duration-300">
+              <div className="w-14 h-14 shrink-0 rounded-full bg-slate-900 group-hover:bg-[#F2701A] flex items-center justify-center transition-colors duration-300 border border-slate-700 group-hover:border-transparent">
                 <method.icon className="w-[26px] h-[26px] text-[#F2701A] group-hover:text-white transition-colors duration-300 stroke-[2]" />
               </div>
               <div className="flex-1 mt-0.5">
-                <h3 className="font-bold text-[16px] mb-1.5 text-[#0a2540] group-hover:text-[#F2701A] transition-colors">
+                <h3 className="font-bold text-[16px] mb-1.5 text-white group-hover:text-[#F2701A] transition-colors">
                   {method.title}
                 </h3>
-                <p className="text-slate-600 text-[14px] leading-relaxed">
+                <p className="text-slate-400 text-[14px] leading-relaxed">
                   {method.description}
                 </p>
               </div>

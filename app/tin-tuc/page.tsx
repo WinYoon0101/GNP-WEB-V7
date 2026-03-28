@@ -4,6 +4,9 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { NewsCarousel } from "@/components/news-carousel"
 import { motion } from "framer-motion"
+import Image from "next/image"
+import { Calendar, ArrowRight, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const newsCategories = [
   {
@@ -113,44 +116,63 @@ const itemVariants = {
 }
 
 export default function TinTucPage() {
+  const allArticles = newsCategories.flatMap(cat => cat.articles);
+  const featuredArticle = allArticles[0]; // Picking the first one as featured for now
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+    <div className="min-h-screen bg-slate-50 overflow-hidden text-slate-900">
       <Header />
-      <main className="py-16 md:py-24 relative">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-          <div className="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
-          <div className="absolute top-[40%] -left-[10%] w-[30%] h-[50%] rounded-full bg-blue-500/5 blur-[100px]" />
-        </div>
+      <main className="relative">
+        {/* Modern Dark Blue Hero Section */}
+        <section className="relative pt-32 pb-40 bg-slate-900 overflow-hidden">
+          {/* Decorative blobs */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 animate-pulse" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4" />
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-2 mb-8 backdrop-blur-md">
+                <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                <span className="text-sm font-bold text-primary uppercase tracking-widest">Tin tức & Sự kiện</span>
+              </div>
+              <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tight uppercase leading-snug">
+                Khai Phá <br /> <span className="text-primary italic mr-4 inline-block">Tri Thức</span> Mới
+              </h1>
+              <p className="text-xl md:text-2xl text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                Cập nhật những chuyển động mới nhất từ GNP English Academy - nơi nhịp đập giáo dục không bao giờ ngừng lại.
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Hero Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto mb-20 max-w-3xl text-center"
-          >
-            <div className="inline-block rounded-full bg-primary/10 px-4 py-1.5 mb-6 text-sm font-medium text-primary shadow-sm border border-primary/20 backdrop-blur-sm">
-              Tin tức mới nhất từ GNP
-            </div>
-            <h1 className="mb-6 text-balance text-5xl font-extrabold md:text-7xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-              Tin Tức <span className="text-primary">&</span> Sự Kiện
-            </h1>
-            <p className="text-pretty text-lg md:text-xl text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
-              Cập nhật những thông tin mới nhất về các chương trình đào tạo, sự kiện nổi bật, thành tích học viên và chương trình ưu đãi đặc biệt.
-            </p>
-          </motion.div>
+        {/* Featured News & Content Container */}
+        <div className="container mx-auto px-4 relative z-20 pt-20">
 
-          {/* News by Category - Animated Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-24"
-          >
-            {newsCategories.map((category) => (
-              <motion.div key={category.id} variants={itemVariants}>
+          {/* Main News Sections */}
+          <div className="space-y-32 mb-32">
+            {newsCategories.map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="flex items-center justify-between mb-12 gap-8">
+                  <div className="flex items-center gap-6">
+                    <div className="w-2 h-12 bg-primary rounded-full" />
+                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">
+                      {category.name}
+                    </h2>
+                  </div>
+                  <div className="hidden md:flex h-px flex-1 bg-slate-200" />
+                </div>
+                
                 <NewsCarousel
                   categoryId={category.id}
                   categoryName={category.name}
@@ -158,7 +180,7 @@ export default function TinTucPage() {
                 />
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </main>
       <Footer />

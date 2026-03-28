@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Calendar, ArrowRight, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
@@ -28,24 +28,17 @@ interface NewsCarouselProps {
 export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [direction, setDirection] = useState(1) // 1 for right, -1 for left
+  const [direction, setDirection] = useState(1)
   const [itemsPerView, setItemsPerView] = useState(3)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setItemsPerView(1)
-      } else if (window.innerWidth < 1024) {
-        setItemsPerView(2)
-      } else {
-        setItemsPerView(3)
-      }
+      if (window.innerWidth < 768) setItemsPerView(1)
+      else if (window.innerWidth < 1024) setItemsPerView(2)
+      else setItemsPerView(3)
     }
-
-    // Initial check
     handleResize()
-
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
@@ -55,12 +48,10 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
 
   useEffect(() => {
     if (!isAutoPlaying || !canScroll) return
-
     const interval = setInterval(() => {
       setDirection(1)
       setCurrentIndex((prev) => (prev + 1) % articles.length)
     }, 6000)
-
     return () => clearInterval(interval)
   }, [isAutoPlaying, articles.length, canScroll])
 
@@ -88,117 +79,94 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
 
   const getCardWidthStyle = () => {
     if (itemsPerView === 1) return { width: "100%" }
-    if (itemsPerView === 2) return { width: "calc(50% - 0.75rem)" }
-    return { width: "calc(33.3333% - 1rem)" }
-  }
-
-  // Variants for smooth sliding
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? "100%" : "-100%",
-      opacity: 0,
-      scale: 0.95
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? "100%" : "-100%",
-      opacity: 0,
-      scale: 0.95
-    })
+    if (itemsPerView === 2) return { width: "calc(50% - 1rem)" }
+    return { width: "calc(33.3333% - 1.5rem)" }
   }
 
   return (
-    <section className="mb-16 relative">
-      <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-3xl font-extrabold tracking-tight relative">
-          <span className="relative z-10">{categoryName}</span>
-          <span className="absolute bottom-1 left-0 w-1/3 h-3 bg-primary/20 -z-10 rounded-full" />
-        </h2>
-        <Button asChild variant="ghost" className="gap-2 group text-primary hover:text-primary/80 hover:bg-primary/5 transition-all">
-          <Link href={`/tin-tuc/${categoryId}`}>
-            <span className="font-semibold text-sm">Xem tất cả</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </Button>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto group/carousel" ref={containerRef}>
+    <section className="relative group/carousel-section">
+      <div className="relative max-w-7xl mx-auto" ref={containerRef}>
+        {/* Navigation Buttons - Larger and More Premium */}
         {canScroll && (
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-md hover:bg-background shadow-lg shadow-black/5 border-muted/50 -ml-3 md:-ml-6 h-10 w-10 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
-            onClick={prevSlide}
-            aria-label="Previous news"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
+          <>
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute -left-6 md:-left-12 top-[40%] -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl hover:bg-primary shadow-2xl shadow-primary/10 border-slate-100 h-14 w-14 rounded-2xl opacity-0 group-hover/carousel-section:opacity-100 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95"
+              onClick={prevSlide}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute -right-6 md:-right-12 top-[40%] -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl hover:bg-primary shadow-2xl shadow-primary/10 border-slate-100 h-14 w-14 rounded-2xl opacity-0 group-hover/carousel-section:opacity-100 transition-all duration-300 hover:text-white hover:scale-110 active:scale-95"
+              onClick={nextSlide}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+          </>
         )}
 
-        <div className="overflow-hidden px-4 md:px-8 -mx-4 md:-mx-8">
-          <div className="flex gap-3 md:gap-6 relative min-h-[360px]">
+        <div className="overflow-hidden pb-12">
+          <div className="flex gap-4 md:gap-8 relative min-h-[480px]">
             <AnimatePresence initial={false} custom={direction} mode="popLayout">
               {getVisibleArticles().map((article, index) => (
                 <motion.div
                   key={`${article.id}-${article.category}-${currentIndex + index}`}
                   custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
+                  initial={{ opacity: 0, x: direction > 0 ? 50 : -50, scale: 0.95 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: direction > 0 ? -50 : 50, scale: 0.95 }}
                   transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
                     opacity: { duration: 0.2 },
                   }}
                   style={getCardWidthStyle()}
                   className="flex-shrink-0 relative"
                 >
-                  <Link href={`/tin-tuc/${categoryId}/${article.id}`} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl">
-                    <Card className="group h-full overflow-hidden border-transparent bg-background/50 backdrop-blur-sm shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 rounded-2xl flex flex-col">
-                      <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                          className="w-full h-full"
-                        >
-                          <Image
-                            src={article.image || "/placeholder.svg"}
-                            alt={article.title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          />
-                        </motion.div>
-                        <div className="absolute right-3 top-3 z-20 rounded-full bg-background/90 backdrop-blur-md px-2.5 py-1 text-xs font-bold text-foreground shadow-sm">
-                          {article.category}
+                  <Link href={`/tin-tuc/${categoryId}/${article.id}`} className="block h-full cursor-default">
+                    <Card className="group h-full overflow-hidden border-none bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] transition-all duration-700 rounded-[2.5rem] flex flex-col group/card cursor-pointer">
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <Image
+                          src={article.image || "/placeholder.svg"}
+                          alt={article.title}
+                          fill
+                          className="object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-slate-900/10 group-hover/card:bg-slate-900/0 transition-colors duration-500" />
+                        <div className="absolute left-6 top-6 z-20">
+                          <span className="bg-primary text-white text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-[0.2em] shadow-lg shadow-primary/20 bg-primary/90 backdrop-blur-sm">
+                            {article.category}
+                          </span>
                         </div>
                       </div>
-                      <CardHeader className="flex-1 pb-3 px-5 pt-4">
-                        <CardTitle className="line-clamp-2 text-lg md:text-xl font-bold leading-tight group-hover:text-primary transition-colors duration-300">
+                      
+                      <CardHeader className="flex-1 pb-4 px-8 pt-8">
+                        <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest mb-4">
+                          <Calendar className="h-4 w-4" />
+                          <span>{new Date(article.date).toLocaleDateString("vi-VN")}</span>
+                        </div>
+                        <CardTitle className="line-clamp-2 text-xl md:text-2xl font-black leading-tight text-slate-900 group-hover/card:text-primary transition-colors duration-300 tracking-tight">
                           {article.title}
                         </CardTitle>
-                        <CardDescription className="line-clamp-2 mt-2 text-sm text-muted-foreground/90 font-medium">
-                          {article.description}
-                        </CardDescription>
                       </CardHeader>
-                      <CardContent className="pt-0 pb-4 px-5 mt-auto">
-                        <div className="flex items-center justify-between border-t border-border/50 pt-3">
-                          <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                            <Calendar className="h-3.5 w-3.5 text-primary/70" />
-                            <span>
-                              {new Date(article.date).toLocaleDateString("vi-VN")}
-                            </span>
-                          </div>
-                          <span className="text-[10px] md:text-xs font-semibold text-primary/80 bg-primary/10 px-2 py-1 rounded-md">
+                      
+                      <CardContent className="pt-0 pb-8 px-8 mt-auto">
+                        <p className="line-clamp-2 text-slate-500 mb-8 font-medium italic">
+                          "{article.description}"
+                        </p>
+                        <div className="flex items-center justify-between border-t border-slate-100 pt-6">
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                            <Clock className="h-4 w-4" />
                             {article.readTime}
                           </span>
+                          <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center group-hover/card:bg-primary transition-colors duration-500">
+                            <ArrowRight className="h-5 w-5 text-slate-400 group-hover/card:text-white transition-colors" />
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
@@ -209,36 +177,25 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
           </div>
         </div>
 
+        {/* Improved Progress Dots */}
         {canScroll && (
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-background/80 backdrop-blur-md hover:bg-background shadow-lg shadow-black/5 border-muted/50 -mr-3 md:-mr-6 h-10 w-10 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
-            onClick={nextSlide}
-            aria-label="Next news"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
+          <div className="flex justify-center gap-3 mt-4">
+            {articles.map((_, index) => (
+              <button
+                key={index}
+                className={`h-2.5 rounded-full transition-all duration-700 ease-[0.16,1,0.3,1] ${index === currentIndex ? "w-12 bg-primary shadow-lg shadow-primary/20" : "w-2.5 bg-slate-200 hover:bg-slate-300"
+                  }`}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1)
+                  setCurrentIndex(index)
+                  setIsAutoPlaying(false)
+                }}
+                aria-label={`Go to article ${index + 1}`}
+              />
+            ))}
+          </div>
         )}
       </div>
-
-      {canScroll && (
-        <div className="flex justify-center gap-2 mt-8">
-          {articles.map((_, index) => (
-            <button
-              key={index}
-              className={`h-2 rounded-full transition-all duration-500 ease-out ${index === currentIndex ? "w-8 bg-primary" : "w-2 bg-primary/20 hover:bg-primary/40"
-                }`}
-              onClick={() => {
-                setDirection(index > currentIndex ? 1 : -1)
-                setCurrentIndex(index)
-                setIsAutoPlaying(false)
-              }}
-              aria-label={`Go to article ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </section>
   )
 }

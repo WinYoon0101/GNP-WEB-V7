@@ -11,9 +11,9 @@ export function About() {
   return (
     <section
       id="about"
-      className="bg-white py-20 md:py-32"
+      className="bg-slate-50 py-20 md:py-32 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <div
           ref={sectionRef}
           className={`mx-auto mb-16 max-w-3xl text-center transition-all duration-700 ${
@@ -22,10 +22,10 @@ export function About() {
               : "translate-y-10 opacity-0"
           }`}
         >
-          <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+          <div className="mb-4 inline-block rounded-full bg-[#F2701A]/10 border border-[#F2701A]/20 px-4 py-2 text-sm font-bold text-[#F2701A] uppercase tracking-wider">
             Vì sao chọn chúng tôi
           </div>
-          <h2 className="mb-4 text-balance text-3xl font-bold md:text-5xl">
+          <h2 className="mb-4 text-balance text-3xl font-black md:text-5xl text-slate-900 uppercase tracking-tighter">
             GNP English Academy
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">

@@ -71,7 +71,7 @@ export function FlashSale() {
                 <span>Ưu đãi khai trương cơ sở mới</span>
               </div>
 
-              <h2 className="text-[32px] md:text-[42px] lg:text-[48px] xl:text-[54px] font-black text-[#111827] tracking-tight leading-[1.1]">
+              <h2 className="text-[32px] md:text-[42px] lg:text-[48px] xl:text-[54px] font-black text-slate-900 tracking-tight leading-[1.1]">
                 CHỨNG CHỈ CỰC{" "}
                 <span className="text-[#F2701A] relative whitespace-nowrap">
                   PRO
@@ -85,7 +85,7 @@ export function FlashSale() {
             {/* Value Proposition */}
             <div className="space-y-4">
               <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-800 leading-snug flex flex-col sm:flex-row sm:items-center gap-2">
-                <span className="bg-[#111827] text-white px-3 py-1 rounded-lg text-lg w-fit">
+                <span className="bg-slate-900 text-white px-3 py-1 rounded-lg text-lg w-fit">
                   Giảm 25%
                 </span>
                 <span>học phí khi đăng ký từ 6 tháng</span>

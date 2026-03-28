@@ -89,7 +89,7 @@ export default function SummerEnglishPage() {
                      <div className="relative animate-in fade-in zoom-in duration-700 delay-200 flex justify-center lg:block order-1 lg:order-2">
                         <div className="relative z-10 w-[80vw] lg:w-full max-w-[400px] lg:max-w-[500px] aspect-[4/3] rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden shadow-2xl transform -rotate-2 hover:rotate-0 transition-all duration-700 border-[6px] lg:border-[8px] border-white/20 mx-auto">
                            <Image
-                              src="/happy-students-learning-english.jpg"
+                              src="/innovator.jpg"
                               alt="Summer Camp Kids"
                               fill
                               className="object-cover hover:scale-105 transition-transform duration-1000"

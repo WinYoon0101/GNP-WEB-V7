@@ -23,7 +23,7 @@ export function ConsultationForm() {
   };
 
   return (
-    <section className="relative w-full py-16 md:py-24 overflow-hidden bg-gradient-to-b from-[#FFF4ED] via-white to-[#FFF4ED]">
+    <section id="dang-ky-tu-van" className="relative w-full py-16 md:py-32 overflow-hidden bg-slate-50">
       {/* Dynamic Background Decor Outside Card */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40">
         <div className="absolute top-[-100px] left-[-100px] w-96 h-96 bg-[#F2701A] rounded-full blur-[120px] mix-blend-multiply"></div>
@@ -42,12 +42,12 @@ export function ConsultationForm() {
 
       <div className="container relative z-10 mx-auto px-4 max-w-[950px]">
         {/* Main Card Container */}
-        <div className="flex flex-col md:flex-row shadow-[0_25px_60px_-15px_rgba(242,112,26,0.3)] rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-[#F2701A]/20 bg-white relative">
+        <div className="flex flex-col md:flex-row shadow-[0_25px_60px_-15px_rgba(15,23,42,0.15)] rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-slate-200 bg-white relative">
           {/* Card Glow Effect */}
           <div className="absolute -inset-1 bg-gradient-to-r from-[#F2701A] via-[#FFD700] to-[#F2701A] opacity-30 blur-2xl -z-10"></div>
 
           {/* Left Side - Form */}
-          <div className="w-full md:w-[50%] p-8 md:p-10 lg:p-12 relative overflow-hidden flex flex-col justify-center bg-gradient-to-br from-[#F2701A] to-[#E05F0F]">
+          <div className="w-full md:w-[50%] p-8 md:p-10 lg:p-12 relative overflow-hidden flex flex-col justify-center bg-slate-900">
             {/* Subtle light accents */}
             <div className="absolute top-0 left-0 w-full h-full opacity-15 pointer-events-none">
               <div className="absolute top-[-50px] right-[-50px] w-48 h-48 bg-white rounded-full blur-3xl"></div>
@@ -115,7 +115,7 @@ export function ConsultationForm() {
 
               <Button
                 type="submit"
-                className="w-full bg-white text-[#D9530F] hover:bg-white hover:text-[#F2701A] font-extrabold text-base rounded-2xl py-6 mt-8 transition-all hover:scale-[1.03] shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_25px_rgba(255,255,255,0.4)]"
+                className="w-full bg-[#F2701A] text-white hover:bg-[#D96010] font-extrabold text-base rounded-2xl py-6 mt-8 transition-all hover:scale-[1.03] shadow-[0_8px_20px_rgba(242,112,26,0.3)] hover:shadow-[0_12px_25px_rgba(242,112,26,0.5)]"
               >
                 ĐĂNG KÝ NGAY
               </Button>
@@ -136,13 +136,9 @@ export function ConsultationForm() {
             {/* Subtle Floating Sparkles */}
             <div className="absolute inset-0 pointer-events-none opacity-80 z-0">
               <Star className="absolute top-10 left-12 w-4 h-4 text-[#F2701A]/50 animate-[pulse_3s_ease-in-out_infinite] fill-[#F2701A]/30" />
-              <Star className="absolute top-24 right-16 w-3 h-3 text-[#FFD700] animate-[pulse_2s_ease-in-out_infinite] fill-[#FFD700]" />
-              <Sparkles className="absolute top-1/3 left-1/4 w-6 h-6 text-[#FF9A4D] animate-[pulse_4s_ease-in-out_infinite]" />
-              <Star className="absolute bottom-1/3 right-1/4 w-4 h-4 text-[#FFD700] animate-[pulse_2.5s_ease-in-out_infinite] fill-[#FFD700]/40" />
-               <Star className="absolute top-54 left-56 w-3 h-3 text-[#FFD700] animate-[pulse_2s_ease-in-out_infinite] fill-[#FFD700]" />
-              <Star className="absolute top-50 right-12 w-4 h-4 text-[#F2701A]/50 animate-[pulse_3s_ease-in-out_infinite] fill-[#F2701A]/30" />
-              <div className="absolute top-16 left-1/2 w-2 h-2 bg-white rounded-full animate-ping blur-[1px]"></div>
-              <div className="absolute bottom-32 left-12 w-2 h-2 bg-white rounded-full animate-pulse blur-[1px]"></div>
+              <Star className="absolute top-24 right-16 w-3 h-3 text-[#F2701A]/40 animate-[pulse_2s_ease-in-out_infinite] fill-[#F2701A]/20" />
+              <Sparkles className="absolute top-1/3 left-1/4 w-6 h-6 text-[#F2701A]/30 animate-[pulse_4s_ease-in-out_infinite]" />
+              <Star className="absolute bottom-1/3 right-1/4 w-4 h-4 text-[#F2701A]/40 animate-[pulse_2.5s_ease-in-out_infinite] fill-[#F2701A]/20" />
             </div>
 
             {/* Rocket & Dashed Path Animation */}

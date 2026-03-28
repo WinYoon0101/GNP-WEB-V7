@@ -13,6 +13,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { MapPin, Clock, DollarSign, Users, Heart, TrendingUp, GraduationCapIcon as GraduateCapIcon, Building2, AlertCircle, Upload, Briefcase, ArrowRight } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+import { teamMembers } from "@/lib/constants"
 
 export default function TuyenDungPage() {
   const router = useRouter()
@@ -25,6 +27,13 @@ export default function TuyenDungPage() {
     message: "",
     cvFile: null as File | null,
   })
+  const [randomTeachers, setRandomTeachers] = useState<typeof teamMembers>([])
+
+  useEffect(() => {
+    // Pick 4 random members
+    const shuffled = [...teamMembers].sort(() => 0.5 - Math.random())
+    setRandomTeachers(shuffled.slice(0, 4))
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -181,9 +190,9 @@ export default function TuyenDungPage() {
               
               <div className="bg-slate-50 px-8 py-4 rounded-[2rem] border border-slate-100 shadow-sm flex items-center gap-6 group hover:shadow-xl transition-all duration-500">
                 <div className="flex -space-x-4">
-                  {["/co_nguyen.jpg", "/co_thuy.jpg", "/thay-ho.jpg", "/thay_bao.jpg"].map((src, i) => (
+                  {(randomTeachers.length > 0 ? randomTeachers : teamMembers.slice(0, 4)).map((teacher, i) => (
                     <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden shadow-md group-hover:scale-110 transition-transform" style={{ transitionDelay: `${i * 50}ms` }}>
-                      <Image src={src} alt="Team member" width={48} height={48} className="object-cover w-full h-full" />
+                      <Image src={teacher.image} alt={teacher.name} width={48} height={48} className="object-cover w-full h-full" title={teacher.name} />
                     </div>
                   ))}
                 </div>
