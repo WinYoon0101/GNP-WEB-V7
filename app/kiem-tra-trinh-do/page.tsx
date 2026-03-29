@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ChevronLeft, ChevronRight, BookOpen, Award, Trophy, CheckCircle2, XCircle } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 type TestLevel = "STARTERS" | "MOVERS" | "FLYERS"
 
@@ -479,306 +480,401 @@ export default function KiemTraTrinhDoPage() {
   }, [testStarted, testCompleted, timeLeft, selectedQuestions, answers])
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc] overflow-x-hidden">
       <Header />
-      <main className="pt-20 pb-16">
+
+      {/* Dynamic Background Pattern */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        style={{ backgroundImage: 'radial-gradient(circle, #0f172a 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+
+      <main className="flex-grow pt-24 pb-20 relative z-10 transition-all duration-500">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Kiểm Tra Trình Độ
+          <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-600 font-bold text-xs uppercase tracking-widest border border-orange-200 shadow-sm mb-4 animate-in fade-in slide-in-from-bottom-4 duration-500 font-sans">
+              <Award className="h-4 w-4" />
+              Chuẩn Quốc Tế Cambridge
+            </div>
+            <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight uppercase animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+              Kiểm Tra <span className="text-orange-500 italic">Trình Độ</span>
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Đánh giá năng lực tiếng Anh của bạn với các bài test Cambridge chuẩn quốc tế
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+              Đánh giá năng lực sử dụng Anh ngữ của bạn thông qua các bài test được thiết kế bởi chuyên gia, giúp bạn tìm ra lộ trình học tập tối ưu nhất.
             </p>
           </div>
 
           {!testStarted && !testCompleted && (
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <Card className="p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-indigo-200">
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-green-400 to-teal-500 rounded-full w-20 h-20 flex items-center justify-center mb-6 mx-auto">
-                    <BookOpen className="h-10 w-10 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">STARTERS</h3>
-                  <p className="text-gray-600 mb-4">Trình độ Pre A1</p>
-                  <p className="text-sm text-gray-500 mb-6">Thời gian: 20 phút</p>
-                  <Button
-                    onClick={() => startTest("STARTERS")}
-                    className="w-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700"
-                  >
-                    Bắt Đầu Thi
-                  </Button>
-                </div>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+              {[
+                {
+                  level: "STARTERS",
+                  title: "Starters",
+                  subtitle: "Pre A1",
+                  time: "20 phút",
+                  icon: <BookOpen className="h-10 w-10 text-emerald-500" />,
+                  color: "emerald",
+                  desc: "Cho trẻ mới bắt đầu làm quen với tiếng Anh.",
+                  btnBg: "bg-emerald-500 hover:bg-emerald-600 shadow-emerald-200 hover:shadow-emerald-500/40"
+                },
+                {
+                  level: "MOVERS",
+                  title: "Movers",
+                  subtitle: "Level A1",
+                  time: "25 phút",
+                  icon: <Award className="h-10 w-10 text-blue-500" />,
+                  color: "blue",
+                  desc: "Dành cho học sinh bắt đầu giao tiếp cơ bản.",
+                  btnBg: "bg-blue-600 hover:bg-blue-700 shadow-blue-200 hover:shadow-blue-500/40"
+                },
+                {
+                  level: "FLYERS",
+                  title: "Flyers",
+                  subtitle: "Level A2",
+                  time: "30 phút",
+                  icon: <Trophy className="h-10 w-10 text-orange-600" />,
+                  color: "orange",
+                  desc: "Hoàn thiện kỹ năng cơ bản, sẵn sàng cho lộ trình mới.",
+                  btnBg: "bg-orange-600 hover:bg-orange-700 shadow-orange-200 hover:shadow-orange-500/40"
+                }
+              ].map((item, index) => (
+                <div
+                  key={item.level}
+                  className={`group relative bg-white/70 backdrop-blur-md rounded-[2.5rem] border border-white/50 p-1 md:p-1.5 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)]`}
+                >
+                  <div className="bg-white rounded-[2rem] p-8 h-full flex flex-col items-center text-center">
+                    <div className={`mb-6 p-5 rounded-3xl bg-slate-50 border border-slate-100 transition-transform group-hover:scale-110 duration-500`}>
+                      {item.icon}
+                    </div>
 
-              <Card className="p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-purple-200">
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full w-20 h-20 flex items-center justify-center mb-6 mx-auto">
-                    <Award className="h-10 w-10 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">MOVERS</h3>
-                  <p className="text-gray-600 mb-4">Trình độ A1</p>
-                  <p className="text-sm text-gray-500 mb-6">Thời gian: 25 phút</p>
-                  <Button
-                    onClick={() => startTest("MOVERS")}
-                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
-                  >
-                    Bắt Đầu Thi
-                  </Button>
-                </div>
-              </Card>
+                    <h3 className="text-3xl font-black text-slate-900 mb-1 tracking-tight group-hover:text-orange-500 transition-colors uppercase">
+                      {item.title}
+                    </h3>
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold tracking-widest uppercase">
+                        {item.subtitle}
+                      </span>
+                    </div>
 
-              <Card className="p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-orange-200">
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-orange-400 to-red-500 rounded-full w-20 h-20 flex items-center justify-center mb-6 mx-auto">
-                    <Trophy className="h-10 w-10 text-white" />
+                    <p className="text-slate-500 text-sm mb-6 leading-relaxed max-w-[200px]">
+                      {item.desc}
+                    </p>
+
+                    <div className="mt-auto w-full space-y-4">
+                      <div className="flex items-center justify-center gap-2 text-slate-400 text-xs font-semibold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                        {item.time} làm bài
+                      </div>
+                      <Button
+                        onClick={() => startTest(item.level as TestLevel)}
+                        className={`w-full py-7 text-sm font-black uppercase tracking-[0.15em] rounded-2xl transition-all duration-300 shadow-lg text-white ${item.btnBg}`}
+                      >
+                        Bắt Đầu Thi
+                      </Button>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">FLYERS</h3>
-                  <p className="text-gray-600 mb-4">Trình độ A2</p>
-                  <p className="text-sm text-gray-500 mb-6">Thời gian: 30 phút</p>
-                  <Button
-                    onClick={() => startTest("FLYERS")}
-                    className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
-                  >
-                    Bắt Đầu Thi
-                  </Button>
                 </div>
-              </Card>
+              ))}
             </div>
           )}
 
           {testStarted && !testCompleted && currentQuestionData && (
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-6">
-                <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl font-bold text-indigo-600">{selectedLevel}</div>
-                    <div className="text-gray-600">
-                      Câu {currentQuestion + 1}/{selectedQuestions.length}
+            <div className="max-w-5xl mx-auto px-4">
+              <div className="bg-white rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden">
+                <div className="bg-slate-900 p-6 md:p-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-orange-500 p-3 rounded-2xl shadow-lg shadow-orange-500/20">
+                      {selectedLevel === "STARTERS" ? <BookOpen className="text-white h-6 w-6" /> :
+                        selectedLevel === "MOVERS" ? <Award className="text-white h-6 w-6" /> :
+                          <Trophy className="text-white h-6 w-6" />}
+                    </div>
+                    <div>
+                      <h4 className="text-white font-black text-xl tracking-tight uppercase leading-none mb-1">{selectedLevel}</h4>
+                      <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
+                        Câu {currentQuestion + 1} trên {selectedQuestions.length}
+                      </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-lg font-semibold text-coral-500">
-                    <span>Thời gian còn lại:</span>
-                    <span>{formatTime(timeLeft)}</span>
+
+                  <div className="flex items-center gap-6 bg-white/5 backdrop-blur-xl px-6 py-3 rounded-2xl border border-white/10">
+                    <div className="flex items-center gap-3">
+                      <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse" />
+                      <span className="text-slate-300 text-sm font-bold uppercase tracking-wider">Thời gian:</span>
+                      <span className="text-white text-xl font-mono font-bold">{formatTime(timeLeft)}</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {selectedQuestions.map((q, index) => (
-                    <button
-                      key={q.id}
-                      onClick={() => goToQuestion(index)}
-                      className={`w-10 h-10 rounded-lg font-semibold transition-all ${
-                        index === currentQuestion
-                          ? "bg-indigo-600 text-white scale-110"
-                          : answers[q.id]
-                            ? "bg-green-100 text-green-700 hover:bg-green-200"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                      }`}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-8 text-gray-800">
-                    {currentQuestionData.id}. {currentQuestionData.question}
-                  </h3>
-
-                  {currentQuestionData.image && (
-                    <div className="mb-8 flex justify-center">
-                      <Image
-                        src={currentQuestionData.image || "/placeholder.svg"}
-                        alt="Question"
-                        width={400}
-                        height={300}
-                        className="rounded-lg shadow-lg max-h-64 object-contain"
-                      />
-                    </div>
-                  )}
-
-                  <div className="space-y-4">
-                    {currentQuestionData.options.map((option) => (
+                <div className="p-8 md:p-12">
+                  <div className="flex flex-wrap gap-2.5 mb-12 justify-center">
+                    {selectedQuestions.map((q, index) => (
                       <button
-                        key={option.value}
-                        onClick={() => handleAnswer(currentQuestionData.id, option.value)}
-                        className={`w-full p-6 rounded-xl border-2 transition-all duration-200 text-left text-lg font-medium ${
-                          answers[currentQuestionData.id] === option.value
-                            ? "border-indigo-600 bg-indigo-50 text-indigo-700 shadow-lg"
-                            : "border-gray-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/50"
-                        }`}
+                        key={q.id}
+                        onClick={() => goToQuestion(index)}
+                        className={`w-12 h-12 rounded-xl font-black transition-all duration-300 flex items-center justify-center border-2 ${index === currentQuestion
+                            ? "border-orange-500 bg-orange-500 text-white shadow-lg shadow-orange-500/30 scale-110"
+                            : answers[q.id]
+                              ? "border-emerald-100 bg-emerald-50 text-emerald-600"
+                              : "border-slate-100 bg-slate-50 text-slate-400 hover:border-slate-200"
+                          }`}
                       >
-                        {option.label}
+                        {index + 1}
                       </button>
                     ))}
                   </div>
-                </div>
 
-                <div className="flex justify-between items-center pt-6 border-t">
-                  <Button
-                    onClick={prevQuestion}
-                    disabled={currentQuestion === 0}
-                    variant="outline"
-                    className="flex items-center gap-2 bg-transparent"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                    Câu trước
-                  </Button>
+                  <div className="max-w-3xl mx-auto space-y-10">
+                    <div className="space-y-4">
+                      <span className="inline-block px-3 py-1 rounded-lg bg-orange-50 text-orange-600 font-black text-[10px] uppercase tracking-widest border border-orange-100">
+                        Câu hỏi {currentQuestion + 1}
+                      </span>
+                      <h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-snug">
+                        {currentQuestionData.question}
+                      </h3>
+                    </div>
 
-                  {currentQuestion === selectedQuestions.length - 1 ? (
-                    <Button
-                      onClick={handleSubmit}
-                      disabled={!allQuestionsAnswered()}
-                      className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 px-8"
-                    >
-                      Nộp bài
-                    </Button>
-                  ) : (
-                    <Button onClick={nextQuestion} className="flex items-center gap-2">
-                      Câu tiếp theo
-                      <ChevronRight className="h-5 w-5" />
-                    </Button>
-                  )}
+                    {currentQuestionData.image && (
+                      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-50">
+                        <Image
+                          src={currentQuestionData.image || "/placeholder.svg"}
+                          alt="Question Visual"
+                          fill
+                          className="object-contain p-4"
+                        />
+                      </div>
+                    )}
+
+                    <div className="grid gap-4">
+                      {currentQuestionData.options.map((option, idx) => (
+                        <button
+                          key={option.value}
+                          onClick={() => handleAnswer(currentQuestionData.id, option.value)}
+                          className={`group w-full p-6 md:p-8 rounded-[1.5rem] border-2 transition-all duration-300 text-left relative overflow-hidden ${answers[currentQuestionData.id] === option.value
+                              ? "border-orange-500 bg-orange-500 text-white shadow-xl shadow-orange-500/20"
+                              : "border-slate-100 bg-white hover:border-orange-200 hover:bg-orange-50/30"
+                            }`}
+                        >
+                          <div className="flex items-center gap-6 relative z-10 font-bold text-lg md:text-xl">
+                            <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm transition-colors ${answers[currentQuestionData.id] === option.value
+                                ? "border-white bg-white text-orange-500"
+                                : "border-slate-200 text-slate-400 group-hover:border-orange-300"
+                              }`}>
+                              {String.fromCharCode(65 + idx)}
+                            </span>
+                            {option.label}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="flex justify-between items-center pt-10 border-t border-slate-100">
+                      <Button
+                        onClick={prevQuestion}
+                        disabled={currentQuestion === 0}
+                        variant="ghost"
+                        className="flex items-center gap-3 text-slate-500 font-bold hover:bg-slate-50 py-6 px-6 rounded-2xl"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                        Quay lại
+                      </Button>
+
+                      {currentQuestion === selectedQuestions.length - 1 ? (
+                        <Button
+                          onClick={handleSubmit}
+                          disabled={!allQuestionsAnswered()}
+                          className="bg-slate-900 hover:bg-black text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl disabled:opacity-30"
+                        >
+                          Nộp Bài & Kết Quả
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={nextQuestion}
+                          className="flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-orange-500/20"
+                        >
+                          Kế tiếp
+                          <ChevronRight className="h-5 w-5" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
           {showResultForm && (
-            <div className="max-w-2xl mx-auto">
-              <Card className="p-8">
-                <h2 className="text-3xl font-bold mb-6 text-center text-indigo-600">Nhập Thông Tin Để Xem Kết Quả</h2>
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Họ tên phụ huynh</label>
+            <div className="max-w-2xl mx-auto px-4">
+              <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 p-8 md:p-12 text-center space-y-10">
+                <div className="space-y-4">
+                  <div className="w-20 h-20 bg-orange-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="h-10 w-10 text-orange-600" />
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight uppercase">Thông Tin Nhận <span className="text-orange-500 italic">Kết Quả</span></h2>
+                  <p className="text-slate-500 font-medium">Bạn đã hoàn thành bài thi! Vui lòng điền thông tin để hệ thống ghi nhận và gửi kết quả chi tiết.</p>
+                </div>
+
+                <div className="space-y-5 text-left">
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Họ tên phụ huynh</label>
                     <input
                       type="text"
                       value={studentInfo.parentName}
                       onChange={(e) => setStudentInfo({ ...studentInfo, parentName: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all"
-                      placeholder="Nhập họ tên phụ huynh"
+                      className="w-full px-6 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10 transition-all font-bold"
+                      placeholder="Nguyễn Văn A"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Họ tên học sinh</label>
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Họ tên học sinh</label>
                     <input
                       type="text"
                       value={studentInfo.studentName}
                       onChange={(e) => setStudentInfo({ ...studentInfo, studentName: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all"
-                      placeholder="Nhập họ tên học sinh"
+                      className="w-full px-6 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10 transition-all font-bold"
+                      placeholder="Nguyễn Văn B"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Số điện thoại liên hệ</label>
+                  <div className="space-y-2">
+                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">Số điện thoại</label>
                     <input
                       type="tel"
                       value={studentInfo.phone}
                       onChange={(e) => setStudentInfo({ ...studentInfo, phone: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all"
-                      placeholder="Nhập số điện thoại"
+                      className="w-full px-6 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-500/10 transition-all font-bold"
+                      placeholder="09xx xxx xxx"
                     />
                   </div>
-                  <Button onClick={handleShowResults} className="w-full py-6 text-lg" size="lg">
-                    Xem Kết Quả
-                  </Button>
                 </div>
-              </Card>
+
+                <Button
+                  onClick={handleShowResults}
+                  className="w-full py-8 text-lg font-black uppercase tracking-widest bg-slate-900 hover:bg-black text-white rounded-3xl shadow-xl shadow-slate-900/20 transition-all"
+                >
+                  Xem Kết Quả Chi Tiết 🚀
+                </Button>
+              </div>
             </div>
           )}
 
           {score !== null && !showResultForm && (
-            <div className="max-w-4xl mx-auto">
-              <Card className="p-8 text-center">
-                <div
-                  className={`mx-auto w-32 h-32 rounded-full flex items-center justify-center mb-6 ${
-                    score >= 80
-                      ? "bg-gradient-to-br from-green-400 to-teal-500"
-                      : score >= 60
-                        ? "bg-gradient-to-br from-yellow-400 to-orange-500"
-                        : "bg-gradient-to-br from-red-400 to-pink-500"
-                  }`}
-                >
-                  <div className="text-white">
-                    <div className="text-4xl font-bold">{score.toFixed(0)}%</div>
-                    <div className="text-sm">Điểm</div>
+            <div className="max-w-4xl mx-auto px-4">
+              <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden">
+                <div className={`${score >= 80 ? "bg-emerald-500" : score >= 60 ? "bg-orange-500" : "bg-red-500"
+                  } p-12 text-center text-white space-y-4 relative overflow-hidden`}>
+
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '15px 15px' }} />
+
+                  <div className="relative z-10 space-y-6">
+                    <div className="inline-block px-6 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-black uppercase tracking-widest mb-4">
+                      Kết quả cuối cùng
+                    </div>
+                    <div className="relative inline-block">
+                      <svg className="w-32 h-32 transform -rotate-90">
+                        <circle cx="64" cy="64" r="60" stroke="rgba(255,255,255,0.2)" strokeWidth="8" fill="none" />
+                        <circle cx="64" cy="64" r="60" stroke="white" strokeWidth="8" fill="none" strokeDasharray={377} strokeDashoffset={377 - (377 * score) / 100} strokeLinecap="round" className="transition-all duration-1000 ease-out" />
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center font-black">
+                        <span className="text-4xl">{score.toFixed(0)}</span>
+                        <span className="text-[10px] uppercase tracking-tighter opacity-70">Điểm</span>
+                      </div>
+                    </div>
+                    <h2 className="text-4xl font-black uppercase tracking-tight">
+                      {score >= 80 ? "Sẵn sàng tỏa sáng!" : score >= 60 ? "Thể hiện rất tốt!" : "Hãy nỗ lực thêm nhé!"}
+                    </h2>
                   </div>
                 </div>
 
-                <h2 className="text-3xl font-bold mb-4">
-                  {score >= 80 ? "Xuất sắc!" : score >= 60 ? "Khá tốt!" : "Cần cố gắng thêm!"}
-                </h2>
-                <p className="text-gray-600 mb-8">
-                  Bạn đã trả lời đúng {selectedQuestions.filter((q) => answers[q.id] === q.correctAnswer).length}/
-                  {selectedQuestions.length} câu
-                </p>
-
-                <div className="bg-gray-50 rounded-xl p-6 mb-8">
-                  <h3 className="font-bold text-lg mb-4 text-gray-900">Thông tin học sinh</h3>
-                  <div className="text-left space-y-2 text-gray-700">
-                    <p>
-                      <span className="font-semibold">Phụ huynh:</span> {studentInfo.parentName}
-                    </p>
-                    <p>
-                      <span className="font-semibold">Học sinh:</span> {studentInfo.studentName}
-                    </p>
-                    <p>
-                      <span className="font-semibold">Số điện thoại:</span> {studentInfo.phone}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4 mb-8">
-                  {selectedQuestions.map((question, index) => {
-                    const isCorrect = answers[question.id] === question.correctAnswer
-                    return (
-                      <div
-                        key={question.id}
-                        className={`p-4 rounded-lg border-2 ${
-                          isCorrect ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          {isCorrect ? (
-                            <CheckCircle2 className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                          ) : (
-                            <XCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-                          )}
-                          <div className="flex-1 text-left">
-                            <p className="font-semibold text-gray-900 mb-1">
-                              Câu {index + 1}: {question.question}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              Bạn chọn:{" "}
-                              {question.options.find((opt) => opt.value === answers[question.id])?.label || "Không có"}
-                            </p>
-                            {!isCorrect && (
-                              <p className="text-sm text-gray-600">
-                                Đáp án đúng:{" "}
-                                {question.options.find((opt) => opt.value === question.correctAnswer)?.label}
-                              </p>
-                            )}
-                          </div>
+                <div className="p-8 md:p-12 space-y-12">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="p-8 bg-slate-50 rounded-3xl border border-slate-100 space-y-6">
+                      <h3 className="font-black text-slate-900 uppercase tracking-widest text-sm border-b border-slate-200 pb-3">Hồ sơ học viên</h3>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-400 text-xs font-bold uppercase">Họ tên:</span>
+                          <span className="text-slate-900 font-bold">{studentInfo.studentName}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-400 text-xs font-bold uppercase">Trình độ test:</span>
+                          <span className="text-orange-500 font-black">{selectedLevel}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-400 text-xs font-bold uppercase">Kết quả:</span>
+                          <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase ${score >= 80 ? "bg-emerald-100 text-emerald-600" : score >= 60 ? "bg-orange-100 text-orange-600" : "bg-red-100 text-red-600"
+                            }`}>{score >= 80 ? "Vượt mức" : score >= 60 ? "Đạt chuẩn" : "Chưa đạt"}</span>
                         </div>
                       </div>
-                    )
-                  })}
-                </div>
+                    </div>
 
-                <Button
-                  onClick={() => {
-                    setTestStarted(false)
-                    setTestCompleted(false)
-                    setSelectedLevel(null)
-                    setScore(null)
-                  }}
-                  size="lg"
-                  className="px-8"
-                >
-                  Làm bài test khác
-                </Button>
-              </Card>
+                    <div className="p-8 bg-orange-50 rounded-3xl border border-orange-100 space-y-4 flex flex-col justify-center">
+                      <h3 className="font-black text-orange-700 uppercase tracking-widest text-sm">Lời khuyên chuyên gia</h3>
+                      <p className="text-orange-800 text-sm italic font-medium leading-relaxed">
+                        {score >= 80 ? '"Kết quả của con rất ấn tượng! Hãy tiếp tục rèn luyện kỹ năng nâng cao để sẵn sàng cho các kỳ thi quốc tế chính thức."' :
+                          score >= 60 ? '"Con có nền tảng tốt. Tập trung thêm vào phần từ vựng và cấu trúc ngữ pháp để tự tin hơn khi giao tiếp."' :
+                            '"Đừng nản lòng nhé! Con cần ôn tập lại kiến thức cơ bản. GNP English luôn sẵn sàng hỗ trợ con trong hành trình này."'}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <h3 className="font-black text-slate-900 uppercase tracking-widest text-sm">Xem lại đáp án</h3>
+                    <div className="grid gap-4">
+                      {selectedQuestions.map((question, index) => {
+                        const isCorrect = answers[question.id] === question.correctAnswer
+                        return (
+                          <div key={question.id} className={`p-6 rounded-2xl border-2 transition-all ${isCorrect ? "bg-emerald-50/50 border-emerald-100" : "bg-red-50/50 border-red-100"
+                            }`}>
+                            <div className="flex items-start gap-4">
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${isCorrect ? "bg-emerald-500" : "bg-red-500"
+                                }`}>
+                                {isCorrect ? <CheckCircle2 className="h-4 w-4 text-white" /> : <XCircle className="h-4 w-4 text-white" />}
+                              </div>
+                              <div className="space-y-2">
+                                <p className="font-bold text-slate-900">{index + 1}. {question.question}</p>
+                                <div className="flex flex-wrap gap-4 text-xs font-bold">
+                                  <span className={isCorrect ? "text-emerald-600" : "text-red-500"}>
+                                    Bạn chọn: {(() => {
+                                      const selectedIdx = question.options.findIndex(o => o.value === answers[question.id]);
+                                      return selectedIdx !== -1 ? `${String.fromCharCode(65 + selectedIdx)}. ${question.options[selectedIdx].label}` : "Bỏ trống";
+                                    })()}
+                                  </span>
+                                  {!isCorrect && (
+                                    <span className="text-emerald-600">
+                                      Đáp án đúng: {(() => {
+                                        const correctIdx = question.options.findIndex(o => o.value === question.correctAnswer);
+                                        return correctIdx !== -1 ? `${String.fromCharCode(65 + correctIdx)}. ${question.options[correctIdx].label}` : "N/A";
+                                      })()}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 pt-8">
+                    <Button
+                      onClick={() => {
+                        setTestStarted(false)
+                        setTestCompleted(false)
+                        setSelectedLevel(null)
+                        setScore(null)
+                      }}
+                      className="flex-1 py-7 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-2xl font-black uppercase tracking-widest transition-all"
+                    >
+                      Kiểm tra lại
+                    </Button>
+                    <Button
+                      asChild
+                      className="flex-1 py-7 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-orange-500/20"
+                    >
+                      <Link href="/lien-he">Nhận tư vấn lộ trình</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

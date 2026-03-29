@@ -25,14 +25,9 @@ export const teamMembers = [
     image: "/co_diep.png",
   },
   {
-    name: "Cô Nguyễn Thanh Hạ",
-    position: "Trưởng phòng học thuật",
-    image: "/nguyen_thanh_ha.jpg",
-  },
-  {
-    name: "Thầy Nguyễn Đức Huy",
-    position: "Giám đốc chi nhánh trung tâm Ngoại ngữ - Tin học Nhân Tâm",
-    image: "/thay_huy.jpg",
+    name: "Thầy Lê Hoàng Bảo",
+    position: "Giám đốc phát triển Ngoại ngữ - Tin học",
+    image: "/thay_bao.jpg",
   },
   {
     name: "Cô Nguyễn Thị Thủy",
@@ -40,18 +35,24 @@ export const teamMembers = [
     image: "/co_thuy.jpg",
   },
   {
-    name: "Cô Trần Thị Thanh Vân",
-    position: "Trưởng ban công tác xã hội",
-    image: "/co_van.jpg",
-  },
-  {
     name: "Ông Nguyễn Quốc Huy",
     position: "Trưởng phòng marketing",
     image: "/quoc_huy.jpg",
   },
   {
-    name: "Thầy Lê Hoàng Bảo",
-    position: "Giám đốc phát triển Ngoại ngữ - Tin học",
-    image: "/thay_bao.jpg",
+    name: "Thầy Bùi Đức Huy",
+    position: "Giám đốc chi nhánh trung tâm Ngoại ngữ - Tin học Nhân Tâm",
+    image: "/thay_huy.jpg",
   },
+  {
+    name: "Cô Trần Thị Thanh Vân",
+    position: "Trưởng ban công tác xã hội",
+    image: "/co_van.jpg",
+  },
+  {
+    name: "Cô Nguyễn Thanh Hạ",
+    position: "Trưởng phòng học thuật",
+    image: "/nguyen_thanh_ha.jpg",
+  },
+
 ];

@@ -120,19 +120,6 @@ export function Hero() {
         >
           <ChevronRight className="h-8 w-8" />
         </button>
-
-        {/* Navigation Dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide ? "w-10 bg-orange-500" : "w-2.5 bg-white/50 hover:bg-white/80"
-                }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
       <div ref={ref} className="h-px w-full" />
     </section>
