@@ -54,5 +54,4 @@ export const teamMembers = [
     position: "Trưởng phòng học thuật",
     image: "/nguyen_thanh_ha.jpg",
   },
-
 ];

@@ -151,15 +151,13 @@ export function FlashSale() {
               <Zap className="h-8 w-8 text-[#F2701A]" />
             </div>
 
-            <div className="relative w-full max-w-[460px] aspect-[4/3] md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden shadow-2xl group border-[6px] border-white z-10 transition-transform duration-700">
+            <div className="relative w-full max-w-[460px] aspect-[4/3] md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border-[6px] border-white z-10">
               <Image
                 src="/img_sale.jpg"
                 alt="Khóa học giảm giá GNP English"
                 fill
-                className="object-cover object-center transition-transform duration-700"
+                className="object-cover object-center"
               />
-              {/* Soft overlay at bottom - Solid color */}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           </div>
         </div>
