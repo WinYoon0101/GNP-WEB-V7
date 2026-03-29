@@ -4,7 +4,8 @@ import React from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card } from "@/components/ui/card"
-import { Calendar, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Calendar, ArrowRight, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
@@ -95,6 +96,20 @@ export default function CategoryNewsPage({ params }: { params: Promise<{ categor
       <Header />
       <main className="py-16 md:py-24">
         <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <Button asChild variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground transition-colors group">
+              <Link href="/tin-tuc">
+                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                <span>Quay lại trang tin tức</span>
+              </Link>
+            </Button>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

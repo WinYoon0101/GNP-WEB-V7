@@ -144,7 +144,7 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
                           </span>
                         </div>
                       </div>
-                      
+
                       <CardHeader className="flex-1 pb-4 px-8 pt-8">
                         <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest mb-4">
                           <Calendar className="h-4 w-4" />
@@ -154,7 +154,7 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
                           {article.title}
                         </CardTitle>
                       </CardHeader>
-                      
+
                       <CardContent className="pt-0 pb-8 px-8 mt-auto">
                         <p className="line-clamp-2 text-slate-500 mb-8 font-medium italic">
                           "{article.description}"
