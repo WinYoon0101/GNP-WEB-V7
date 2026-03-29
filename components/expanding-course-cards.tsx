@@ -77,7 +77,7 @@ export function ExpandingCourseCards() {
             {course.age}
           </span>
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-white transition-colors duration-500 mb-1 md:mb-2">
+            <h3 className="text-xl md:text-[22px] font-bold text-gray-900 group-hover:text-white transition-colors duration-500 mb-1 md:mb-2">
               {course.title}
             </h3>
             <p className="text-sm md:text-base text-gray-600 group-hover:text-gray-200 transition-colors duration-500 max-w-[200px] line-clamp-2 md:line-clamp-none">
@@ -134,11 +134,15 @@ export function ExpandingCourseCards() {
     </Link>
   );
   return (
-    <section className="py-16 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#F2701A] mb-2 leading-tight">
-            "Đo ni đóng giày":
+    <section className="py-16 md:py-24 relative overflow-hidden">
+    
+      {/* === CONTENT === */}
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="text-center mb-10 md:mb-14 relative">
+          {/* Glow behind heading */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[120px] md:w-[500px] md:h-[160px] bg-[#F2701A]/10 rounded-full blur-3xl pointer-events-none" />
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#F2701A] mb-2 leading-tight relative">
+            GNP English Academy
             <br />
             Thấu hiểu con - Minh bạch tiến độ - Cam kết đầu ra
           </h2>
@@ -146,7 +150,7 @@ export function ExpandingCourseCards() {
 
         
         {/* Desktop Layout */}
-        <div className="hidden md:flex flex-row gap-4 w-full h-[450px]">
+        <div className="hidden md:flex flex-row gap-4 w-full h-[420px]">
           {courses.map((course) => renderCourseCard(course))}
         </div>
 
@@ -179,6 +183,7 @@ export function ExpandingCourseCards() {
           </Carousel>
         </div>
       </div>
+
     </section>
   );
 }

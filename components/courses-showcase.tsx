@@ -296,7 +296,7 @@ function CourseCard({ course, index }: { course: any; index: number }) {
         <Button className="mt-6 w-full shadow-lg transition-all hover:scale-105" size="lg" asChild>
           <Link href="/lien-he">
             Đăng ký học thử miễn phí
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
       </CardContent>

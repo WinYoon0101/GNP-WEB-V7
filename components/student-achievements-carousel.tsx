@@ -111,7 +111,7 @@ export function StudentAchievementsCarousel() {
             {/* Right Achievement Badge */}
             <div className="flex flex-col items-center justify-center shrink-0 w-full lg:w-auto">
               <div className="relative flex items-center justify-center">
-                <Trophy className="absolute top-3 right-0 lg:-right-7 text-white/30 w-24 h-24 lg:w-34 lg:h-34 scale-x-[-1]" />
+                <Trophy className="hidden md:block absolute top-3 lg:-right-7 text-white/30 w-24 h-24 lg:w-34 lg:h-34 scale-x-[-1]" />
                 <div className="text-center relative z-10 px-4 lg:px-8 lg:translate-x-[-100px]">
                   <div className="text-6xl md:text-8xl font-black text-white relative pr-6 lg:pr-0">
                     90%

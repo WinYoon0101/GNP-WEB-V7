@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Trophy, BookOpen, Rocket, Star, Flag, Cloud, Sparkles, MoveRight, Circle, ChevronLeft, ChevronRight, TrendingUp, BarChart3, ArrowUpRight } from "lucide-react";
 import React, { useEffect, useState, useRef } from "react";
+import { BenefitsSection } from "./BenefitsSection";
 
 const courses = [
   {
@@ -184,33 +185,7 @@ export function StaircaseCourseCards() {
           </button>
         </div>
 
-        {/* Footer Text & Certs */}
-        <div className="flex flex-col md:flex-row items-center justify-between mt-auto mb-4 border-t-2 border-slate-200/50 gap-6 lg:gap-8 relative z-10 bg-white/80 backdrop-blur-md p-6 lg:p-8 rounded-[24px] mx-auto w-full max-w-4xl shadow-sm transition-shadow shrink-0">
-          <div className="text-center md:text-left flex-1">
-            <h4 className="text-[#1E3A8A] font-black text-xl md:text-2xl mb-2 uppercase tracking-tight">
-              CAM KẾT KẾT QUẢ ĐẦU RA <br className="hidden lg:block" /> THEO TỪNG TRÌNH ĐỘ
-            </h4>
-            <p className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 text-blue-700 font-bold text-sm rounded-full mt-2 shadow-sm border border-blue-100">
-              <Star className="w-4 h-4 fill-current" /> Chuẩn CEFR & Cambridge
-            </p>
-          </div>
-
-          <div className="flex items-center justify-center gap-4 lg:gap-6 bg-white p-3 lg:p-4 rounded-2xl shadow-sm border border-slate-100 w-full md:w-auto">
-            <div className="flex items-center gap-2 lg:gap-3">
-              <div className="bg-[#1E3A8A] p-2 rounded-xl shadow-inner">
-                <Image src="/placeholder.svg" alt="Cambridge" width={32} height={32} className="invert w-8 h-8 lg:w-10 lg:h-10" />
-              </div>
-              <div className="text-left">
-                <span className="block font-black text-slate-800 text-lg lg:text-xl uppercase tracking-tighter leading-none">CAMBRIDGE</span>
-                <span className="block text-slate-500 font-bold text-[10px] lg:text-xs tracking-widest mt-0.5">English</span>
-              </div>
-            </div>
-            <div className="h-10 lg:h-12 w-[2px] bg-slate-100" />
-            <div className="text-slate-400 text-xs lg:text-sm font-bold uppercase tracking-wider max-w-[80px] lg:max-w-[100px] leading-tight text-center md:text-left">
-              Authorised Exam Centre
-            </div>
-          </div>
-        </div>
+     <BenefitsSection/>
 
       </div>
 

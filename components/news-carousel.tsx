@@ -1,87 +1,103 @@
-"use client"
+"use client";
 
-import { useEffect, useState, useRef } from "react"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight, Calendar, ArrowRight, Clock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Calendar,
+  ArrowRight,
+  Clock,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Article {
-  id: number
-  title: string
-  description: string
-  date: string
-  time: string
-  readTime: string
-  category: string
-  image: string
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  readTime: string;
+  category: string;
+  image: string;
 }
 
 interface NewsCarouselProps {
-  categoryId: string
-  categoryName: string
-  articles: Article[]
+  categoryId: string;
+  categoryName: string;
+  articles: Article[];
 }
 
-export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [direction, setDirection] = useState(1)
-  const [itemsPerView, setItemsPerView] = useState(3)
-  const containerRef = useRef<HTMLDivElement>(null)
+export function NewsCarousel({
+  categoryId,
+  categoryName,
+  articles,
+}: NewsCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [direction, setDirection] = useState(1);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) setItemsPerView(1)
-      else if (window.innerWidth < 1024) setItemsPerView(2)
-      else setItemsPerView(3)
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+      if (window.innerWidth < 768) setItemsPerView(1);
+      else if (window.innerWidth < 1024) setItemsPerView(2);
+      else setItemsPerView(3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const actualItemsPerView = Math.min(itemsPerView, articles.length)
-  const canScroll = articles.length > itemsPerView
+  const actualItemsPerView = Math.min(itemsPerView, articles.length);
+  const canScroll = articles.length > itemsPerView;
 
   useEffect(() => {
-    if (!isAutoPlaying || !canScroll) return
+    if (!isAutoPlaying || !canScroll) return;
     const interval = setInterval(() => {
-      setDirection(1)
-      setCurrentIndex((prev) => (prev + 1) % articles.length)
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, articles.length, canScroll])
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % articles.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, articles.length, canScroll]);
 
   const nextSlide = () => {
-    if (!canScroll) return
-    setDirection(1)
-    setCurrentIndex((prev) => (prev + 1) % articles.length)
-    setIsAutoPlaying(false)
-  }
+    if (!canScroll) return;
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % articles.length);
+    setIsAutoPlaying(false);
+  };
 
   const prevSlide = () => {
-    if (!canScroll) return
-    setDirection(-1)
-    setCurrentIndex((prev) => (prev - 1 + articles.length) % articles.length)
-    setIsAutoPlaying(false)
-  }
+    if (!canScroll) return;
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + articles.length) % articles.length);
+    setIsAutoPlaying(false);
+  };
 
   const getVisibleArticles = () => {
-    const articlesToShow = []
+    const articlesToShow = [];
     for (let i = 0; i < actualItemsPerView; i++) {
-      articlesToShow.push(articles[(currentIndex + i) % articles.length])
+      articlesToShow.push(articles[(currentIndex + i) % articles.length]);
     }
-    return articlesToShow
-  }
+    return articlesToShow;
+  };
 
   const getCardWidthStyle = () => {
-    if (itemsPerView === 1) return { width: "100%" }
-    if (itemsPerView === 2) return { width: "calc(50% - 1rem)" }
-    return { width: "calc(33.3333% - 1.5rem)" }
-  }
+    if (itemsPerView === 1) return { width: "100%" };
+    if (itemsPerView === 2) return { width: "calc(50% - 1rem)" };
+    return { width: "calc(33.3333% - 1.5rem)" };
+  };
 
   return (
     <section className="relative group/carousel-section">
@@ -110,14 +126,26 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
 
         <div className="overflow-hidden pb-12">
           <div className="flex gap-4 md:gap-8 relative min-h-[480px]">
-            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+            <AnimatePresence
+              initial={false}
+              custom={direction}
+              mode="popLayout"
+            >
               {getVisibleArticles().map((article, index) => (
                 <motion.div
                   key={`${article.id}-${article.category}-${currentIndex + index}`}
                   custom={direction}
-                  initial={{ opacity: 0, x: direction > 0 ? 50 : -50, scale: 0.95 }}
+                  initial={{
+                    opacity: 0,
+                    x: direction > 0 ? 50 : -50,
+                    scale: 0.95,
+                  }}
                   animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: direction > 0 ? -50 : 50, scale: 0.95 }}
+                  exit={{
+                    opacity: 0,
+                    x: direction > 0 ? -50 : 50,
+                    scale: 0.95,
+                  }}
                   transition={{
                     type: "spring",
                     stiffness: 260,
@@ -127,7 +155,10 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
                   style={getCardWidthStyle()}
                   className="flex-shrink-0 relative"
                 >
-                  <Link href={`/tin-tuc/${categoryId}/${article.id}`} className="block h-full cursor-default">
+                  <Link
+                    href={`/tin-tuc/${categoryId}/${article.id}`}
+                    className="block h-full cursor-default"
+                  >
                     <Card className="group h-full overflow-hidden border-none bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] transition-all duration-700 rounded-[2.5rem] flex flex-col group/card cursor-pointer">
                       <div className="relative aspect-[4/3] overflow-hidden">
                         <Image
@@ -148,7 +179,9 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
                       <CardHeader className="flex-1 pb-4 px-8 pt-8">
                         <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest mb-4">
                           <Calendar className="h-4 w-4" />
-                          <span>{new Date(article.date).toLocaleDateString("vi-VN")}</span>
+                          <span>
+                            {new Date(article.date).toLocaleDateString("vi-VN")}
+                          </span>
                         </div>
                         <CardTitle className="line-clamp-2 text-xl md:text-2xl font-black leading-tight text-slate-900 group-hover/card:text-primary transition-colors duration-300 tracking-tight">
                           {article.title}
@@ -183,12 +216,15 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
             {articles.map((_, index) => (
               <button
                 key={index}
-                className={`h-2.5 rounded-full transition-all duration-700 ease-[0.16,1,0.3,1] ${index === currentIndex ? "w-12 bg-primary shadow-lg shadow-primary/20" : "w-2.5 bg-slate-200 hover:bg-slate-300"
-                  }`}
+                className={`h-2.5 rounded-full transition-all duration-700 ease-[0.16,1,0.3,1] ${
+                  index === currentIndex
+                    ? "w-12 bg-primary shadow-lg shadow-primary/20"
+                    : "w-2.5 bg-slate-200 hover:bg-slate-300"
+                }`}
                 onClick={() => {
-                  setDirection(index > currentIndex ? 1 : -1)
-                  setCurrentIndex(index)
-                  setIsAutoPlaying(false)
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                  setIsAutoPlaying(false);
                 }}
                 aria-label={`Go to article ${index + 1}`}
               />
@@ -197,5 +233,5 @@ export function NewsCarousel({ categoryId, categoryName, articles }: NewsCarouse
         )}
       </div>
     </section>
-  )
+  );
 }

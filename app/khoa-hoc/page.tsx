@@ -10,43 +10,13 @@ export default function CoursesPage() {
       {/* Clean Header Spacing */}
 
       <Header />
-      <main className="flex-grow pt-20">
+      <main className="flex-grow ">
 
         {/* 
           HERO SECTION 
           - Updated: Removed gradients and blurs
         */}
-        <section className="bg-secondary py-24 md:py-32 relative overflow-hidden">
-          {/* Modern Decorative Backgrounds */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -translate-x-1/3 translate-y-1/3" />
-
-          {/* Subtle Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-            style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-block text-primary font-black tracking-[0.3em] uppercase text-xs md:text-sm mb-6 px-4 py-1 border-x border-primary/30 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                Lộ trình chuẩn quốc tế
-              </span>
-
-              <h1 className="flex flex-col items-center text-[clamp(1.1rem,6vw,4.5rem)] font-black text-white mb-8 leading-[1.1] tracking-tighter animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 uppercase text-center">
-                <span>Hệ Thống <span className="text-primary italic">Đào Tạo</span></span>
-                <div className="inline-block mt-4 bg-white/5 backdrop-blur-md px-3 py-1.5 md:px-8 md:py-3 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl whitespace-nowrap">
-                  <span className="text-white">CHUẨN </span>
-                  <span className="text-primary">CAMBRIDGE & IELTS</span>
-                </div>
-              </h1>
-
-              <div className="w-20 h-1.5 bg-primary mx-auto rounded-full mb-8 animate-in fade-in zoom-in duration-700 delay-200" />
-
-              <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 italic">
-                "Cam kết kết quả đầu ra theo từng trình độ, xây dựng nền tảng vững chắc cho tương lai toàn cầu."
-              </p>
-            </div>
-          </div>
-        </section>
+      
 
         {/* 
           COURSES SECTION

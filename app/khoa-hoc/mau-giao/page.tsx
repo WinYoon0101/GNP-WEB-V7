@@ -24,7 +24,7 @@ export default function PreschoolEnglishPage() {
 
          <Header />
 
-         <main className="pt-20">
+         <main className="">
 
             {/* 
           HERO SECTION - Responsive Consistent
@@ -110,7 +110,7 @@ export default function PreschoolEnglishPage() {
             {/* 
            STATS BAR - Responsive Grid
         */}
-            <section className="relative -mt-16 lg:-mt-24 z-30 pb-16 lg:pb-20">
+            <section className="relative -mt-16 lg:-mt-12 z-30 pb-16 lg:pb-20 ">
                <div className="container mx-auto px-4">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-2xl shadow-orange-500/10 border border-white/50">
                      {[

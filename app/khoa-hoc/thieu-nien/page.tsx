@@ -24,7 +24,7 @@ export default function TeenEnglishPage() {
 
          <Header />
 
-         <main className="pt-20">
+         <main className="">
 
             {/* 
           HERO SECTION - Blue/Indigo Theme

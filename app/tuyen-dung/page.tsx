@@ -133,27 +133,67 @@ export default function TuyenDungPage() {
     <div className="min-h-screen">
       <Header />
       <main>
-        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-          {/* Decorative Pattern */}
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
-            style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-          
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <GraduateCapIcon className="h-24 w-24 mx-auto mb-8 text-primary animate-bounce" />
-            <h1 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tight">Tuyển Dụng</h1>
-            <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-slate-300 font-medium font-serif italic">
-              "Gia nhập đội ngũ GNP English Academy - Nơi tài năng được tôn vinh và phát triển"
-            </p>
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-orange-600 text-white font-black px-12 py-8 text-xl shadow-2xl hover:shadow-primary/20 transition-all hover:scale-105 rounded-2xl"
-              onClick={(e) => openApplicationForm(e, "GNP English Academy")}
-            >
-              Ứng Tuyển Ngay
-            </Button>
-          </div>
-        </section>
+   <section className="relative py-28 bg-gradient-to-br from-orange-50 via-white to-orange-100 overflow-hidden">
+
+  {/* Glow background */}
+  <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-orange-400/30 rounded-full blur-3xl" />
+  <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-amber-300/30 rounded-full blur-3xl" />
+
+  {/* Grid nhẹ */}
+  <div
+    className="absolute inset-0 opacity-[0.05]"
+    style={{
+      backgroundImage:
+        "linear-gradient(#fb923c 1px, transparent 1px), linear-gradient(90deg, #fb923c 1px, transparent 1px)",
+      backgroundSize: "50px 50px",
+    }}
+  />
+
+  <div className="container mx-auto px-4 text-center relative z-10">
+
+    {/* Badge */}
+    <div className="inline-flex items-center gap-2 bg-orange-100 border border-orange-200 px-4 py-1.5 rounded-full mb-6">
+      <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+      <span className="text-orange-600 text-xs font-semibold uppercase tracking-widest">
+        Ứng tuyển
+      </span>
+    </div>
+
+    {/* Title */}
+    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+      <span className="bg-gradient-to-r from-orange-500 to-amber-400 bg-clip-text text-transparent">
+        GNP English Academy
+      </span>
+    </h1>
+
+    {/* Subtitle */}
+    <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base md:text-lg italic">
+      Nơi tài năng được phát triển, cơ hội được mở rộng và bạn trở thành phiên bản tốt nhất của chính mình.
+    </p>
+
+    {/* Divider */}
+    <div className="flex items-center justify-center gap-3 mt-6">
+      <div className="h-px w-12 bg-orange-300" />
+      <div className="w-3 h-3 bg-orange-500 rounded-full" />
+      <div className="h-px w-12 bg-orange-300" />
+    </div>
+
+    {/* CTA */}
+    <div className="mt-10">
+      <button
+        onClick={(e) => openApplicationForm(e, "GNP English Academy")}
+        className="px-10 py-4 text-lg font-bold text-white rounded-full 
+        bg-gradient-to-r from-orange-500 to-amber-400 
+        shadow-lg shadow-orange-500/30 
+        hover:scale-105 hover:shadow-orange-500/50 
+        transition-all duration-300"
+      >
+        Ứng tuyển ngay
+      </button>
+    </div>
+
+  </div>
+</section>
 
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
@@ -286,7 +326,7 @@ export default function TuyenDungPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
           <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tight">
@@ -299,7 +339,7 @@ export default function TuyenDungPage() {
                 </div>
                 <div className="text-left">
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Gửi CV qua Email</p>
-                  <p className="text-xl font-black group-hover:text-primary transition-colors">tuyendung@gnp.edu.vn</p>
+                  <p className="text-xl font-black transition-colors">tuyendung@gnp.edu.vn</p>
                 </div>
               </div>
               <div className="bg-white/5 backdrop-blur-md px-8 py-6 rounded-[2rem] border border-white/10 flex items-center gap-4 hover:bg-white/10 transition-colors group">
@@ -308,7 +348,7 @@ export default function TuyenDungPage() {
                 </div>
                 <div className="text-left">
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Hotline Tuyển dụng</p>
-                  <p className="text-xl font-black group-hover:text-primary transition-colors">0286.286.2934</p>
+                  <p className="text-xl font-black transition-colors">0286.286.2934</p>
                 </div>
               </div>
             </div>

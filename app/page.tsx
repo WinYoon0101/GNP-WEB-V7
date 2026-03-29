@@ -10,8 +10,9 @@ import { LearningMethods } from "@/components/learning-methods";
 import { Contact } from "@/components/contact";
 import { ConsultationForm } from "@/components/consultation-form";
 import { Footer } from "@/components/footer";
-import { TrialBanner } from "@/components/trial-banner"; // Added import for TrialBanner
+import { TrialBanner } from "@/components/trial-banner";
 import { ExpandingCourseCards } from "@/components/expanding-course-cards";
+import { WhatsHot } from "@/components/whats-hot";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <ExpandingCourseCards />
         <FlashSale />
+
 
         <About />
         <GPSPhilosophy />

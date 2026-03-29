@@ -28,12 +28,12 @@ export default function SummerEnglishPage() {
 
          <Header />
 
-         <main className="pt-20">
+         <main className="">
 
             {/* 
           HERO SECTION - Pink/Rose Theme for Summer
         */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 min-h-[auto] lg:min-h-[90vh] flex items-center py-20 lg:py-0">
+            <section className="relative overflow-hidden bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 min-h-[auto] lg:min-h-[90vh] flex items-center py-20 lg:py-0 ">
 
                {/* Background Decorations */}
                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -106,7 +106,7 @@ export default function SummerEnglishPage() {
             {/* 
            STATS BAR
         */}
-            <section className="relative -mt-16 lg:-mt-24 z-30 pb-16 lg:pb-20">
+            <section className="relative -mt-16 lg:-mt-12 z-30 pb-16 lg:pb-20">
                <div className="container mx-auto px-4">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-2xl shadow-pink-500/10 border border-white/50">
                      {[

@@ -53,7 +53,7 @@ export function FlashSale() {
   return (
     <section className="w-full py-16 md:py-20 lg:py-24 bg-white relative overflow-hidden">
       {/* Abstract Background Decor */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[700px] h-[700px] bg-[#F2701A]/5 rounded-full blur-[120px] pointer-events-none"></div>
+    
       <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">

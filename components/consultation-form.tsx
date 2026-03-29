@@ -47,7 +47,7 @@ export function ConsultationForm() {
           <div className="absolute -inset-1 bg-gradient-to-r from-[#F2701A] via-[#FFD700] to-[#F2701A] opacity-30 blur-2xl -z-10"></div>
 
           {/* Left Side - Form */}
-          <div className="w-full md:w-[50%] p-8 md:p-10 lg:p-12 relative overflow-hidden flex flex-col justify-center bg-slate-900">
+          <div className="w-full md:w-[50%] p-8 md:p-10 lg:p-12 relative overflow-hidden flex flex-col justify-center bg-gradient-to-br from-[#F2701A] via-[#FF8A3D] to-[#FFB066]">
             {/* Subtle light accents */}
             <div className="absolute top-0 left-0 w-full h-full opacity-15 pointer-events-none">
               <div className="absolute top-[-50px] right-[-50px] w-48 h-48 bg-white rounded-full blur-3xl"></div>
@@ -115,7 +115,7 @@ export function ConsultationForm() {
 
               <Button
                 type="submit"
-                className="w-full bg-[#F2701A] text-white hover:bg-[#D96010] font-extrabold text-base rounded-2xl py-6 mt-8 transition-all hover:scale-[1.03] shadow-[0_8px_20px_rgba(242,112,26,0.3)] hover:shadow-[0_12px_25px_rgba(242,112,26,0.5)]"
+                className="w-full bg-white text-[#F2701A] hover:bg-gray-100 shadow-[0_8px_20px_rgba(0,0,0,0.2)] font-extrabold text-base rounded-2xl py-6 mt-8 transition-all hover:scale-[1.03] shadow-[0_8px_20px_rgba(242,112,26,0.3)] hover:shadow-[0_12px_25px_rgba(242,112,26,0.5)]"
               >
                 ĐĂNG KÝ NGAY
               </Button>
