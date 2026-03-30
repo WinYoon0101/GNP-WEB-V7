@@ -292,12 +292,30 @@ export function StaircaseCourseCards() {
       </div>
 
       {/* Floating icons */}
-      <div className="absolute top-24 right-[8%] text-orange-400 animate-[bounce_6s_infinite] opacity-15 z-0 hidden md:block pointer-events-none">
+      <div className="absolute top-4 right-[5%] text-orange-400 animate-[bounce_6s_infinite] opacity-15 z-0 hidden md:block pointer-events-none">
         <TrendingUp className="w-16 h-16" />
       </div>
       <div className="absolute bottom-40 left-[5%] text-blue-400 animate-[float_6s_ease-in-out_infinite] opacity-10 z-0 hidden md:block pointer-events-none">
         <BarChart3 className="w-14 h-14" />
       </div>
+
+      <div className="absolute top-28 left-60 w-16 h-16 z-30 pointer-events-none opacity-70">
+    <Image
+      src="/rocket.png"
+      alt="education"
+      fill
+      className="object-contain"
+    />
+  </div>
+
+  <div className="absolute top-250 left-[3%] w-20 h-20 opacity-60">
+  <Image
+    src="/shooting-stars.png"
+    alt="stars decoration"
+    fill
+    className="object-contain"
+  />
+</div>
 
       <div className="container mx-auto px-4 max-w-[1200px] relative z-10 w-full flex flex-col">
         {/* ── Section Header ── */}

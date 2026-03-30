@@ -176,7 +176,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
         <div className="container mx-auto px-4 max-w-4xl">
           <Link
             href="/tuyen-dung"
-            className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 mb-6"
+            className="inline-flex items-center gap-2 text-orange-600 mb-6"
           >
             <ChevronLeft className="h-5 w-5" />
             <span>Quay lại danh sách</span>
@@ -217,7 +217,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
             </div>
             <Button
               size="lg"
-              className="w-full md:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg"
+              className="w-full md:w-auto bg-[#F2701A]  hover:bg-[#FD9800] shadow-lg"
               onClick={() => setIsApplicationOpen(true)}
             >
               <Briefcase className="h-5 w-5 mr-2" />
@@ -272,7 +272,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
             </p>
             <Button
               size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-xl shadow-indigo-100 px-10 h-14 text-lg transform transition hover:-translate-y-1"
+              className="bg-[#F2701A] shadow-xl shadow-indigo-100 px-10 h-14 text-lg transform transition hover:-translate-y-1"
               onClick={() => setIsApplicationOpen(true)}
             >
               <Send className="h-5 w-5 mr-2" />

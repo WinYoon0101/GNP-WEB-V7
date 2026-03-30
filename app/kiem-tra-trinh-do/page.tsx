@@ -26,7 +26,7 @@ const questionBank: Record<TestLevel, { questions: Question[]; timeLimit: number
       {
         id: 1,
         question: "This is a dog",
-        image: "/cute-dog.png",
+        image: "/puppy-dog.webp",
         options: [
           { label: "✓", value: "correct" },
           { label: "✗", value: "incorrect" },
@@ -56,7 +56,7 @@ const questionBank: Record<TestLevel, { questions: Question[]; timeLimit: number
       {
         id: 4,
         question: "This is a cat",
-        image: "/orange-cat.png",
+        image: "/cat.jpg",
         options: [
           { label: "✓", value: "correct" },
           { label: "✗", value: "incorrect" },

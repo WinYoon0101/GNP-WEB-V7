@@ -21,7 +21,7 @@
   /* navy blue */
 
   /* ===== PRIMARY – BRIGHT ORANGE ===== */
-  --primary: oklch(0.65 0.22 40);
+  --primary: #FD9800;
   /* energetic orange */
   --primary-foreground: oklch(1 0 0);
   /* white */
@@ -215,4 +215,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+}

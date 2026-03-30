@@ -15,7 +15,7 @@ import { MapPin, Clock, DollarSign, Users, Heart, TrendingUp, GraduationCapIcon 
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { teamMembers } from "@/lib/constants"
-import { FAQSection } from "@/components/FAQSection"
+
 
 export default function TuyenDungPage() {
   const router = useRouter()
@@ -161,8 +161,8 @@ export default function TuyenDungPage() {
     </div>
 
     {/* Title */}
-    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
-      <span className="bg-gradient-to-r from-orange-500 to-amber-400 bg-clip-text text-transparent">
+    <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
+      <span className="text-[#FD9800]">
         GNP English Academy
       </span>
     </h1>
@@ -172,12 +172,7 @@ export default function TuyenDungPage() {
       Nơi tài năng được phát triển, cơ hội được mở rộng và bạn trở thành phiên bản tốt nhất của chính mình.
     </p>
 
-    {/* Divider */}
-    <div className="flex items-center justify-center gap-3 mt-6">
-      <div className="h-px w-12 bg-orange-300" />
-      <div className="w-3 h-3 bg-orange-500 rounded-full" />
-      <div className="h-px w-12 bg-orange-300" />
-    </div>
+   
 
     {/* CTA */}
     <div className="mt-10">
@@ -254,7 +249,7 @@ export default function TuyenDungPage() {
                   
                   <div className="flex flex-col lg:flex-row items-start gap-8 relative z-10 pointer-events-none">
                     <div className="flex-1 flex flex-col md:flex-row items-start gap-6 w-full">
-                      <div className="flex-shrink-0 w-20 h-20 bg-slate-100 rounded-2xl flex items-center justify-center border border-slate-200 group-hover:border-primary/20 transition-colors">
+                      <div className="flex-shrink-0 w-20 h-20 bg-[#F2701A] rounded-2xl flex items-center justify-center border border-slate-200 group-hover:border-primary/20 transition-colors">
                         <Image
                           src="/images/gnp-logo.png"
                           alt="GNP"
@@ -327,17 +322,17 @@ export default function TuyenDungPage() {
           </div>
         </section>
 
-        <FAQSection />
+      
 
         <section className="py-24 bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
           <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tight">
-              Sẵn Sàng Tham Gia <br /> Đội Ngũ <span className="text-primary italic">GNP?</span>
+              Sẵn Sàng Tham Gia <br /> Đội Ngũ <span className="text-[#F2701A] italic">GNP?</span>
             </h2>
             <div className="flex flex-col md:flex-row justify-center gap-8 items-center">
               <div className="bg-white/5 backdrop-blur-md px-8 py-6 rounded-[2rem] border border-white/10 flex items-center gap-4 hover:bg-white/10 transition-colors group">
-                <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-[#F2701A] flex items-center justify-center">
                   <Upload className="h-6 w-6 text-white" />
                 </div>
                 <div className="text-left">

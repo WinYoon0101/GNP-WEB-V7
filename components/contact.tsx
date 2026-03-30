@@ -98,10 +98,10 @@ export function Contact() {
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         {/* Header Section */}
         <div className="mx-auto mb-12 lg:mb-20 max-w-3xl text-center">
-          <span className="inline-block px-4 py-1.5 bg-orange-100 text-[#FF8A00] font-bold text-sm tracking-wider uppercase rounded-full mb-4 shadow-sm border border-orange-200">
+          <span className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
             Khởi đầu hành trình mới
           </span>
-          <h2 className="mb-4 text-balance text-4xl lg:text-5xl font-black text-[#1B4F91] tracking-tight">
+          <h2 className="mb-4 text-balance text-4xl lg:text-5xl font-black text-[#FD9800] tracking-tight">
             Liên hệ & Đăng ký
           </h2>
           <p className="text-pretty text-lg text-slate-600 font-medium">
@@ -121,7 +121,7 @@ export function Contact() {
 
               <div className="p-8 lg:p-10">
                 <div className="mb-8">
-                  <h3 className="text-2xl font-black text-slate-800 mb-2">
+                  <h3 className="text-2xl md:text-4xl font-black text-slate-800 mb-2">
                     Đăng ký tư vấn
                   </h3>
                   <p className="text-slate-500 font-medium text-sm">
@@ -265,8 +265,6 @@ export function Contact() {
             className={`lg:col-span-7 w-full transition-all duration-700 delay-150 transform ${!mounted ? "opacity-0 translate-y-12" : "opacity-100 translate-y-0"}`}
           >
             <Card className="border-0 shadow-2xl overflow-hidden rounded-[2rem] bg-[#1E3A8A] text-white flex flex-col h-full relative">
-            
-
               <div className="p-8 lg:p-10 flex-shrink-0 relative z-10">
                 <h3 className="text-2xl lg:text-3xl font-black mb-8">
                   Thông tin liên hệ
@@ -275,7 +273,7 @@ export function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 border border-white/20">
-                      <Phone className="w-6 h-6 text-orange-400" />
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="text-sky-200 text-sm font-semibold mb-1 uppercase tracking-wider">
@@ -292,7 +290,7 @@ export function Contact() {
 
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 border border-white/20">
-                      <Mail className="w-6 h-6 text-orange-400" />
+                      <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="text-sky-200 text-sm font-semibold mb-1 uppercase tracking-wider">
@@ -306,7 +304,7 @@ export function Contact() {
 
                   <div className="flex items-start gap-4 md:col-span-2">
                     <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 border border-white/20">
-                      <Clock className="w-6 h-6 text-orange-400" />
+                      <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <p className="text-sky-200 text-sm font-semibold mb-1 uppercase tracking-wider">
@@ -314,13 +312,13 @@ export function Contact() {
                       </p>
                       <p className="font-medium text-base">
                         Thứ 2 - Thứ 7:{" "}
-                        <span className="font-bold text-orange-400">
+                        <span className="font-bold ">
                           8:00 - 20:00
                         </span>
                       </p>
                       <p className="font-medium text-base">
                         Chủ nhật:{" "}
-                        <span className="font-bold text-orange-400">
+                        <span className="font-bold ">
                           8:00 - 17:00
                         </span>
                       </p>
