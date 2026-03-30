@@ -15,6 +15,7 @@ import { MapPin, Clock, DollarSign, Users, Heart, TrendingUp, GraduationCapIcon 
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { teamMembers } from "@/lib/constants"
+import { FAQSection } from "@/components/FAQSection"
 
 export default function TuyenDungPage() {
   const router = useRouter()
@@ -152,9 +153,9 @@ export default function TuyenDungPage() {
   <div className="container mx-auto px-4 text-center relative z-10">
 
     {/* Badge */}
-    <div className="inline-flex items-center gap-2 bg-orange-100 border border-orange-200 px-4 py-1.5 rounded-full mb-6">
+    <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
       <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-      <span className="text-orange-600 text-xs font-semibold uppercase tracking-widest">
+      <span className="text-[#20385D] text-xs font-semibold uppercase tracking-widest">
         Ứng tuyển
       </span>
     </div>
@@ -196,7 +197,7 @@ export default function TuyenDungPage() {
 </section>
 
         <section className="py-24 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-20">
             <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-slate-900 uppercase tracking-tight">
               Tại Sao Chọn <span className="text-primary">GNP?</span>
             </h2>
@@ -218,7 +219,7 @@ export default function TuyenDungPage() {
         </section>
 
         <section className="py-24 bg-white border-y border-slate-100">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-20">
             <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
               <div className="max-w-2xl text-center md:text-left">
                 <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter mb-4 flex items-center justify-center md:justify-start gap-4">
@@ -325,6 +326,8 @@ export default function TuyenDungPage() {
             </div>
           </div>
         </section>
+
+        <FAQSection />
 
         <section className="py-24 bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-primary" />

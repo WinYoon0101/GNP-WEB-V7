@@ -42,7 +42,7 @@ const courses: Course[] = [
     id: "innovator",
     title: "INNOVATOR",
     ageRange: "6 - 10 tuổi",
-    href: "/khoa-hoc/mua-he",
+    href: "/khoa-hoc/thieu-nhi",
     icon: "🎨",
     gradient: "from-pink-500 to-rose-500",
     shadow: "group-hover:shadow-pink-500/30",

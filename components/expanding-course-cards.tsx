@@ -21,7 +21,7 @@ const courses = [
     title: "INNOVATOR",
     desc: "Giao tiếp phản xạ tự tin",
     image: "/TA_2.jpg",
-    link: "/khoa-hoc/mua-he",
+    link: "/khoa-hoc/thieu-nhi",
   },
   {
     id: "thieu-nien",

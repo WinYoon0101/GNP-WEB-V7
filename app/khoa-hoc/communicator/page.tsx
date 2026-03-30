@@ -48,11 +48,11 @@ export default function CommunicatorPage() {
                </div>
 
                {/* Content */}
-               <div className="container mx-auto px-4 relative z-20">
+               <div className="container mx-auto px-4 md:px-24 relative z-20">
                   <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
                      {/* Text Content */}
-                     <div className="text-white space-y-6 lg:space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700 text-center lg:text-left order-2 lg:order-1">
+                     <div className="text-white space-y-6 lg:space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700 text-center lg:text-left order-2 lg:order-1">
                         <div className="inline-flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-slate-100 font-bold text-xs lg:text-sm tracking-wide shadow-lg mx-auto lg:mx-0">
                            <Laptop className="w-3 h-3 lg:w-4 lg:h-4 text-blue-300 fill-blue-300" />
                            COMMUNICATOR PROGRAM
@@ -70,10 +70,10 @@ export default function CommunicatorPage() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start w-full sm:w-auto">
-                           <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-bold px-8 lg:px-10 h-14 lg:h-16 rounded-full shadow-2xl shadow-slate-900/50 transition-transform hover:-translate-y-1 w-full sm:w-auto" asChild>
+                           <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 font-bold px-8 lg:px-10 h-14  rounded-full shadow-2xl shadow-slate-900/50 transition-transform hover:-translate-y-1 w-full sm:w-auto" asChild>
                               <Link href="/lien-he">Đăng ký học thử</Link>
                            </Button>
-                           <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 bg-transparent h-14 lg:h-16 rounded-full px-8 lg:px-10 w-full sm:w-auto" asChild>
+                           <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 bg-transparent h-14  rounded-full px-8 lg:px-10 w-full sm:w-auto" asChild>
                               <Link href="#modules">
                                  Xem lộ trình
                               </Link>
@@ -102,8 +102,8 @@ export default function CommunicatorPage() {
             {/* 
            STATS BAR
         */}
-            <section className="relative -mt-16 lg:-mt-12 z-30 pb-16 lg:pb-20">
-               <div className="container mx-auto px-4">
+            <section className="relative -mt-16 lg:-mt-10 z-30 pb-16 lg:pb-20">
+               <div className="container mx-auto px-4 md:px-24">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-2xl shadow-slate-500/10 border border-white/50">
                      {[
                         { icon: Briefcase, val: "Career", sub: "Thăng tiến sự nghiệp" },
@@ -127,7 +127,7 @@ export default function CommunicatorPage() {
            WHY CHOOSE? 
         */}
             <section className="py-20 lg:py-24 bg-slate-50 relative overflow-hidden">
-               <div className="container mx-auto px-4 relative z-10">
+               <div className="container mx-auto px-4 md:px-24 relative z-10">
                   <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-20">
                      <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 lg:mb-6 tracking-tight">
                         Tự tin trong <span className="text-slate-700 relative inline-block">
@@ -177,7 +177,7 @@ export default function CommunicatorPage() {
            ROADMAP - Modules
         */}
             <section id="modules" className="py-20 lg:py-32 bg-white relative">
-               <div className="container mx-auto px-4">
+               <div className="container mx-auto px-4 md:px-24">
                   <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
                      {/* Left: Sticky Info */}

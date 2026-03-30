@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { StaircaseCourseCards } from "@/components/staircase-course-cards"
+import { FAQSection } from "@/components/FAQSection"
 
 export default function CoursesPage() {
 
@@ -27,7 +28,8 @@ export default function CoursesPage() {
         {/* 
           ADDITIONAL INFO / CTA
         */}
-        <section className="py-24 bg-white border-t border-orange-100 relative">
+        <section className="pb-24 bg-white border-t border-orange-100 relative">
+            <FAQSection /> 
           <div className="container mx-auto px-4 relative z-10">
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 bg-slate-900 rounded-[3rem] p-10 md:p-16 shadow-2xl relative overflow-hidden group">
               {/* Deco circles on card */}

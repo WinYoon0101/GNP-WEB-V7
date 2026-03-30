@@ -358,15 +358,16 @@ export default function TinTucPage() {
     {/* Badge */}
     <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
       <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-      <span className="text-orange-600 text-xs font-semibold uppercase tracking-widest">
+      <span className="text-[#20385D] text-xs font-semibold uppercase tracking-widest">
         Tin tức & Sự kiện
       </span>
     </div>
 
     {/* Title */}
-    <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900">
-      Tin mới nhất
-    </h1>
+    
+     <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 uppercase tracking-tight leading-normal drop-shadow-sm bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent">
+             Tin mới nhất
+          </h2>
 
     {/* Sub */}
     <p className="text-gray-700 mt-3 text-sm md:text-base">
