@@ -16,13 +16,14 @@ export function Header() {
     { name: "Trang chủ", href: "/" },
     { name: "Tin tức", href: "/tin-tuc" },
     { name: "Khóa học", href: "/khoa-hoc" },
+    { name: "Khóa học mùa hè", href: "/khoa-hoc-mua-he" },
     { name: "Tuyển dụng", href: "/tuyen-dung" },
     { name: "Liên hệ", href: "/lien-he" },
   ]
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/"
-    return pathname.startsWith(href)
+    return pathname === href || pathname.startsWith(href + "/")
   }
 
   return (
