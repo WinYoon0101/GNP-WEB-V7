@@ -3,6 +3,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { BranchesCarousel } from "./branches-carousel";
 import MagicBento from "./MagicBento";
 
+
 export function About() {
   const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.1,
@@ -11,7 +12,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="bg-slate-50 py-20 md:py-32 relative overflow-hidden"
+      className="bg-white py-20 md:py-12 relative overflow-hidden"
     >
       <div className="container mx-auto px-4 relative z-10">
         <div
@@ -49,7 +50,8 @@ export function About() {
             disableAnimations={false}
           />
         </div>
-        <BranchesCarousel />
+       
+      
       </div>
     </section>
   );

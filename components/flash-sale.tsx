@@ -54,7 +54,7 @@ export function FlashSale() {
     <section className="w-full py-16 md:py-20 lg:py-24 bg-white relative overflow-hidden">
       {/* Abstract Background Decor */}
     
-      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+    
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="bg-white rounded-[28px] md:rounded-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden flex flex-col lg:flex-row items-center relative group/card">

@@ -216,3 +216,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes scrollY {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scrollY linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.reverse {
+  animation-direction: reverse;
+}
