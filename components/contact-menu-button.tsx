@@ -28,17 +28,17 @@ export function ContactMenuButton() {
         </div>
       ),
       label: "Zalo Chat",
-      action: () => window.open("https://zalo.me/0968322382", "_blank"),
+      action: () => window.open("https://zalo.me/0839990997", "_blank"),
     },
     {
       icon: <Phone className="h-6 w-6 text-green-600" />,
-      label: "Call 0286.286.2934",
-      action: () => (window.location.href = "tel:02862862934"),
+      label: "Call 083 999 0997",
+      action: () => (window.location.href = "tel:0839990997"),
     },
     {
       icon: <Phone className="h-6 w-6 text-green-600" />,
-      label: "Call 0286.286.2931",
-      action: () => (window.location.href = "tel:02862862931"),
+      label: "Call 083 999 0997",
+      action: () => (window.location.href = "tel:0839990997"),
     },
     {
       icon: <MapPin className="h-6 w-6 text-blue-700" />,
@@ -80,11 +80,11 @@ export function ContactMenuButton() {
       )}
 
       {/* Main Contact Button */}
-  <button
-    onClick={() => setIsOpen(!isOpen)}
-    className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-110 group"
-    aria-label="Liên hệ"
-  >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-110 group"
+        aria-label="Liên hệ"
+      >
         <div className="relative">
           <MessageCircle className="h-7 w-7" />
           <span className="absolute -top-1 -right-1 flex h-3 w-3">

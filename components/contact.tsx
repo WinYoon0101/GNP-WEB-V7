@@ -62,7 +62,7 @@ export function Contact() {
       name: "Cơ sở 1",
       address: "46A Trần Bình Trọng, P. Bình Lợi, TP. HCM",
       mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ5JzIyLjgiTiAxMDbCsDQxJzIwLjQiRQ!5e0!3m2!1svi!2s!4v1234567890",
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752918cb29f037%3A0x6201ea5e48504015!2s46A%20Tr%E1%BA%A7n%20B%C3%ACnh%20Tr%E1%BB%8Dng%2C%20P.%20B%C3%ACnh%20L%E1%BB%A3i%2C%20TP.%20HCM!5e0!3m2!1svi!2s!4v1234567890",
     },
     {
       name: "Cơ sở 2",
@@ -280,11 +280,9 @@ export function Contact() {
                         Hotline
                       </p>
                       <p className="font-bold text-lg md:text-xl tracking-tight">
-                        0286.286.2934
+                        083 999 0997
                       </p>
-                      <p className="font-bold text-lg md:text-xl tracking-tight">
-                        0286.286.2931
-                      </p>
+
                     </div>
                   </div>
 
@@ -297,7 +295,7 @@ export function Contact() {
                         Email
                       </p>
                       <p className="font-medium text-base break-all">
-                        info@gnpenglish.edu.vn
+                        info@gnp.edu.vn
                       </p>
                     </div>
                   </div>
@@ -339,11 +337,10 @@ export function Contact() {
                       <button
                         key={index}
                         onClick={() => setSelectedBranch(index)}
-                        className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
-                          selectedBranch === index
-                            ? "bg-[#FF8A00] text-white shadow-lg shadow-orange-500/40 translate-y-[-2px]"
-                            : "bg-white/10 text-white hover:bg-white/20"
-                        }`}
+                        className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${selectedBranch === index
+                          ? "bg-[#FF8A00] text-white shadow-lg shadow-orange-500/40 translate-y-[-2px]"
+                          : "bg-white/10 text-white hover:bg-white/20"
+                          }`}
                       >
                         {branch.name}
                       </button>

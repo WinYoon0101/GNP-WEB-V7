@@ -70,15 +70,14 @@ export function Footer() {
               <div className="flex items-center gap-3">
                 <Phone size={20} className="text-[#f97316]" />
                 <div className="text-white font-semibold text-sm">
-                  <p>0286.286.2934</p>
-                  <p>0286.286.2931</p>
+                  <p>083 999 0997</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <MessageCircle size={20} className="text-[#f97316]" />
                 <p className="text-white font-semibold text-sm">
-                  Zalo: 0968322382
+                  Zalo: 0839990997
                 </p>
               </div>
 
@@ -94,7 +93,7 @@ export function Footer() {
 
         </div>
 
-      
+
 
       </div>
     </footer>

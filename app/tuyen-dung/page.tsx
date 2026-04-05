@@ -134,62 +134,67 @@ export default function TuyenDungPage() {
     <div className="min-h-screen">
       <Header />
       <main>
-   <section className="relative py-28 bg-gradient-to-br from-orange-50 via-white to-orange-100 overflow-hidden">
+        <section className="relative py-28 bg-gradient-to-br from-orange-50 via-white to-orange-100 overflow-hidden">
 
-  {/* Glow background */}
-  <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-orange-400/30 rounded-full blur-3xl" />
-  <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-amber-300/30 rounded-full blur-3xl" />
+          {/* Glow background */}
+          <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-orange-400/30 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-amber-300/30 rounded-full blur-3xl" />
 
-  {/* Grid nhẹ */}
-  <div
-    className="absolute inset-0 opacity-[0.05]"
-    style={{
-      backgroundImage:
-        "linear-gradient(#fb923c 1px, transparent 1px), linear-gradient(90deg, #fb923c 1px, transparent 1px)",
-      backgroundSize: "50px 50px",
-    }}
-  />
+          {/* Grid nhẹ */}
+          <div
+            className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage:
+                "linear-gradient(#fb923c 1px, transparent 1px), linear-gradient(90deg, #fb923c 1px, transparent 1px)",
+              backgroundSize: "50px 50px",
+            }}
+          />
 
-  <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="container mx-auto px-4 text-center relative z-10">
 
-    {/* Badge */}
-    <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
-      <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-      <span className="text-[#20385D] text-xs font-semibold uppercase tracking-widest">
-        Ứng tuyển
-      </span>
-    </div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
+              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+              <span className="text-[#20385D] text-xs font-semibold uppercase tracking-widest">
+                Ứng tuyển
+              </span>
+            </div>
 
-    {/* Title */}
-    <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
-      <span className="text-[#FD9800]">
-        GNP English Academy
-      </span>
-    </h1>
+            {/* Title */}
+            <h1 className="flex justify-center items-center -mt-1 mb-4">
+              <Image
+                src="/logo.png"
+                alt="GNP English Academy"
+                width={1200}
+                height={360}
+                className="w-[60%] sm:w-[50%] md:w-[40%] lg:w-[35%] h-auto object-contain drop-shadow-sm"
+                priority
+              />
+            </h1>
 
-    {/* Subtitle */}
-    <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base md:text-lg italic">
-      Nơi tài năng được phát triển, cơ hội được mở rộng và bạn trở thành phiên bản tốt nhất của chính mình.
-    </p>
+            {/* Subtitle */}
+            <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base md:text-lg italic">
+              Nơi tài năng được phát triển, cơ hội được mở rộng và bạn trở thành phiên bản tốt nhất của chính mình.
+            </p>
 
-   
 
-    {/* CTA */}
-    <div className="mt-10">
-      <button
-        onClick={(e) => openApplicationForm(e, "GNP English Academy")}
-        className="px-10 py-4 text-lg font-bold text-white rounded-full 
+
+            {/* CTA */}
+            <div className="mt-10">
+              <button
+                onClick={(e) => openApplicationForm(e, "GNP English Academy")}
+                className="px-10 py-4 text-lg font-bold text-white rounded-full 
         bg-gradient-to-r from-orange-500 to-amber-400 
         shadow-lg shadow-orange-500/30 
         hover:scale-105 hover:shadow-orange-500/50 
         transition-all duration-300"
-      >
-        Ứng tuyển ngay
-      </button>
-    </div>
+              >
+                Ứng tuyển ngay
+              </button>
+            </div>
 
-  </div>
-</section>
+          </div>
+        </section>
 
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4 md:px-20">
@@ -223,7 +228,7 @@ export default function TuyenDungPage() {
                 </h2>
                 <p className="text-slate-500 text-lg font-medium">Khám phá cơ hội nghề nghiệp và đồng hành cùng sứ mệnh giáo dục tại GNP.</p>
               </div>
-              
+
               <div className="bg-slate-50 px-8 py-4 rounded-[2rem] border border-slate-100 shadow-sm flex items-center gap-6 group hover:shadow-xl transition-all duration-500">
                 <div className="flex -space-x-4">
                   {(randomTeachers.length > 0 ? randomTeachers : teamMembers.slice(0, 4)).map((teacher, i) => (
@@ -246,7 +251,7 @@ export default function TuyenDungPage() {
                   className="p-10 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 border-none bg-slate-50 hover:bg-white group relative overflow-hidden rounded-[2.5rem]"
                 >
                   <Link href={`/tuyen-dung/${position.id}`} className="absolute inset-0 z-0" aria-label={`Xem chi tiết ${position.title}`} />
-                  
+
                   <div className="flex flex-col lg:flex-row items-start gap-8 relative z-10 pointer-events-none">
                     <div className="flex-1 flex flex-col md:flex-row items-start gap-6 w-full">
                       <div className="flex-shrink-0 w-20 h-20 bg-[#F2701A] rounded-2xl flex items-center justify-center border border-slate-200 group-hover:border-primary/20 transition-colors">
@@ -322,7 +327,7 @@ export default function TuyenDungPage() {
           </div>
         </section>
 
-      
+
 
         <section className="py-24 bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
