@@ -66,7 +66,7 @@ export function BranchesCarousel() {
   const cardWidth = isMobile ? "w-full" : "w-[calc(33.333%-1rem)]";
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-white to-orange-50/30">
+    <section className="py-16 md:py-10 bg-white to-orange-50/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-primary">

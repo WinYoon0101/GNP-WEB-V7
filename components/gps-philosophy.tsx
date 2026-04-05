@@ -63,7 +63,7 @@ export function GPSPhilosophy() {
       ],
       frontBg: "bg-gradient-to-br from-[#E1F0FF] to-[#BEDDFF]",
       backBg: "bg-sky-50",
-      image: "/KY-NANG-HOI-NHAP.jpg",
+      image: "/workshop-jungle-2.jpg",
       decorativeShapeColor: "bg-[#BADFFF]",
       dotColor: "text-sky-500",
       glowColor: "shadow-sky-200/50",
@@ -73,8 +73,9 @@ export function GPSPhilosophy() {
   return (
     <section
       id="gps-philosophy"
-      className="relative bg-[#FAFBFF] py-24 md:py-32 overflow-hidden"
+      className="relative bg-[#FCFCFD] py-24 md:py-32 overflow-hidden"
     >
+      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white via-white/70 to-transparent backdrop-blur-sm z-20 pointer-events-none" />
       {/* Engaging Background Decor */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Abstract blur shapes */}

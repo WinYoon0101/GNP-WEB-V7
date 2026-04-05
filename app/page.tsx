@@ -13,6 +13,8 @@ import { Footer } from "@/components/footer";
 import { TrialBanner } from "@/components/trial-banner";
 import { ExpandingCourseCards } from "@/components/expanding-course-cards";
 import { WhatsHot } from "@/components/whats-hot";
+import GalleryScroll from "@/components/GalleryScroll";
+import { BranchesCarousel } from "@/components/branches-carousel";
 
 export default function Home() {
   return (
@@ -25,6 +27,8 @@ export default function Home() {
 
 
         <About />
+         <BranchesCarousel />
+          <GalleryScroll />
         <GPSPhilosophy />
         <TeamCarousel />
         <StudentAchievementsCarousel />

@@ -65,7 +65,7 @@ export function ExpandingCourseCards() {
     <Link
       key={course.id}
       href={course.link}
-      className="group relative rounded-3xl overflow-hidden bg-slate-50 transition-all duration-500 ease-in-out flex-1 hover:flex-[1.2] md:hover:flex-[2.5] flex-shrink-0 md:flex-shrink cursor-pointer h-full"
+      className="group relative rounded-3xl overflow-hidden bg-white transition-all duration-500 ease-in-out flex-1 hover:flex-[1.2] md:hover:flex-[2.5] flex-shrink-0 md:flex-shrink cursor-pointer h-full"
     >
       <div className="absolute bottom-0 left-0 right-0 h-[45%] md:h-[55%] group-hover:h-full transition-all duration-500 ease-in-out z-0">
         <Image src={course.image} alt={course.title} fill className="object-cover" />
