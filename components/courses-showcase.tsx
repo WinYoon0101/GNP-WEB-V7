@@ -187,15 +187,15 @@ const coursesData = {
 const coursesList = [
   {
     title: "Tiếng Anh Mẫu Giáo (Từ 4-6 Tuổi)",
-    slug: "/khoa-hoc/mau-giao",
+    slug: "/khoa-hoc/explorer",
   },
   {
     title: "Tiếng Anh Thiếu Nhi (6-11 Tuổi)",
-    slug: "/khoa-hoc/thieu-nien",
+    slug: "/khoa-hoc/leader",
   },
   {
     title: "Tiếng Anh Thiếu Niên (11-15 Tuổi)",
-    slug: "/khoa-hoc/thieu-nien",
+    slug: "/khoa-hoc/leader",
   },
   {
     title: "Tiếng Anh Người Lớn",

@@ -39,7 +39,7 @@ const courses = [
     color: "#FF8A00",
     bgLight: "#FFF4E6",
     icon: Trophy,
-    link: "/khoa-hoc/mau-giao",
+    link: "/khoa-hoc/explorer",
     delay: "0ms",
     studentImage: "/explorer.jpg",
     psychoPoints: [
@@ -80,7 +80,7 @@ const courses = [
     color: "#E91E8C",
     bgLight: "#FDE8F4",
     icon: BookOpen,
-    link: "/khoa-hoc/thieu-nhi",
+    link: "/khoa-hoc/innovator",
     delay: "100ms",
     studentImage: "/innovator.jpg",
     psychoPoints: [
@@ -121,7 +121,7 @@ const courses = [
     color: "#2563EB",
     bgLight: "#EEF4FF",
     icon: Rocket,
-    link: "/khoa-hoc/thieu-nien",
+    link: "/khoa-hoc/leader",
     delay: "200ms",
     studentImage: "/leader.jpg",
     psychoPoints: [
@@ -299,7 +299,7 @@ export function StaircaseCourseCards() {
         <BarChart3 className="w-14 h-14" />
       </div>
 
-      <div className="absolute top-28 left-60 w-16 h-16 z-30 pointer-events-none opacity-70">
+      <div className="hidden md:block absolute top-28 left-60 w-16 h-16 z-30 pointer-events-none opacity-70">
     <Image
       src="/rocket.png"
       alt="education"

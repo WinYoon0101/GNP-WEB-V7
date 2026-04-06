@@ -70,7 +70,7 @@ export function BranchesCarousel() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-primary">
-            HỆ THỐNG CƠ SỞ GNP ENGLISH
+            HỆ THỐNG CƠ SỞ GNP
           </h2>
           <p className="text-gray-700 text-sm md:text-lg max-w-3xl mx-auto">
             Khám phá các chi nhánh hiện đại của chúng tôi tại các địa điểm chiến

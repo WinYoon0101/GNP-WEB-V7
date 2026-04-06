@@ -75,7 +75,7 @@ export function GPSPhilosophy() {
       id="gps-philosophy"
       className="relative bg-[#FCFCFD] py-24 md:py-32 overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white via-white/70 to-transparent backdrop-blur-sm z-20 pointer-events-none" />
+      <div className="hidden md:block absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-white via-white/70 to-transparent backdrop-blur-sm z-20 pointer-events-none" />
       {/* Engaging Background Decor */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Abstract blur shapes */}

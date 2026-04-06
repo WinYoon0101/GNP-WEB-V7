@@ -147,7 +147,7 @@ export function Hero() {
                   >
                     <Link href="/lien-he" className="flex items-center gap-2">
                       Đăng ký học thử miễn phí
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                     
                     </Link>
                   </Button>
                   <Button

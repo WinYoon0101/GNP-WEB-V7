@@ -8,28 +8,28 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const courses = [
   {
-    id: "mau-giao",
+    id: "explorer",
     age: "3.5-6 tuổi",
     title: "EXPLORER",
     desc: "Khơi dậy tiềm năng",
     image: "/TA_1.jpg",
-    link: "/khoa-hoc/mau-giao",
+    link: "/khoa-hoc/explorer",
   },
   {
-    id: "thieu-nhi",
+    id: "innovator",
     age: "6-10 tuổi",
     title: "INNOVATOR",
     desc: "Giao tiếp phản xạ tự tin",
     image: "/TA_2.jpg",
-    link: "/khoa-hoc/thieu-nhi",
+    link: "/khoa-hoc/innovator",
   },
   {
-    id: "thieu-nien",
+    id: "leader",
     age: "11-15 tuổi",
     title: "LEADER",
     desc: "Vững tiếng Anh Học - thi hiệu quả",
     image: "/TA_3.jpg",
-    link: "/khoa-hoc/thieu-nien",
+    link: "/khoa-hoc/leader",
   },
   {
     id: "ielts",

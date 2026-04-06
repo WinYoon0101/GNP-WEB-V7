@@ -152,13 +152,7 @@ export default function TuyenDungPage() {
 
           <div className="container mx-auto px-4 text-center relative z-10">
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
-              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-              <span className="text-[#20385D] text-xs font-semibold uppercase tracking-widest">
-                Ứng tuyển
-              </span>
-            </div>
+           
 
             {/* Title */}
             <h1 className="flex justify-center items-center -mt-1 mb-4">
@@ -172,11 +166,7 @@ export default function TuyenDungPage() {
               />
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base md:text-lg italic">
-              Nơi tài năng được phát triển, cơ hội được mở rộng và bạn trở thành phiên bản tốt nhất của chính mình.
-            </p>
-
+           
 
 
             {/* CTA */}

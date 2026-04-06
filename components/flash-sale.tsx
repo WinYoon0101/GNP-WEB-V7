@@ -133,7 +133,7 @@ export function FlashSale() {
               <Button
                 size="lg"
                 onClick={handleRegisterClick}
-                className="bg-[#F2701A] hover:bg-[#D96010] text-white font-bold h-14 px-8 text-base rounded-xl shadow-[0_8px_20px_-6px_rgba(242,112,26,0.5)] hover:shadow-[0_12px_25px_-6px_rgba(242,112,26,0.6)] transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto group/btn flex items-center justify-center gap-2"
+                className="bg-[#F2701A] hover:bg-[#D96010] cursor-pointer text-white font-bold h-14 px-8 text-base rounded-xl shadow-[0_8px_20px_-6px_rgba(242,112,26,0.5)] hover:shadow-[0_12px_25px_-6px_rgba(242,112,26,0.6)] transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto group/btn flex items-center justify-center gap-2"
               >
                 <span>Nhận tư vấn ngay</span>
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
