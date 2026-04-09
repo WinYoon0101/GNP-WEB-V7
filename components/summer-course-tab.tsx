@@ -50,51 +50,122 @@ export function SummerCourseTab() {
             }} />
 
             {/* 1. HERO SECTION */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-[#4A55A2]/10 via-white to-orange-500/10 py-20 lg:py-28 my-4 mx-4 md:mx-8 rounded-[3rem] shadow-xl shadow-[#4A55A2]/5 border border-white/60 backdrop-blur-sm">
-                <div className="absolute top-0 right-0 w-72 h-72 bg-[#4A55A2]/20 rounded-full blur-[100px] -z-10 mt-[-50px] mr-[-50px]" />
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/20 rounded-full blur-[120px] -z-10 mb-[-50px] ml-[-50px]" />
-
-                <div className="text-center px-4 max-w-4xl mx-auto relative z-10">
-                    <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white shadow-md shadow-orange-100 text-orange-500 font-bold text-sm tracking-wide mb-8 animate-soft-float border border-orange-100">
-                        <Sun className="w-5 h-5 fill-orange-500" />
-                        <span>SUMMER 2024</span>
+            <section className="relative overflow-hidden bg-[#FD7400] lg:min-h-[600px] flex items-center">
+                {/* Background Decorations */}
+                <div className="absolute top-0 right-0 w-full h-full opacity-25 pointer-events-none">
+                    <div className="absolute top-[10%] right-[5%] animate-soft-float">
+                        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="80" stroke="white" strokeWidth="2" strokeDasharray="10 10" />
+                        </svg>
                     </div>
-
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-8">
-                        <span className="block text-[#4A55A2] drop-shadow-sm">CHƯƠNG TRÌNH HÈ</span>
-                    </h1>
-
-                    <div className="inline-block bg-white/60 backdrop-blur-md px-8 py-4 rounded-2xl border border-white mb-8 shadow-sm">
-                        <h2 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4A55A2] to-orange-500 uppercase tracking-wide">
-                            DISCOVER ME – GROW ME – CONTRIBUTE ME
-                        </h2>
-                    </div>
-
-                    <p className="text-lg md:text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed mb-10 font-medium">
-                        Hành trình 11 tuần giúp học viên khám phá bản thân, phát triển tư duy và đóng góp cho cộng đồng.
-
-                    </p>
-
-                    <Button size="lg" className="bg-gradient-to-r from-orange-500 to-[#ff9838] text-white hover:from-[#e06a00] hover:to-orange-500 h-14 lg:h-16 px-10 lg:px-14 rounded-full text-base lg:text-lg font-bold shadow-xl shadow-orange-500/30 transition-all hover:scale-105" asChild>
-                        <Link href="/lien-he">Đăng ký ngay / Register Now</Link>
-                    </Button>
                 </div>
 
-                {/* Floating Icons */}
-                <div className="absolute top-[20%] left-[10%] text-[#4A55A2]/20 animate-soft-float hidden md:block">
-                    <Compass className="w-16 h-16 rotate-12" />
+                <div className="container mx-auto px-4 py-16 relative z-10">
+                    <div className="flex flex-wrap items-center">
+                        <div className="w-full lg:flex items-center gap-12">
+                            {/* LEFT: KIDS IMAGE */}
+                            <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
+                                <div className="relative z-20 animate-soft-float p-4 lg:p-0">
+                                    <img 
+                                        src="/images/summer-course/summer-kids-orange.png" 
+                                        alt="GNP Summer Kids" 
+                                        className="w-full h-auto drop-shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]"
+                                        style={{ 
+                                            WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 90%)',
+                                            maskImage: 'radial-gradient(circle, black 40%, transparent 90%)',
+                                            filter: 'saturate(1.2) contrast(1.05)'
+                                        }}
+                                    />
+                                </div>
+                                {/* Decorative elements behind kids */}
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-white/20 rounded-full blur-3xl -z-10" />
+                                
+                                {/* Floating Icons around kids */}
+                                <div className="absolute -top-10 -left-6 w-16 h-16 lg:w-20 lg:h-20 animate-soft-float z-30" style={{ animationDelay: '0.5s' }}>
+                                    <img src="/graduation.png" alt="Graduation" className="w-full h-auto opacity-100 rotate-[-15deg] drop-shadow-xl" />
+                                </div>
+                                <div className="absolute bottom-[5%] -right-10 w-20 h-20 lg:w-24 lg:h-24 animate-soft-float z-30" style={{ animationDelay: '1.2s' }}>
+                                    <img src="/rocket.png" alt="Rocket" className="w-full h-auto drop-shadow-2xl rotate-[15deg]" />
+                                </div>
+                            </div>
+
+                            {/* RIGHT: CONTENT */}
+                            <div className="w-full lg:w-7/12 text-center lg:text-left order-1 lg:order-2">
+                                <div className="mb-6 flex flex-col items-center lg:items-start">
+                                    {/* Logo wrapped in a white badge for a premium sticker look */}
+                                    <div className="bg-white p-3 rounded-3xl shadow-xl rotate-[-2deg] mb-4 border-2 border-white/50 backdrop-blur-sm">
+                                        <img 
+                                            src="/images/summer-course/gnp-summer-logo.jpg" 
+                                            alt="GNP Summer Logo" 
+                                            className="h-20 md:h-28 w-auto rounded-xl"
+                                        />
+                                    </div>
+                                    <div className="inline-block px-5 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/40 text-[#4A55A2] font-black text-xs md:text-sm tracking-widest uppercase mb-4">
+                                        DISCOVER "ME" | GROW "ME" | CONTRIBUTE "ME"
+                                    </div>
+                                </div>
+
+
+
+                                <div className="relative mb-8">
+                                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] text-white leading-[0.9] drop-shadow-[0_8px_20px_rgba(0,0,0,0.15)] italic">
+                                        <span className="block tracking-tighter uppercase">MY GROWTH</span>
+                                        <span className="block text-[#4A55A2] tracking-tighter -mt-2 uppercase">SUMMER 2026</span>
+                                    </h1>
+                                    <div className="absolute -top-4 right-0 lg:-right-6 bg-orange-600 text-white text-[12px] font-black px-3 py-1 rounded-lg rotate-12 shadow-xl border-2 border-white">
+                                        2026
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col md:flex-row items-center lg:items-start gap-4 mb-8">
+                                    <div className="bg-white px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
+                                        <span className="text-orange-600 font-extrabold text-xl md:text-2xl uppercase tracking-tighter">HÀNH TRÌNH 11 TUẦN</span>
+                                    </div>
+                                    <div className="flex -space-x-2">
+                                        {[Sun, Globe, Sprout, Heart].map((Icon, i) => (
+                                            <div key={i} className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-orange-500 shadow-sm border border-orange-100">
+                                                <Icon className="w-5 h-5" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <p className="text-lg md:text-xl text-[#4A55A2] font-bold max-w-2xl leading-relaxed mb-10 drop-shadow-sm">
+                                    Mùa hè để con <span className="text-white">khám phá chính mình</span>, phát triển mỗi ngày và sống có ích hơn với cộng đồng
+                                </p>
+
+                                <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                                    <Button size="lg" className="bg-[#4A55A2] text-white hover:bg-[#3d4685] h-14 md:h-16 px-10 rounded-full text-lg font-black shadow-xl transition-all hover:scale-105" asChild>
+                                        <Link href="/lien-he">ĐĂNG KÝ NGAY</Link>
+                                    </Button>
+
+                                    {/* Promo Sticker */}
+                                    <div className="relative group">
+                                        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                        <div className="relative bg-white p-4 rounded-2xl border-2 border-orange-100 shadow-xl max-w-[280px]">
+                                            <p className="text-[10px] font-black text-orange-600 uppercase tracking-tighter mb-1 flex items-center gap-1">
+                                                <Sparkles className="w-3 h-3" /> HOT HOT HOT
+                                            </p>
+                                            <p className="text-xs font-bold text-slate-700 leading-tight">
+                                                Đăng ký trong tháng 4 này, <span className="text-red-500 underline decoration-2">MIỄN PHÍ</span> toàn bộ chuyến "dã ngoại"!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="absolute bottom-[20%] right-[10%] text-orange-500/20 animate-soft-float hidden md:block" style={{ animationDelay: '1s' }}>
-                    <Target className="w-20 h-20 -rotate-12" />
+
+                {/* BOTTOM WAVE CURVE */}
+                <div className="absolute bottom-0 left-0 w-full leading-none z-30">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[100px] fill-white">
+                        <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>
+                    </svg>
                 </div>
             </section>
 
-            {/* WAVE SEPARATOR */}
-            <div className="w-full overflow-hidden leading-none mb-10">
-                <svg fill="#f8fafc" viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-[calc(100%+1.3px)] h-[50px] md:h-[80px] block">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-                </svg>
-            </div>
+
 
             {/* 2. PROGRAM OVERVIEW (Timeline) */}
             <section className="py-16 bg-slate-50 relative">
