@@ -15,7 +15,7 @@ import { MapPin, Clock, DollarSign, Users, Heart, TrendingUp, GraduationCapIcon 
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { teamMembers } from "@/lib/constants"
-
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 export default function TuyenDungPage() {
   const router = useRouter()
@@ -186,7 +186,7 @@ export default function TuyenDungPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-white">
+        <ScrollReveal animation="fadeInUp"><section className="py-24 bg-white">
           <div className="container mx-auto px-4 md:px-20">
             <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-slate-900 uppercase tracking-tight">
               Tại Sao Chọn <span className="text-primary">GNP?</span>
@@ -206,9 +206,9 @@ export default function TuyenDungPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section></ScrollReveal>
 
-        <section className="py-24 bg-white border-y border-slate-100">
+        <ScrollReveal animation="fadeInUp"><section className="py-24 bg-white border-y border-slate-100">
           <div className="container mx-auto px-4 md:px-20">
             <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
               <div className="max-w-2xl text-center md:text-left">
@@ -315,11 +315,11 @@ export default function TuyenDungPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section></ScrollReveal>
 
 
 
-        <section className="py-24 bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-white relative overflow-hidden">
+        <ScrollReveal animation="popIn"><section className="py-24 bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-white relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
           <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tight">
@@ -346,7 +346,7 @@ export default function TuyenDungPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section></ScrollReveal>
       </main>
 
       <Dialog open={isApplicationOpen} onOpenChange={setIsApplicationOpen}>

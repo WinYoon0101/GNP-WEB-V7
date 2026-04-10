@@ -1,10 +1,33 @@
+"use client";
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
     Sun, Compass, Sprout, Globe, Star, Sparkles, Target, Users, BookOpen,
     Map, Lightbulb, Clock, Focus, Trophy, CheckCircle2, HeartHandshake, Palette, BookMarked, MonitorPlay, FileText, Camera, Brain, Presentation, MessageCircle, Heart
 } from 'lucide-react';
 import Link from 'next/link';
+import { WeeklyHighlightsSplit } from '@/components/weekly-highlights-split';
 import { Button } from '@/components/ui/button';
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const popIn = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
+};
+
+const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 export function SummerCourseTab() {
     return (
@@ -50,141 +73,141 @@ export function SummerCourseTab() {
             }} />
 
             {/* 1. HERO SECTION */}
-<section className="relative overflow-hidden bg-[#FD7400] lg:min-h-[650px] flex items-center">
-    
-    {/* ⭐ TOP SKY CURVE */}
-    <div className="absolute top-0 left-0 w-full z-0">
-        <svg viewBox="0 0 1200 200" preserveAspectRatio="none" className="w-full h-[180px] md:h-[220px]">
-            <path 
-                d="M0,200 C300,0 900,0 1200,200 L1200,0 L0,0 Z" 
-                fill="white"
-            />
-        </svg>
-    </div>
+            <section className="relative overflow-hidden bg-[#FD7400] lg:min-h-[650px] flex items-center">
 
-    {/* ⭐ SUN */}
-    <div className="absolute top-6 right-6 md:right-16 z-10">
-        <div className="w-20 h-20 md:w-48 md:h-48  animate-soft-float flex items-center justify-center">
-             <img src="/images/summer-course/mattroi.png" className="w-full" />
-        </div>
-    </div>
-
-    {/* ⭐ CLOUDS */}
-    <div className="absolute top-80 left-0 w-42 h-30 opacity-70">
-         <img src="/images/summer-course/may.png" className="w-full" />
-    </div>
-    <div className="absolute top-16 right-40 w-40 h-24 bg-blue-200 rounded-full blur-sm opacity-70"></div>
-
-    {/* CONTENT */}
-    <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="flex flex-wrap items-center">
-            <div className="w-full lg:flex items-center gap-12">
-
-                {/* LEFT */}
-                <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
-                    
-                    {/* LOGO */}
-                    <div className="absolute -top-10 -left-6 md:-top-[30%] md:left-4 z-40 rotate-[-6deg]">
-                     
-                            <img 
-                                src="/summer-logo.png" 
-                                className="h-16 md:h-24 w-auto rounded-xl"
-                            />
-                      
-                    </div>
-
-                    {/* KIDS */}
-                    <div className="relative z-20 p-4 lg:p-0">
-                        <img 
-                            src="/kids.png" 
-                            className="w-full md:scale-110 drop-shadow-xl"
+                {/* ⭐ TOP SKY CURVE */}
+                <div className="absolute top-0 left-0 w-full z-0">
+                    <svg viewBox="0 0 1200 200" preserveAspectRatio="none" className="w-full h-[180px] md:h-[220px]">
+                        <path
+                            d="M0,200 C300,0 900,0 1200,200 L1200,0 L0,0 Z"
+                            fill="white"
                         />
+                    </svg>
+                </div>
+
+                {/* ⭐ SUN */}
+                <div className="absolute top-6 right-6 md:right-16 z-10">
+                    <div className="w-20 h-20 md:w-48 md:h-48  animate-soft-float flex items-center justify-center">
+                        <img src="/images/summer-course/mattroi.png" className="w-full" />
                     </div>
+                </div>
 
-                    {/* Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-white/20 rounded-full blur-3xl -z-10" />
+                {/* ⭐ CLOUDS */}
+                <div className="absolute top-80 left-0 w-42 h-30 opacity-70">
+                    <img src="/images/summer-course/may.png" className="w-full" />
+                </div>
+                <div className="absolute top-16 right-40 w-40 h-24 bg-blue-200 rounded-full blur-sm opacity-70"></div>
 
-                    {/* ⭐ ICON FLOAT GIỮ NGUYÊN */}
-                    {/* <div className="absolute -top-10 -left-6 w-16 h-16 lg:w-20 lg:h-20 animate-soft-float z-30" style={{ animationDelay: '0.5s' }}>
+                {/* CONTENT */}
+                <div className="container mx-auto px-4 py-20 relative z-10">
+                    <div className="flex flex-wrap items-center">
+                        <div className="w-full lg:flex items-center gap-12">
+
+                            {/* LEFT */}
+                            <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
+
+                                {/* LOGO */}
+                                <div className="absolute -top-10 -left-6 md:-top-[30%] md:left-4 z-40 rotate-[-6deg]">
+
+                                    <img
+                                        src="/summer-logo.png"
+                                        className="h-16 md:h-24 w-auto rounded-xl"
+                                    />
+
+                                </div>
+
+                                {/* KIDS */}
+                                <div className="relative z-20 p-4 lg:p-0">
+                                    <img
+                                        src="/kids.png"
+                                        className="w-full md:scale-110 drop-shadow-xl"
+                                    />
+                                </div>
+
+                                {/* Glow */}
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-white/20 rounded-full blur-3xl -z-10" />
+
+                                {/* ⭐ ICON FLOAT GIỮ NGUYÊN */}
+                                {/* <div className="absolute -top-10 -left-6 w-16 h-16 lg:w-20 lg:h-20 animate-soft-float z-30" style={{ animationDelay: '0.5s' }}>
                         <img src="/graduation.png" className="w-full rotate-[-15deg] drop-shadow-xl" />
                     </div> */}
 
-                    <div className="absolute bottom-[7%] -right-10 w-20 h-20 lg:w-54 lg:h-54 animate-soft-float z-30" style={{ animationDelay: '1.2s' }}>
-                        <img src="/images/summer-course/khicau.png" className="w-full rotate-[15deg] drop-shadow-2xl" />
+                                <div className="absolute bottom-[7%] -right-10 w-20 h-20 lg:w-54 lg:h-54 animate-soft-float z-30" style={{ animationDelay: '1.2s' }}>
+                                    <img src="/images/summer-course/khicau.png" className="w-full rotate-[15deg] drop-shadow-2xl" />
+                                </div>
+                            </div>
+
+                            {/* RIGHT */}
+                            <div className="w-full lg:w-7/12 text-center lg:text-left order-1 lg:order-2">
+
+                                <div className="mt-6">
+                                    <div className="inline-block px-5 py-2 rounded-full bg-white backdrop-blur-md border border-white/40 text-[#4A55A2] font-black text-xs md:text-sm uppercase mb-6">
+                                        <img src="/images/summer-course/text.png" className="w-100 drop-shadow-2xl" />
+                                    </div>
+                                </div>
+
+                                <div className="relative mb-8">
+                                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] text-white italic leading-[0.9]">
+                                        <span className="block">MY GROWTH</span>
+                                        <span className="block text-[#4A55A2] -mt-2">SUMMER 2026</span>
+                                    </h1>
+
+                                    <div className="absolute -top-4 right-0 bg-orange-600 text-white text-xs font-black px-3 py-1 rounded-lg rotate-12">
+                                        2026
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
+                                    <div className="bg-white px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
+                                        <span className="text-orange-600 font-extrabold text-xl uppercase">
+                                            HÀNH TRÌNH 11 TUẦN
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <p className="text-lg md:text-xl text-white font-bold max-w-xl mb-10">
+                                    Mùa hè để con khám phá chính mình, phát triển mỗi ngày và sống có ích hơn với cộng đồng
+                                </p>
+
+                                <div className="relative flex flex-col sm:flex-row items-center lg:items-start gap-6">
+
+                                    {/* BUTTON */}
+                                    <Button className="bg-[#4A55A2] text-white px-15 py-6 rounded-full text-xl font-black shadow-xl hover:scale-105 transition z-10">
+                                        ĐĂNG KÝ NGAY
+                                    </Button>
+
+                                    {/* ⭐ HOT FLOAT RIGHT */}
+                                    <div className="absolute right-[-20px] md:right-[5px] bottom-[-30px] md:bottom-[10px] z-20 rotate-[6deg] animate-soft-float">
+                                        <img
+                                            src="/images/summer-course/hot.png"
+                                            className="w-40 md:w-56 drop-shadow-2xl"
+                                        />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* RIGHT */}
-                <div className="w-full lg:w-7/12 text-center lg:text-left order-1 lg:order-2">
-
-                    <div className="mt-6">
-                        <div className="inline-block px-5 py-2 rounded-full bg-white backdrop-blur-md border border-white/40 text-[#4A55A2] font-black text-xs md:text-sm uppercase mb-6">
-                           <img src="/images/summer-course/text.png" className="w-100 drop-shadow-2xl" />
-                        </div>
-                    </div>
-
-                    <div className="relative mb-8">
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] text-white italic leading-[0.9]">
-                            <span className="block">MY GROWTH</span>
-                            <span className="block text-[#4A55A2] -mt-2">SUMMER 2026</span>
-                        </h1>
-
-                        <div className="absolute -top-4 right-0 bg-orange-600 text-white text-xs font-black px-3 py-1 rounded-lg rotate-12">
-                            2026
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
-                        <div className="bg-white px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
-                            <span className="text-orange-600 font-extrabold text-xl uppercase">
-                                HÀNH TRÌNH 11 TUẦN
-                            </span>
-                        </div>
-                    </div>
-
-                    <p className="text-lg md:text-xl text-white font-bold max-w-xl mb-10">
-                        Mùa hè để con khám phá chính mình, phát triển mỗi ngày và sống có ích hơn với cộng đồng
-                    </p>
-
-                  <div className="relative flex flex-col sm:flex-row items-center lg:items-start gap-6">
-    
-    {/* BUTTON */}
-    <Button className="bg-[#4A55A2] text-white px-15 py-6 rounded-full text-xl font-black shadow-xl hover:scale-105 transition z-10">
-        ĐĂNG KÝ NGAY
-    </Button>
-
-    {/* ⭐ HOT FLOAT RIGHT */}
-    <div className="absolute right-[-20px] md:right-[5px] bottom-[-30px] md:bottom-[10px] z-20 rotate-[6deg] animate-soft-float">
-        <img 
-            src="/images/summer-course/hot.png" 
-            className="w-40 md:w-56 drop-shadow-2xl"
-        />
-    </div>
-
-</div>
+                {/* ⭐ BOTTOM CURVE */}
+                <div className="absolute bottom-0 left-0 w-full z-30">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[80px] fill-white">
+                        <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>
+                    </svg>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    {/* ⭐ BOTTOM CURVE */}
-    <div className="absolute bottom-0 left-0 w-full z-30">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[80px] fill-white">
-            <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>
-        </svg>
-    </div>
-
-</section>
+            </section>
 
 
 
             {/* 2. PROGRAM OVERVIEW (Timeline) */}
             <section className="py-16 bg-slate-50 relative">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
                         <h3 className="text-3xl md:text-5xl font-extrabold text-[#4A55A2] mb-3">TỔNG QUAN CHƯƠNG TRÌNH</h3>
                         <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Program Overview</h4>
-                    </div>
+                    </motion.div>
 
                     <div className="flex overflow-x-auto pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative snap-x snap-mandatory hide-scrollbar pt-2">
                         {[
@@ -237,7 +260,7 @@ export function SummerCourseTab() {
                                 border: "border-slate-500"
                             }
                         ].map((item, idx) => (
-                            <div key={idx} className="w-[85vw] sm:w-[50vw] flex-shrink-0 snap-center md:w-auto md:flex-shrink md:snap-align-none relative z-10 flex flex-col items-center text-center group">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className="w-[85vw] sm:w-[50vw] flex-shrink-0 snap-center md:w-auto md:flex-shrink md:snap-align-none relative z-10 flex flex-col items-center text-center group">
                                 {/* Connecting Line per item */}
                                 {idx < 3 && (
                                     <div className={`absolute top-12 -translate-y-1/2 left-[50%] w-[calc(100%+1.5rem)] lg:w-[calc(100%+2rem)] h-[3px] bg-gradient-to-r -z-10
@@ -256,163 +279,27 @@ export function SummerCourseTab() {
                                     <p className="text-slate-700 text-sm md:text-base font-medium">{item.descVI}</p>
                                     <p className="text-slate-500 text-xs md:text-sm italic mt-2">{item.descEN}</p>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* 3. WEEKLY HIGHLIGHT (Interactive Cards) */}
-            <section className="py-20 relative">
-                <div className="container mx-auto px-4 md:px-8 relative z-10">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h3 className="text-3xl md:text-5xl font-extrabold text-orange-500 mb-3">ĐIỂM NHẤN CÁC TUẦN</h3>
-                        <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Weekly Highlights</h4>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                        {[
-                            {
-                                week: 1,
-                                titleVI: "Nhận diện bản thân", titleEN: "I Am Unique",
-                                descVI: "Trong tuần đầu tiên, các em sẽ bắt đầu hành trình khám phá và nhận diện bản thân. Cùng nhau tìm hiểu sâu hơn về những nét tính cách đặc trưng, sở thích cá nhân và điểm mạnh riêng biệt. Các em sẽ được hướng dẫn tự lập cuốn nhật ký \"This is me\" để lưu giữ dấu ấn tự hào của mình.",
-                                descEN: "In the first week, students will explore unique personality traits, hobbies, and strengths. They will be guided to create a \"This is me\" journal to capture personal moments.",
-                                actVI: "Hoạt động: Vẽ chân dung bản thân / My Identity Card", actEN: "Activity: Draw self-portrait / My Identity Card",
-                                icon: Sparkles
-                            },
-                            {
-                                week: 2,
-                                titleVI: "Thói quen lành mạnh", titleEN: "Healthy Me",
-                                descVI: "Tuần 2 tập trung vào việc hình thành các thói quen sinh hoạt lành mạnh thiết yếu. Các em sẽ học cách cân bằng giữa việc ăn uống dinh dưỡng, duy trì chế độ vận động, thời gian ngủ nghỉ và rèn luyện kỹ năng vệ sinh cá nhân để tự chủ chăm lo bản thân mỗi ngày.",
-                                descEN: "Week 2 focuses on forming essential lifestyle habits (diet, exercise, sleep, hygiene), enhancing their daily self-care awareness.",
-                                actVI: "Hoạt động: Thiết kế “1 ngày khỏe mạnh của tôi”", actEN: "Activity: Design 'My healthy day'",
-                                icon: Heart
-                            },
-                            {
-                                week: 3,
-                                titleVI: "Cảm xúc của tôi", titleEN: "My Feelings Matter",
-                                descVI: "Trí tuệ cảm xúc là chìa khóa cực kì quan trọng. Học viên sẽ học cách gọi tên, nhận diện và quản lý các luồng cảm xúc phức tạp, được rèn luyện kỹ năng giao tiếp tích cực khi đối mặt với sự buồn bã, cơn nóng giận hay nỗi thất vọng.",
-                                descEN: "Emotional intelligence is key. This week, students learn to identify and practice positive communication skills when facing sadness, anger or frustration.",
-                                actVI: "Hoạt động: Emotion wheel / Role-play tình huống", actEN: "Activity: Emotion wheel / Scenario role-play",
-                                icon: MessageCircle
-                            },
-                            {
-                                week: 4,
-                                titleVI: "Tư duy phát triển", titleEN: "Growth Mindset in Action",
-                                descVI: "Kích hoạt tư duy phát triển với thông điệp cốt lõi: \"Làm sai không xấu - Bỏ cuộc mới đáng sợ\". Các em sẽ đối mặt với các thử thách cá nhân hằng ngày để rèn luyện sức bền bỉ và sự nhẫn nại, ý chí đối mặt khó khăn.",
-                                descEN: "Activating a growth mindset with the message: \"Failing isn't bad - Giving up is\". Students face daily challenges to build resilience.",
-                                actVI: "Hoạt động: Fail & Learn Journal", actEN: "Activity: Fail & Learn Journal",
-                                icon: Brain
-                            },
-                            {
-                                week: 5,
-                                titleVI: "Quản lý thời gian", titleEN: "Time & Self-Management",
-                                descVI: "Kỹ năng tổ chức và làm chủ thời gian được đưa vào thực hành. Các em sẽ được phân tích tầm quan trọng của sự phân bổ giữa học tập và giải trí, biết cách sử dụng các bảng kế hoạch đơn giản, hiệu quả cho một ngày của mình.",
-                                descEN: "Time management skills in practice. Learners will master setting up simple schedules to balance studying and leisure.",
-                                actVI: "Hoạt động: My Weekly Planner", actEN: "Activity: My Weekly Planner",
-                                icon: Clock
-                            },
-                            {
-                                week: 6,
-                                titleVI: "Giao tiếp & Làm việc nhóm", titleEN: "Communication & Teamwork",
-                                descVI: "Không ai có thể thành công một mình. Chuỗi hoạt động rèn luyện kỹ năng mềm: biết cách lắng nghe thấu cảm, tự tin để chia sẻ vòng tròn ý tưởng và phối hợp nhịp nhàng để vượt qua thử thách, cũng như biết giải quyết mâu thuẫn một cách bao dung.",
-                                descEN: "Week 6 hones crucial soft skills: empathetic listening, sharing, and seamless teamwork to resolve conflicts.",
-                                actVI: "Hoạt động: Team challenge / Cooperative games", actEN: "Activity: Team challenge / Cooperative games",
-                                icon: Users
-                            },
-                            {
-                                week: 7,
-                                titleVI: "Người xung quanh tôi", titleEN: "People Around Me",
-                                descVI: "Sự chú ý và học hỏi được mở rộng ra cộng đồng xã hội xung quanh. Các em tìm hiểu, thắt chặt mối liên kết với gia đình, thầy cô, bạn bè, rèn luyện bài học về sự biết ơn sâu sắc và tôn trọng sự khác biệt lớn của mỗi cá thể.",
-                                descEN: "Attention expands to the community. Students strengthen connections with family, teachers, friends, showing gratitude and respecting diversity.",
-                                actVI: "Hoạt động: Gratitude project", actEN: "Activity: Gratitude project",
-                                icon: HeartHandshake
-                            },
-                            {
-                                week: 8,
-                                titleVI: "Công dân nhỏ", titleEN: "Little Citizens",
-                                descVI: "Khơi dậy niềm tự hào vững chãi của một \"Công dân nhí\". Học viên sẽ tự tìm hiểu về quyền lợi bên cạnh trách nhiệm xã hội của mình, đi vào thực tập thực nghiệm thông qua các hoạt động giữ gìn không gian chung, nâng cao ý thức môi trường.",
-                                descEN: "Fostering awareness of a \"Little Citizen\". Students learn basic social rights and responsibilities through protecting the environment and shared spaces.",
-                                actVI: "Hoạt động: Green action / Community rules", actEN: "Activity: Green action / Community rules",
-                                icon: Globe
-                            },
-                            {
-                                week: 9,
-                                titleVI: "Thế giới nghề nghiệp", titleEN: "World of Work",
-                                descVI: "Khám phá thế giới nghề nghiệp đa dạng để định hình ước mơ. Khuyến khích các bạn nhỏ tự đứng lên kiến nghị công việc vừa sức: giúp việc gia đình (nhóm nhỏ), điều phối lớp học (nhóm giữa) hoặc làm dự án truyền thông sáng tạo (nhóm lớn).",
-                                descEN: "Explore diverse professions to shape dreams. Students propose age-appropriate tasks: helping family, class support, or media projects.",
-                                actVI: "Hoạt động: My First Job Proposal", actEN: "Activity: My First Job Proposal",
-                                icon: Target
-                            },
-                            {
-                                week: 10,
-                                titleVI: "Tôi có thể đóng góp", titleEN: "I Can Contribute",
-                                descVI: "Tiến đến chặng \"Tỏa sáng và Cống hiến\". Học viên sẽ vận dụng nhuần nhuyễn mọi vốn kỹ năng để vận hành một dự án cộng đồng nhỏ theo nhóm, trải nghiệm niềm xúc động \"Làm việc thật – Tạo giá trị thật\" nhằm đem lại giá trị tích cực.",
-                                descEN: "Time to \"Shine and Contribute\". Students execute a mini community project, bringing positive values to those around them.",
-                                actVI: "Hoạt động: Community Mini Project", actEN: "Activity: Community Mini Project",
-                                icon: Star
-                            },
-                            {
-                                week: 11,
-                                titleVI: "Mùa hè trưởng thành", titleEN: "My Summer, My Growth",
-                                descVI: "Tuần lễ vinh quang và tổng kết hành trình hè tràn ngập kỷ niệm. Học viên sẽ tự tin sắp xếp trọn vẹn mọi điểm nhấn vào hồ sơ năng lực (Portfolio), lên bục thuyết trình (Showcase) thành quả ấn tượng trước sự chứng kiến đặc biệt của phụ huynh.",
-                                descEN: "An honorary week to reflect on growth. Students finalize their personal Portfolios and showcase remarkable achievements for their parents.",
-                                actVI: "Hoạt động: Presentation + Portfolio cá nhân", actEN: "Activity: Presentation + Personal Portfolio",
-                                icon: Trophy
-                            }
-                        ].map((item, idx) => (
-                            <div key={idx} className="perspective-1000 h-[280px] group cursor-pointer">
-                                <div className="relative w-full h-full transition-transform duration-700 transform-style-3d flip-inner">
-                                    {/* FRONT FACE */}
-                                    <div className="absolute inset-0 bg-white rounded-3xl border border-slate-100 shadow-sm backface-hidden flex flex-col overflow-hidden">
-                                        <div className="w-full h-[150px] relative shrink-0">
-                                            <img src={`/images/weeks/week${item.week}.png`} alt={item.titleVI} className="absolute inset-0 w-full h-full object-cover" />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
-                                        </div>
-                                        <div className="px-6 pb-6 pt-3 relative z-10 flex-col flex-1">
-                                            <div className="inline-flex items-center gap-2 mb-2">
-                                                <div className="w-6 h-6 rounded-md bg-[#FF7A00]/10 flex items-center justify-center text-[#FF7A00]">
-                                                    <item.icon className="w-3.5 h-3.5" />
-                                                </div>
-                                                <div className="text-[10px] font-extrabold text-[#FF7A00] tracking-widest uppercase">Tuần / Week {item.week}</div>
-                                            </div>
-                                            <h4 className="text-xl font-bold text-[#4A55A2] leading-tight mb-1">{item.titleVI}</h4>
-                                            <h5 className="text-sm font-semibold text-[#4A55A2]/80">{item.titleEN}</h5>
-                                        </div>
-                                    </div>
-
-                                    {/* BACK FACE */}
-                                    <div className="absolute inset-0 bg-white rounded-3xl p-6 border-2 border-orange-100 shadow-lg backface-hidden rotate-y-180 flex flex-col overflow-hidden">
-                                        <div className="flex-1 overflow-y-auto pr-2 hide-scrollbar">
-                                            <p className="text-slate-700 font-medium text-sm leading-relaxed mb-2 whitespace-pre-line">{item.descVI}</p>
-                                            <p className="text-slate-500 text-xs italic leading-relaxed whitespace-pre-line">{item.descEN}</p>
-                                        </div>
-                                        <div className="pt-4 border-t border-slate-100 shadow-[0_-10px_10px_-10px_rgba(255,255,255,1)]">
-                                            <p className="text-orange-500 font-bold text-sm flex items-start gap-2 leading-snug">
-                                                <Sparkles className="w-4 h-4 mt-0.5 flex-shrink-0" /> {item.actVI}
-                                            </p>
-                                            <p className="text-orange-400 font-medium text-xs italic mt-1 ml-6 leading-snug">{item.actEN}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* 3. WEEKLY HIGHLIGHT (Interactive Split Layout) */}
+            <WeeklyHighlightsSplit />
 
             {/* 4. DAILY STRUCTURE (Split layout) */}
             <section className="py-16 bg-gradient-to-b from-white to-slate-50">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="bg-white rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-2xl shadow-[#4A55A2]/5 border border-slate-100">
-                        <div className="text-center max-w-3xl mx-auto mb-12">
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12">
                             <h3 className="text-3xl md:text-5xl font-extrabold text-[#4A55A2] mb-3">CẤU TRÚC MỘT NGÀY</h3>
                             <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Daily Structure</h4>
-                        </div>
+                        </motion.div>
 
                         <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
                             {/* LEFT: Morning */}
-                            <div className="bg-gradient-to-br from-slate-100 to-white rounded-3xl p-8 border border-slate-200 hover:shadow-lg transition-shadow">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInLeft} className="bg-gradient-to-br from-slate-100 to-white rounded-3xl p-8 border border-slate-200 hover:shadow-lg transition-shadow">
                                 <div className="flex items-center gap-4 mb-8">
                                     <div className="w-16 h-16 rounded-full bg-[#4A55A2] flex items-center justify-center text-white shadow-lg shadow-slate-1000/30">
                                         <Sun className="w-8 h-8" />
@@ -439,10 +326,10 @@ export function SummerCourseTab() {
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
 
                             {/* RIGHT: Afternoon */}
-                            <div className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 border border-orange-100 hover:shadow-lg transition-shadow">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInRight} className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 border border-orange-100 hover:shadow-lg transition-shadow">
                                 <div className="flex items-center gap-4 mb-8">
                                     <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
                                         <Clock className="w-8 h-8" />
@@ -469,7 +356,7 @@ export function SummerCourseTab() {
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -478,10 +365,10 @@ export function SummerCourseTab() {
             {/* 5. AGE GROUPS (3 Cards) */}
             <section className="py-20 bg-slate-50">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
                         <h3 className="text-3xl md:text-5xl font-extrabold text-orange-500 mb-3">PHÂN BỐ THEO ĐỘ TUỔI</h3>
                         <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Age Groups</h4>
-                    </div>
+                    </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
                         {[
@@ -513,7 +400,7 @@ export function SummerCourseTab() {
                                 shadow: "shadow-orange-500"
                             }
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-white rounded-[2.5rem] p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group border border-slate-100">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} transition={{ delay: idx * 0.15 }} key={idx} className="bg-white rounded-[2.5rem] p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group border border-slate-100">
                                 <div className={`absolute top-0 left-0 w-full h-3 bg-gradient-to-r ${item.color}`} />
 
                                 <div className="flex items-center gap-4 mb-6">
@@ -542,7 +429,7 @@ export function SummerCourseTab() {
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -561,7 +448,7 @@ export function SummerCourseTab() {
 
                 <div className="container mx-auto px-4 md:px-8 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        <div className="lg:w-5/12 text-center lg:text-left">
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInLeft} className="lg:w-5/12 text-center lg:text-left">
                             <div className="inline-block bg-white/20 backdrop-blur-md px-5 py-2 rounded-full mb-6 border border-white/30">
                                 <span className="text-white font-bold tracking-wider uppercase text-sm">Kết Quả Đạt Được</span>
                             </div>
@@ -577,13 +464,13 @@ export function SummerCourseTab() {
                             <Button size="lg" className="bg-white text-[#4A55A2] hover:bg-gray-50 h-14 px-10 rounded-full font-bold shadow-xl transition-all hover:scale-105 hidden lg:inline-flex" asChild>
                                 <Link href="/lien-he">Nhận tư vấn chi tiết</Link>
                             </Button>
-                        </div>
+                        </motion.div>
 
-                        <div className="lg:w-7/12 w-full">
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInRight} className="lg:w-7/12 w-full">
                             <div className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A55A2]/5 rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:scale-150 transition-transform duration-1000" />
                                 <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-orange-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:scale-150 transition-transform duration-1000 delay-100" />
-                                
+
                                 <div className="relative z-10 grid sm:grid-cols-2 gap-4 md:gap-5">
                                     {[
                                         { vi: "Nhận thức bản thân", en: "Self-awareness", color: "from-[#4A55A2] to-indigo-500", icon: Focus },
@@ -597,7 +484,7 @@ export function SummerCourseTab() {
                                         <div key={idx} className={`relative flex items-center gap-4 bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden group/item ${item.colSpan || ''}`}>
                                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-50 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 ease-out" />
                                             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent to-transparent group-hover/item:from-orange-400 group-hover/item:to-orange-600 transition-all duration-300 rounded-l-2xl opacity-0 group-hover/item:opacity-100" />
-                                            
+
                                             <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white flex-shrink-0 shadow-md group-hover/item:scale-110 group-hover/item:-rotate-6 transition-transform duration-300 relative z-10`}>
                                                 <item.icon className="w-5 h-5" />
                                             </div>
@@ -615,7 +502,7 @@ export function SummerCourseTab() {
                                     </Button>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -623,11 +510,11 @@ export function SummerCourseTab() {
             {/* 7. FINAL OUTPUT / SHOWCASE */}
             <section className="py-20 lg:py-28 bg-white">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
                         <h3 className="text-3xl md:text-5xl font-extrabold text-[#4A55A2] mb-3">SẢN PHẨM ĐẦU RA</h3>
                         <h4 className="text-xl md:text-2xl text-orange-500 font-bold uppercase tracking-widest mb-4">Final Output / Showcase</h4>
                         <p className="text-slate-600 text-lg">Những dấu ấn khó quên sau 11 tuần trưởng thành.</p>
-                    </div>
+                    </motion.div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
@@ -636,18 +523,18 @@ export function SummerCourseTab() {
                             { vi: "Dự án cộng đồng", en: "Community project", icon: HeartHandshake, bg: "bg-orange-50", text: "text-orange-600" },
                             { vi: "Ngày hội thuyết trình", en: "Presentation day", icon: Presentation, bg: "bg-slate-50", text: "text-slate-800" }
                         ].map((item, idx) => (
-                            <div key={idx} className={`${item.bg} rounded-3xl p-8 text-center hover:-translate-y-2 transition-transform duration-300`}>
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className={`${item.bg} rounded-3xl p-8 text-center hover:-translate-y-2 transition-transform duration-300`}>
                                 <div className={`w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6 ${item.text}`}>
                                     <item.icon className="w-10 h-10" />
                                 </div>
                                 <h4 className={`text-xl font-bold mb-2 ${item.text}`}>{item.vi}</h4>
                                 <h5 className="text-sm font-bold text-slate-500 uppercase tracking-widest">{item.en}</h5>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
 
                     {/* Gallery Section */}
-                    <div className="mt-12 md:mt-16 bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl shadow-slate-200/50 border border-slate-100">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mt-12 md:mt-16 bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl shadow-slate-200/50 border border-slate-100">
                         <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
                             <div>
                                 <h4 className="text-2xl md:text-3xl font-extrabold text-[#4A55A2] flex items-center gap-3">
@@ -688,7 +575,7 @@ export function SummerCourseTab() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

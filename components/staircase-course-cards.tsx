@@ -344,47 +344,88 @@ export function StaircaseCourseCards() {
           </p>
         </div>
 
-        {/* ── DESKTOP: Staircase Cards ── */}
-        <div className="hidden lg:flex flex-row items-end justify-center gap-4 xl:gap-6 w-full min-h-[500px] pt-40 pb-10 z-10 shrink-0">
-          {courses.map((course, index) => {
-            const yOffset = index * 40;
-            return (
-              <Link
-                key={`desktop-${course.id}`}
-                href={course.link}
-                className={`group flex flex-col w-[210px] xl:w-[230px] shrink-0 transition-all duration-500 ease-out hover:scale-105 hover:z-30 ${!mounted ? "opacity-0 translate-y-20" : "opacity-100"} z-10`}
-                style={{
-                  transitionDelay: mounted ? course.delay : "0ms",
-                  transform: mounted
-                    ? `translateY(-${yOffset}px)`
-                    : "translateY(20px)",
-                }}
-              >
-                <CardContent course={course} isDesktop={true} />
-              </Link>
-            );
-          })}
-        </div>
+        {/* ── ROCKET TREE (Replaces Desktop Staircase & Mobile Dots) ── */}
+        <div className="flex flex-col items-center justify-center w-full min-h-[500px] pt-10 pb-12 z-10 relative">
+          <div className="flex flex-col items-center w-full max-w-5xl relative">
+            
+            {/* Rocket Top Glow */}
+             <div className="absolute top-[-30px] w-20 h-20 bg-yellow-300 rounded-full blur-2xl opacity-50 animate-pulse pointer-events-none" />
 
-        {/* ── MOBILE: mini color dots / legend (accordion is the main UI) ── */}
-        <div className="lg:hidden flex justify-center gap-2 pb-2 pt-2 z-10">
-          {courses.map((course) => (
-            <div
-              key={`dot-${course.id}`}
-              className="flex flex-col items-center gap-1 cursor-pointer"
-              onClick={() => toggle(course.id)}
-            >
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center shadow-md border-2 border-white"
-                style={{ backgroundColor: course.color }}
-              >
-                <course.icon className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-[9px] font-bold text-slate-500 uppercase tracking-tight max-w-[50px] text-center leading-tight">
-                {course.title.split(" ")[0]}
-              </span>
+            {[...courses].reverse().map((course, idx) => {
+              // idx 0 = Top layer (Communicator), idx 4 = Bottom layer (Explorer)
+              const originalIndex = courses.length - 1 - idx;
+              const isLeft = originalIndex % 2 === 0;
+
+              // Styles for the layered rocket body
+              let borderRadius = "50% 50% 50% 50% / 20% 20% 25% 25%";
+              let padding = "py-[25px] sm:py-[30px] md:py-[40px]";
+              let margin = "-mt-6 md:-mt-8";
+              
+              if (idx === 0) {
+                 // Top layer
+                 borderRadius = "50% 50% 50% 50% / 100% 100% 20% 20%";
+                 padding = "pt-[60px] pb-[25px] sm:pt-[70px] sm:pb-[30px] md:pt-[90px] md:pb-[40px]";
+                 margin = "mt-0";
+              } else if (idx === 4) {
+                 // Bottom layer
+                 borderRadius = "50% 50% 50% 50% / 20% 20% 100% 100%";
+                 padding = "pt-[25px] pb-[50px] sm:pt-[30px] sm:pb-[60px] md:pt-[40px] md:pb-[80px]";
+              }
+
+              return (
+                <div key={course.id} className={`flex items-center w-full z-${50 - idx*10} relative ${margin}`}>
+                   
+                   {/* LEFT BRANCH */}
+                   <div className="flex-1 flex justify-end pr-2 sm:pr-4 md:pr-8">
+                     {isLeft && (
+                       <RocketNode course={course} index={originalIndex} isLeft={true} onClick={() => toggle(course.id)} />
+                     )}
+                   </div>
+
+                   {/* CENTRAL ROCKET LAYER */}
+                   <div 
+                      onClick={() => toggle(course.id)}
+                      className="cursor-pointer w-[140px] sm:w-[180px] md:w-[240px] px-2 flex items-center justify-center text-center shadow-[0_-5px_15px_rgba(0,0,0,0.15)] hover:brightness-110 transition-all z-10 relative group"
+                      style={{ 
+                          backgroundColor: course.color,
+                          borderRadius: borderRadius,
+                          paddingTop: padding.split(' ')[0].replace('pt-[','').replace(']',''),
+                          paddingBottom: padding.split(' ')[1] ? padding.split(' ')[1].replace('pb-[','').replace(']','') : ''
+                      }}>
+                      {/* Optional Fins on Leader layer (idx 2) */}
+                      {idx === 2 && (
+                         <>
+                           <div className="absolute left-[-20px] md:left-[-30px] bottom-[10px] w-[35px] md:w-[50px] h-[70px] md:h-[90px] bg-pink-500 origin-bottom-right -rotate-[20deg] rounded-tl-full rounded-bl-3xl -z-10 drop-shadow-md transition-transform group-hover:-rotate-[25deg]" />
+                           <div className="absolute right-[-20px] md:right-[-30px] bottom-[10px] w-[35px] md:w-[50px] h-[70px] md:h-[90px] bg-pink-500 origin-bottom-left rotate-[20deg] rounded-tr-full rounded-br-3xl -z-10 drop-shadow-md transition-transform group-hover:rotate-[25deg]" />
+                         </>
+                      )}
+                      
+                      <span className="text-white font-black text-sm sm:text-base md:text-xl uppercase tracking-wider md:tracking-widest leading-tight drop-shadow-md px-1" style={{ paddingTop: idx===0? '35px': '0', paddingBottom: idx===4? '25px':'0' }}>
+                         {course.title.includes(' ') ? (
+                             <>
+                               {course.title.split(' ')[0]}<br className="hidden sm:block"/>
+                               <span className="text-xs sm:text-sm md:text-lg">{course.title.split(' ').slice(1).join(' ')}</span>
+                             </>
+                         ) : course.title}
+                      </span>
+                   </div>
+
+                   {/* RIGHT BRANCH */}
+                   <div className="flex-1 flex justify-start pl-2 sm:pl-4 md:pl-8">
+                     {!isLeft && (
+                       <RocketNode course={course} index={originalIndex} isLeft={false} onClick={() => toggle(course.id)} />
+                     )}
+                   </div>
+                </div>
+              );
+            })}
+
+            {/* ROCKET FLAME */}
+            <div className="w-[60px] md:w-[80px] h-[80px] md:h-[120px] bg-gradient-to-t from-yellow-300 via-orange-400 to-red-500 -mt-4 md:-mt-8 rounded-[50%_50%_50%_50%_/_70%_70%_100%_100%] animate-pulse shadow-[0_10px_30px_rgba(255,100,0,0.8)] relative z-0 flex justify-center">
+                 <div className="absolute bottom-[10px] w-[30px] md:w-[40px] h-[50px] md:h-[70px] bg-gradient-to-t from-white to-yellow-300 rounded-[50%_50%_50%_50%_/_70%_70%_100%_100%] animate-bounce mix-blend-overlay" />
             </div>
-          ))}
+
+          </div>
         </div>
 
         {/* ── Accordion: 5 colored bars ── */}
@@ -458,60 +499,30 @@ export function StaircaseCourseCards() {
   );
 }
 
-// ── Staircase card inner content ─────────────────────────────────────────────
-function CardContent({
-  course,
-  isDesktop,
-}: {
-  course: any;
-  isDesktop: boolean;
-}) {
+// ── Rocket Node Component ─────────────────────────────────────────────────────────────
+function RocketNode({ course, index, isLeft, onClick }: any) {
   return (
-    <div className="flex flex-col items-center w-full h-full group-hover:-translate-y-2 transition-transform duration-500">
-      <div
-        className="mb-[-2rem] transition-transform duration-500 group-hover:scale-110 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-md border-4 z-20 relative"
-        style={{ borderColor: course.color }}
-      >
-        <course.icon
-          className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-500 group-hover:rotate-12 group-hover:animate-bounce"
-          style={{ color: course.color }}
-        />
-      </div>
-      <div className="w-full flex-1 flex flex-col bg-white rounded-[24px] shadow-[0_4px_20px_rgb(0,0,0,0.05)] group-hover:shadow-[0_15px_30px_rgb(0,0,0,0.12)] transition-shadow duration-500 overflow-hidden border-2 border-transparent group-hover:border-slate-100 z-10 relative">
-        <div
-          className="w-full pt-12 pb-6 px-1 lg:px-2 text-center relative overflow-hidden flex-shrink-0"
-          style={{ backgroundColor: course.color }}
-        >
-          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <h3
-            className={`text-white font-black text-xl ${course.title.length > 10 && !course.title.includes(" ") ? "md:text-[18px] lg:text-[19px] xl:text-[20px] tracking-tighter" : "md:text-[22px] tracking-tight"} leading-tight uppercase relative z-10 w-full px-1`}
-          >
-            {course.title.includes(" ") ? (
-              <>
-                {course.title.split(" ")[0]}
-                <br />
-                {course.title.split(" ").slice(1).join(" ")}
-              </>
-            ) : (
-              <span className="block mt-3">{course.title}</span>
-            )}
-          </h3>
-        </div>
-        <div className="py-6 px-4 text-center bg-white flex flex-col items-center justify-center gap-3 flex-1 min-h-[140px]">
-          <span className="inline-block px-4 py-1.5 bg-[#FDFBF7] rounded-full text-slate-700 font-bold text-sm border border-slate-100 shadow-sm">
-            {course.age}
-          </span>
-          <div
-            className="mt-auto pt-2 opacity-80 lg:opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 text-sm font-bold"
-            style={{ color: course.color }}
-          >
-            Tìm hiểu thêm{" "}
-            <MoveRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </div>
-        </div>
-      </div>
+    <div 
+       className={`flex flex-col ${isLeft ? "items-end text-right" : "items-start text-left"} cursor-pointer group`}
+       onClick={onClick}
+    >
+       <p className="text-slate-500 font-bold text-[9px] sm:text-xs md:text-sm mb-1 px-1 sm:px-2 group-hover:text-orange-500 transition-colors">Độ tuổi: {course.age}</p>
+       <div className={`flex items-center ${isLeft ? "flex-row-reverse" : "flex-row"} gap-0`}>
+           {/* Connector Line */}
+           <div className="w-4 sm:w-8 md:w-16 lg:w-24 h-[2px] relative transition-transform origin-center group-hover:scale-x-110" style={{ backgroundColor: course.color }}>
+               <div className={`absolute ${isLeft ? "right-0" : "left-0"} top-1/2 -mt-1 w-2 h-2 rounded-full shadow-sm`} style={{ backgroundColor: course.color }} />
+           </div>
+           {/* Bubble */}
+           <div className="bg-white rounded-full border-[3px] shadow-[0_5px_15px_rgba(0,0,0,0.08)] w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex flex-col items-center justify-center relative z-10 transition-transform group-hover:scale-110 group-hover:shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
+                style={{ borderColor: course.color }}>
+                <span className="text-lg sm:text-xl md:text-2xl font-black leading-none drop-shadow-sm" style={{ color: course.color }}>
+                    0{index + 1}
+                </span>
+                <course.icon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-current opacity-40 absolute bottom-1.5 sm:bottom-2" style={{ color: course.color }} />
+           </div>
+       </div>
     </div>
-  );
+  )
 }
 
 // ── Accordion expanded body ───────────────────────────────────────────────────

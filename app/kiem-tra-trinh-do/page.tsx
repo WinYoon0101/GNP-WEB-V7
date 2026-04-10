@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { ChevronLeft, ChevronRight, BookOpen, Award, Trophy, CheckCircle2, XCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 type TestLevel = "STARTERS" | "MOVERS" | "FLYERS"
 
@@ -505,7 +506,7 @@ export default function KiemTraTrinhDoPage() {
           </div>
 
           {!testStarted && !testCompleted && (
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+            <ScrollReveal animation="fadeInUp" className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
               {[
                 {
                   level: "STARTERS",
@@ -575,11 +576,11 @@ export default function KiemTraTrinhDoPage() {
                   </div>
                 </div>
               ))}
-            </div>
+            </ScrollReveal>
           )}
 
           {testStarted && !testCompleted && currentQuestionData && (
-            <div className="max-w-5xl mx-auto px-4">
+            <ScrollReveal animation="fadeInUp" className="max-w-5xl mx-auto px-4">
               <div className="bg-white rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden">
                 <div className="bg-slate-900 p-6 md:p-10 flex flex-col md:flex-row justify-between items-center gap-6">
                   <div className="flex items-center gap-4">
@@ -699,11 +700,11 @@ export default function KiemTraTrinhDoPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           )}
 
           {showResultForm && (
-            <div className="max-w-2xl mx-auto px-4">
+            <ScrollReveal animation="fadeInUp" className="max-w-2xl mx-auto px-4">
               <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 p-8 md:p-12 text-center space-y-10">
                 <div className="space-y-4">
                   <div className="w-20 h-20 bg-orange-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
@@ -753,11 +754,11 @@ export default function KiemTraTrinhDoPage() {
                   Xem Kết Quả Chi Tiết 🚀
                 </Button>
               </div>
-            </div>
+            </ScrollReveal>
           )}
 
           {score !== null && !showResultForm && (
-            <div className="max-w-4xl mx-auto px-4">
+            <ScrollReveal animation="fadeInUp" className="max-w-4xl mx-auto px-4">
               <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden">
                 <div className={`${score >= 80 ? "bg-emerald-500" : score >= 60 ? "bg-orange-500" : "bg-red-500"
                   } p-12 text-center text-white space-y-4 relative overflow-hidden`}>
@@ -875,7 +876,7 @@ export default function KiemTraTrinhDoPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           )}
         </div>
       </main>
