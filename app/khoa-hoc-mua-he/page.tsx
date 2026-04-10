@@ -6,7 +6,7 @@ export default function SummerCoursePage() {
     return (
         <div className="min-h-screen font-sans bg-white text-slate-900 selection:bg-orange-200">
             <Header />
-            <main className="pt-24 pb-12 overflow-hidden">
+            <main className="overflow-hidden">
                 <SummerCourseTab />
             </main>
             <Footer />

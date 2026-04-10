@@ -50,120 +50,131 @@ export function SummerCourseTab() {
             }} />
 
             {/* 1. HERO SECTION */}
-            <section className="relative overflow-hidden bg-[#FD7400] lg:min-h-[600px] flex items-center">
-                {/* Background Decorations */}
-                <div className="absolute top-0 right-0 w-full h-full opacity-25 pointer-events-none">
-                    <div className="absolute top-[10%] right-[5%] animate-soft-float">
-                        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="100" cy="100" r="80" stroke="white" strokeWidth="2" strokeDasharray="10 10" />
-                        </svg>
+<section className="relative overflow-hidden bg-[#FD7400] lg:min-h-[650px] flex items-center">
+    
+    {/* ⭐ TOP SKY CURVE */}
+    <div className="absolute top-0 left-0 w-full z-0">
+        <svg viewBox="0 0 1200 200" preserveAspectRatio="none" className="w-full h-[180px] md:h-[220px]">
+            <path 
+                d="M0,200 C300,0 900,0 1200,200 L1200,0 L0,0 Z" 
+                fill="white"
+            />
+        </svg>
+    </div>
+
+    {/* ⭐ SUN */}
+    <div className="absolute top-6 right-6 md:right-16 z-10">
+        <div className="w-20 h-20 md:w-48 md:h-48  animate-soft-float flex items-center justify-center">
+             <img src="/images/summer-course/mattroi.png" className="w-full" />
+        </div>
+    </div>
+
+    {/* ⭐ CLOUDS */}
+    <div className="absolute top-80 left-0 w-42 h-30 opacity-70">
+         <img src="/images/summer-course/may.png" className="w-full" />
+    </div>
+    <div className="absolute top-16 right-40 w-40 h-24 bg-blue-200 rounded-full blur-sm opacity-70"></div>
+
+    {/* CONTENT */}
+    <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="flex flex-wrap items-center">
+            <div className="w-full lg:flex items-center gap-12">
+
+                {/* LEFT */}
+                <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
+                    
+                    {/* LOGO */}
+                    <div className="absolute -top-10 -left-6 md:-top-[30%] md:left-4 z-40 rotate-[-6deg]">
+                     
+                            <img 
+                                src="/summer-logo.png" 
+                                className="h-16 md:h-24 w-auto rounded-xl"
+                            />
+                      
+                    </div>
+
+                    {/* KIDS */}
+                    <div className="relative z-20 p-4 lg:p-0">
+                        <img 
+                            src="/kids.png" 
+                            className="w-full md:scale-110 drop-shadow-xl"
+                        />
+                    </div>
+
+                    {/* Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-white/20 rounded-full blur-3xl -z-10" />
+
+                    {/* ⭐ ICON FLOAT GIỮ NGUYÊN */}
+                    {/* <div className="absolute -top-10 -left-6 w-16 h-16 lg:w-20 lg:h-20 animate-soft-float z-30" style={{ animationDelay: '0.5s' }}>
+                        <img src="/graduation.png" className="w-full rotate-[-15deg] drop-shadow-xl" />
+                    </div> */}
+
+                    <div className="absolute bottom-[7%] -right-10 w-20 h-20 lg:w-54 lg:h-54 animate-soft-float z-30" style={{ animationDelay: '1.2s' }}>
+                        <img src="/images/summer-course/khicau.png" className="w-full rotate-[15deg] drop-shadow-2xl" />
                     </div>
                 </div>
 
-                <div className="container mx-auto px-4 py-16 relative z-10">
-                    <div className="flex flex-wrap items-center">
-                        <div className="w-full lg:flex items-center gap-12">
-                            {/* LEFT: KIDS IMAGE */}
-                            <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
-                                <div className="relative z-20 animate-soft-float p-4 lg:p-0">
-                                    <img 
-                                        src="/images/summer-course/summer-kids-orange.png" 
-                                        alt="GNP Summer Kids" 
-                                        className="w-full h-auto drop-shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]"
-                                        style={{ 
-                                            WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 90%)',
-                                            maskImage: 'radial-gradient(circle, black 40%, transparent 90%)',
-                                            filter: 'saturate(1.2) contrast(1.05)'
-                                        }}
-                                    />
-                                </div>
-                                {/* Decorative elements behind kids */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-white/20 rounded-full blur-3xl -z-10" />
-                                
-                                {/* Floating Icons around kids */}
-                                <div className="absolute -top-10 -left-6 w-16 h-16 lg:w-20 lg:h-20 animate-soft-float z-30" style={{ animationDelay: '0.5s' }}>
-                                    <img src="/graduation.png" alt="Graduation" className="w-full h-auto opacity-100 rotate-[-15deg] drop-shadow-xl" />
-                                </div>
-                                <div className="absolute bottom-[5%] -right-10 w-20 h-20 lg:w-24 lg:h-24 animate-soft-float z-30" style={{ animationDelay: '1.2s' }}>
-                                    <img src="/rocket.png" alt="Rocket" className="w-full h-auto drop-shadow-2xl rotate-[15deg]" />
-                                </div>
-                            </div>
+                {/* RIGHT */}
+                <div className="w-full lg:w-7/12 text-center lg:text-left order-1 lg:order-2">
 
-                            {/* RIGHT: CONTENT */}
-                            <div className="w-full lg:w-7/12 text-center lg:text-left order-1 lg:order-2">
-                                <div className="mb-6 flex flex-col items-center lg:items-start">
-                                    {/* Logo wrapped in a white badge for a premium sticker look */}
-                                    <div className="bg-white p-3 rounded-3xl shadow-xl rotate-[-2deg] mb-4 border-2 border-white/50 backdrop-blur-sm">
-                                        <img 
-                                            src="/images/summer-course/gnp-summer-logo.jpg" 
-                                            alt="GNP Summer Logo" 
-                                            className="h-20 md:h-28 w-auto rounded-xl"
-                                        />
-                                    </div>
-                                    <div className="inline-block px-5 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/40 text-[#4A55A2] font-black text-xs md:text-sm tracking-widest uppercase mb-4">
-                                        DISCOVER "ME" | GROW "ME" | CONTRIBUTE "ME"
-                                    </div>
-                                </div>
-
-
-
-                                <div className="relative mb-8">
-                                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] text-white leading-[0.9] drop-shadow-[0_8px_20px_rgba(0,0,0,0.15)] italic">
-                                        <span className="block tracking-tighter uppercase">MY GROWTH</span>
-                                        <span className="block text-[#4A55A2] tracking-tighter -mt-2 uppercase">SUMMER 2026</span>
-                                    </h1>
-                                    <div className="absolute -top-4 right-0 lg:-right-6 bg-orange-600 text-white text-[12px] font-black px-3 py-1 rounded-lg rotate-12 shadow-xl border-2 border-white">
-                                        2026
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col md:flex-row items-center lg:items-start gap-4 mb-8">
-                                    <div className="bg-white px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
-                                        <span className="text-orange-600 font-extrabold text-xl md:text-2xl uppercase tracking-tighter">HÀNH TRÌNH 11 TUẦN</span>
-                                    </div>
-                                    <div className="flex -space-x-2">
-                                        {[Sun, Globe, Sprout, Heart].map((Icon, i) => (
-                                            <div key={i} className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-orange-500 shadow-sm border border-orange-100">
-                                                <Icon className="w-5 h-5" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <p className="text-lg md:text-xl text-[#4A55A2] font-bold max-w-2xl leading-relaxed mb-10 drop-shadow-sm">
-                                    Mùa hè để con <span className="text-white">khám phá chính mình</span>, phát triển mỗi ngày và sống có ích hơn với cộng đồng
-                                </p>
-
-                                <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
-                                    <Button size="lg" className="bg-[#4A55A2] text-white hover:bg-[#3d4685] h-14 md:h-16 px-10 rounded-full text-lg font-black shadow-xl transition-all hover:scale-105" asChild>
-                                        <Link href="/lien-he">ĐĂNG KÝ NGAY</Link>
-                                    </Button>
-
-                                    {/* Promo Sticker */}
-                                    <div className="relative group">
-                                        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                                        <div className="relative bg-white p-4 rounded-2xl border-2 border-orange-100 shadow-xl max-w-[280px]">
-                                            <p className="text-[10px] font-black text-orange-600 uppercase tracking-tighter mb-1 flex items-center gap-1">
-                                                <Sparkles className="w-3 h-3" /> HOT HOT HOT
-                                            </p>
-                                            <p className="text-xs font-bold text-slate-700 leading-tight">
-                                                Đăng ký trong tháng 4 này, <span className="text-red-500 underline decoration-2">MIỄN PHÍ</span> toàn bộ chuyến "dã ngoại"!
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className="mt-6">
+                        <div className="inline-block px-5 py-2 rounded-full bg-white backdrop-blur-md border border-white/40 text-[#4A55A2] font-black text-xs md:text-sm uppercase mb-6">
+                           <img src="/images/summer-course/text.png" className="w-100 drop-shadow-2xl" />
                         </div>
                     </div>
-                </div>
 
-                {/* BOTTOM WAVE CURVE */}
-                <div className="absolute bottom-0 left-0 w-full leading-none z-30">
-                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[100px] fill-white">
-                        <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>
-                    </svg>
+                    <div className="relative mb-8">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] text-white italic leading-[0.9]">
+                            <span className="block">MY GROWTH</span>
+                            <span className="block text-[#4A55A2] -mt-2">SUMMER 2026</span>
+                        </h1>
+
+                        <div className="absolute -top-4 right-0 bg-orange-600 text-white text-xs font-black px-3 py-1 rounded-lg rotate-12">
+                            2026
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
+                        <div className="bg-white px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
+                            <span className="text-orange-600 font-extrabold text-xl uppercase">
+                                HÀNH TRÌNH 11 TUẦN
+                            </span>
+                        </div>
+                    </div>
+
+                    <p className="text-lg md:text-xl text-white font-bold max-w-xl mb-10">
+                        Mùa hè để con khám phá chính mình, phát triển mỗi ngày và sống có ích hơn với cộng đồng
+                    </p>
+
+                  <div className="relative flex flex-col sm:flex-row items-center lg:items-start gap-6">
+    
+    {/* BUTTON */}
+    <Button className="bg-[#4A55A2] text-white px-15 py-6 rounded-full text-xl font-black shadow-xl hover:scale-105 transition z-10">
+        ĐĂNG KÝ NGAY
+    </Button>
+
+    {/* ⭐ HOT FLOAT RIGHT */}
+    <div className="absolute right-[-20px] md:right-[5px] bottom-[-30px] md:bottom-[10px] z-20 rotate-[6deg] animate-soft-float">
+        <img 
+            src="/images/summer-course/hot.png" 
+            className="w-40 md:w-56 drop-shadow-2xl"
+        />
+    </div>
+
+</div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+
+    {/* ⭐ BOTTOM CURVE */}
+    <div className="absolute bottom-0 left-0 w-full z-30">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[80px] fill-white">
+            <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>
+        </svg>
+    </div>
+
+</section>
 
 
 
