@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { WeeklyHighlightsSplit } from '@/components/weekly-highlights-split';
+import { DailyStructure } from '@/components/daily-structure';
+import { LearningOutcomes } from '@/components/learning-outcomes';
 import { Button } from '@/components/ui/button';
 
 const fadeInUp = {
@@ -288,79 +290,8 @@ export function SummerCourseTab() {
             {/* 3. WEEKLY HIGHLIGHT (Interactive Split Layout) */}
             <WeeklyHighlightsSplit />
 
-            {/* 4. DAILY STRUCTURE (Split layout) */}
-            <section className="py-16 bg-gradient-to-b from-white to-slate-50">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="bg-white rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-2xl shadow-[#4A55A2]/5 border border-slate-100">
-                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12">
-                            <h3 className="text-3xl md:text-5xl font-extrabold text-[#4A55A2] mb-3">CẤU TRÚC MỘT NGÀY</h3>
-                            <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Daily Structure</h4>
-                        </motion.div>
-
-                        <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
-                            {/* LEFT: Morning */}
-                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInLeft} className="bg-gradient-to-br from-slate-100 to-white rounded-3xl p-8 border border-slate-200 hover:shadow-lg transition-shadow">
-                                <div className="flex items-center gap-4 mb-8">
-                                    <div className="w-16 h-16 rounded-full bg-[#4A55A2] flex items-center justify-center text-white shadow-lg shadow-slate-1000/30">
-                                        <Sun className="w-8 h-8" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-2xl font-bold text-[#4A55A2]">Buổi sáng – GPS</h4>
-                                        <h5 className="text-lg font-bold text-[#4A55A2]">Morning – GPS</h5>
-                                    </div>
-                                </div>
-                                <ul className="space-y-6">
-                                    {[
-                                        { textVI: "Growth mindset - Tư duy phát triển", textEN: "Growth mindset", icon: Brain },
-                                        { textVI: "People - Con người", textEN: "People & Interactions", icon: Users },
-                                        { textVI: "Skills - Kỹ năng", textEN: "Essential Skills", icon: Target }
-                                    ].map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                                            <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-[#4A55A2] flex-shrink-0">
-                                                <item.icon className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <p className="font-bold text-slate-800">{item.textVI}</p>
-                                                <p className="text-sm font-medium text-slate-500 italic">{item.textEN}</p>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-
-                            {/* RIGHT: Afternoon */}
-                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInRight} className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 border border-orange-100 hover:shadow-lg transition-shadow">
-                                <div className="flex items-center gap-4 mb-8">
-                                    <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
-                                        <Clock className="w-8 h-8" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-2xl font-bold text-[#4A55A2]">Buổi chiều – GNP</h4>
-                                        <h5 className="text-lg font-bold text-orange-500">Afternoon – GNP</h5>
-                                    </div>
-                                </div>
-                                <ul className="space-y-6">
-                                    {[
-                                        { textVI: "Growth thông qua Trải nghiệm", textEN: "Growth through experience", icon: Compass },
-                                        { textVI: "Hoạt động Novelty sáng tạo", textEN: "Novelty activities", icon: Lightbulb },
-                                        { textVI: "Hoạt động Nhóm & Xã hội", textEN: "Team & social activities", icon: HeartHandshake }
-                                    ].map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-4 bg-white p-4 rounded-2xl shadow-sm border border-orange-50">
-                                            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 flex-shrink-0">
-                                                <item.icon className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <p className="font-bold text-slate-800">{item.textVI}</p>
-                                                <p className="text-sm font-medium text-slate-500 italic">{item.textEN}</p>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* 4. DAILY STRUCTURE (New Interactive UI) */}
+            <DailyStructure />
 
             {/* 5. AGE GROUPS (3 Cards) */}
             <section className="py-20 bg-slate-50">
@@ -435,77 +366,8 @@ export function SummerCourseTab() {
                 </div>
             </section>
 
-            {/* 6. OUTCOMES SECTION (Strong visual) */}
-            <section className="py-20 relative bg-[#4A55A2] overflow-hidden">
-                {/* Background Accents */}
-                <div className="absolute top-0 right-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-                        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-                    </svg>
-                </div>
-                <div className="absolute top-10 left-10 w-64 h-64 bg-white/20 rounded-full blur-3xl mix-blend-overlay"></div>
-                <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/20 rounded-full blur-3xl mix-blend-overlay"></div>
-
-                <div className="container mx-auto px-4 md:px-8 relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInLeft} className="lg:w-5/12 text-center lg:text-left">
-                            <div className="inline-block bg-white/20 backdrop-blur-md px-5 py-2 rounded-full mb-6 border border-white/30">
-                                <span className="text-white font-bold tracking-wider uppercase text-sm">Kết Quả Đạt Được</span>
-                            </div>
-                            <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
-                                Sau chương trình<br />học viên đạt được
-                            </h3>
-                            <h4 className="text-2xl md:text-3xl text-slate-200 font-bold uppercase tracking-widest mb-8">Learning Outcomes</h4>
-
-                            <p className="text-slate-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                                Học viên được trang bị bộ kỹ năng toàn diện chuẩn bị cho năm học mới và tương lai.
-                            </p>
-
-                            <Button size="lg" className="bg-white text-[#4A55A2] hover:bg-gray-50 h-14 px-10 rounded-full font-bold shadow-xl transition-all hover:scale-105 hidden lg:inline-flex" asChild>
-                                <Link href="/lien-he">Nhận tư vấn chi tiết</Link>
-                            </Button>
-                        </motion.div>
-
-                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={slideInRight} className="lg:w-7/12 w-full">
-                            <div className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A55A2]/5 rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:scale-150 transition-transform duration-1000" />
-                                <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-orange-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-50 group-hover:scale-150 transition-transform duration-1000 delay-100" />
-
-                                <div className="relative z-10 grid sm:grid-cols-2 gap-4 md:gap-5">
-                                    {[
-                                        { vi: "Nhận thức bản thân", en: "Self-awareness", color: "from-[#4A55A2] to-indigo-500", icon: Focus },
-                                        { vi: "Tư duy phát triển", en: "Growth mindset", color: "from-orange-500 to-orange-400", icon: Brain },
-                                        { vi: "Kỹ năng giao tiếp", en: "Communication skills", color: "from-teal-500 to-emerald-400", icon: MessageCircle },
-                                        { vi: "Quản lý thời gian", en: "Time management", color: "from-indigo-400 to-blue-500", icon: Clock },
-                                        { vi: "Kỹ năng làm việc nhóm", en: "Teamwork", color: "from-rose-400 to-pink-500", icon: Users },
-                                        { vi: "Sự tự tin", en: "Confidence", color: "from-amber-400 to-orange-500", icon: Star },
-                                        { vi: "Hồ sơ & Dự án", en: "Portfolio & project", color: "from-[#4A55A2] to-purple-500", icon: BookMarked, colSpan: "sm:col-span-2" }
-                                    ].map((item, idx) => (
-                                        <div key={idx} className={`relative flex items-center gap-4 bg-white rounded-2xl p-4 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden group/item ${item.colSpan || ''}`}>
-                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-50 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 ease-out" />
-                                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent to-transparent group-hover/item:from-orange-400 group-hover/item:to-orange-600 transition-all duration-300 rounded-l-2xl opacity-0 group-hover/item:opacity-100" />
-
-                                            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white flex-shrink-0 shadow-md group-hover/item:scale-110 group-hover/item:-rotate-6 transition-transform duration-300 relative z-10`}>
-                                                <item.icon className="w-5 h-5" />
-                                            </div>
-                                            <div className="relative z-10">
-                                                <p className="font-extrabold text-slate-700 text-sm md:text-base leading-tight group-hover/item:text-orange-600 transition-colors">{item.vi}</p>
-                                                <p className="font-medium text-slate-400 text-xs mt-1 italic group-hover/item:text-slate-500">{item.en}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className="mt-8 text-center lg:hidden">
-                                    <Button size="lg" className="bg-[#FF7A00] text-white hover:bg-[#E56E00] w-full h-14 rounded-full font-bold shadow-lg" asChild>
-                                        <Link href="/lien-he">Nhận tư vấn chi tiết</Link>
-                                    </Button>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+            {/* 6. OUTCOMES SECTION (Premium SaaS) */}
+            <LearningOutcomes />
 
             {/* 7. FINAL OUTPUT / SHOWCASE */}
             <section className="py-20 lg:py-28 bg-white">
