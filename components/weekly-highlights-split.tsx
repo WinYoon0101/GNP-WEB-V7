@@ -209,14 +209,14 @@ export function WeeklyHighlightsSplit() {
             <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] opacity-10 transition-colors duration-1000 ${themeColor} pointer-events-none -translate-y-1/2 translate-x-1/3`} />
             
             <div className="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-black text-[#FF7A00] mb-4 tracking-tight drop-shadow-sm">HÀNH TRÌNH 11 TUẦN</h2>
-                    <h3 className="text-lg md:text-xl text-[#1E90FF] font-bold uppercase tracking-widest">11-Week Learning Journey</h3>
-                    <p className="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">Chương trình được thiết kế bài bản kết hợp giữa kiến thức khoa học và câu chuyện thú vị, giúp các em phát triển toàn diện từng ngày.</p>
+                <div className="text-center mb-10 md:mb-16 px-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#FF7A00] mb-3 md:mb-4 tracking-tight drop-shadow-sm">HÀNH TRÌNH 11 TUẦN</h2>
+                    <h3 className="text-base sm:text-lg md:text-xl text-[#1E90FF] font-bold uppercase tracking-widest">11-Week Learning Journey</h3>
+                    <p className="mt-3 md:mt-4 text-slate-600 max-w-2xl mx-auto text-base md:text-lg">Chương trình được thiết kế bài bản kết hợp giữa kiến thức khoa học và câu chuyện thú vị, giúp các em phát triển toàn diện từng ngày.</p>
                 </div>
 
                 {/* DASHBOARD CONTAINER */}
-                <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden flex flex-col md:flex-row w-full h-[85vh] min-h-[650px] max-h-[900px] items-stretch">
+                <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden flex flex-col md:flex-row w-full h-[85vh] min-h-[750px] md:min-h-[650px] max-h-[950px] md:max-h-[900px] items-stretch">
                     
                     {/* MOBILE TOP SECTION - HORIZONTAL SCROLL SELECTOR */}
                     <div className="md:hidden w-full bg-slate-50/95 backdrop-blur-md pb-4 pt-4 border-b border-slate-200 z-40 shadow-sm relative">
@@ -266,7 +266,7 @@ export function WeeklyHighlightsSplit() {
                                 initial="hidden"
                                 animate="visible"
                                 exit="exit"
-                                className="relative flex flex-col h-full w-full p-6 md:p-10 lg:p-12"
+                                className="relative flex flex-col min-h-full w-full p-6 pb-20 md:p-10 md:pb-10 lg:p-12"
                             >
                                 {/* Decorative Big Mascot */}
                                 <motion.div 
@@ -281,13 +281,13 @@ export function WeeklyHighlightsSplit() {
 
                                 <div className="flex items-start justify-between gap-6 relative z-10 mb-8">
                                     <motion.div variants={itemVariants} className="flex-1">
-                                        <div className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full ${themeColor} text-white font-black text-sm uppercase tracking-widest mb-4 shadow-md`}>
+                                        <div className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full ${themeColor} text-white font-black text-xs md:text-sm uppercase tracking-widest mb-3 md:mb-4 shadow-md`}>
                                             Tuần / Week {activeData.week}
                                         </div>
-                                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-800 leading-tight mb-3" style={{ fontFamily: "var(--font-baloo, 'Nunito', sans-serif)" }}>
+                                        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-800 leading-tight mb-2 md:mb-3" style={{ fontFamily: "var(--font-baloo, 'Nunito', sans-serif)" }}>
                                             {activeData.titleEN}
                                         </h3>
-                                        <h4 className={`text-xl md:text-2xl font-bold ${themeText} mb-2`}>
+                                        <h4 className={`text-lg sm:text-xl md:text-2xl font-bold ${themeText} mb-2`}>
                                             {activeData.titleVI}
                                         </h4>
                                     </motion.div>

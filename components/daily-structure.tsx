@@ -31,7 +31,7 @@ const itemVariants = {
 
 export function DailyStructure() {
   return (
-    <section className="py-32 lg:py-48 bg-white relative overflow-hidden font-sans">
+    <section className="py-20 md:py-32 lg:py-48 bg-white relative overflow-hidden font-sans">
       {/* Immersive Ambient Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[120px] mix-blend-multiply opacity-50" />
@@ -54,11 +54,11 @@ export function DailyStructure() {
             </span>
           </motion.div>
           
-          <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] mb-8 relative">
+          <motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] mb-6 md:mb-8 relative">
             CẤU TRÚC MỘT NGÀY
           </motion.h2>
           
-          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-500 font-medium max-w-3xl text-balance leading-relaxed">
+          <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl text-slate-500 font-medium max-w-3xl text-balance leading-relaxed">
             Mỗi ngày là một hành trình được thiết kế chuyên biệt để đem lại sự cân bằng hoàn hảo giữa <strong className="text-blue-600 font-semibold">Tập trung</strong> và <strong className="text-orange-500 font-semibold">Sáng tạo</strong>.
           </motion.p>
         </motion.div>
@@ -92,13 +92,13 @@ export function DailyStructure() {
                 </div>
 
                 <div className="md:text-right text-left flex-1">
-                  <h3 className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                     Buổi sáng
-                    <span className="font-light text-slate-400 block sm:inline sm:ml-2">
+                    <span className="font-light text-slate-400 ml-1.5 md:ml-2">
                       | GPS
                     </span>
                   </h3>
-                  <p className="mt-4 uppercase tracking-[0.2em] font-bold text-sm text-blue-600">
+                  <p className="mt-2 md:mt-4 uppercase tracking-[0.2em] font-bold text-xs md:text-sm text-blue-600">
                     Morning Focus
                   </p>
                 </div>
@@ -150,13 +150,13 @@ export function DailyStructure() {
                 </div>
 
                 <div className="text-left flex-1">
-                  <h3 className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                     Buổi chiều
-                    <span className="font-light text-slate-400 block sm:inline sm:ml-2">
+                    <span className="font-light text-slate-400 ml-1.5 md:ml-2">
                       | GNP
                     </span>
                   </h3>
-                  <p className="mt-4 uppercase tracking-[0.2em] font-bold text-sm text-orange-500">
+                  <p className="mt-2 md:mt-4 uppercase tracking-[0.2em] font-bold text-xs md:text-sm text-orange-500">
                     Afternoon Expression
                   </p>
                 </div>

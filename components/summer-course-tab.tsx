@@ -148,20 +148,20 @@ export function SummerCourseTab() {
                                     </div>
                                 </div>
 
-                                <div className="relative mb-8">
-                                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-[1000] text-white italic leading-[0.9]">
+                                <div className="relative mb-6 md:mb-8">
+                                    <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-[1000] text-white italic leading-[0.9]">
                                         <span className="block">MY GROWTH</span>
-                                        <span className="block text-[#4A55A2] -mt-2">SUMMER 2026</span>
+                                        <span className="block text-[#4A55A2] -mt-1 md:-mt-2">SUMMER 2026</span>
                                     </h1>
 
-                                    <div className="absolute -top-4 right-0 bg-orange-600 text-white text-xs font-black px-3 py-1 rounded-lg rotate-12">
+                                    <div className="absolute -top-5 right-0 md:-top-4 md:-right-4 bg-orange-600 text-white text-[10px] md:text-xs font-black px-2 md:px-3 py-1 rounded-lg rotate-12">
                                         2026
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
-                                    <div className="bg-white px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
-                                        <span className="text-orange-600 font-extrabold text-xl uppercase">
+                                <div className="flex flex-col md:flex-row items-center gap-4 mb-6 md:mb-8">
+                                    <div className="bg-white px-4 md:px-6 py-2 rounded-2xl shadow-lg border-b-4 border-orange-500">
+                                        <span className="text-orange-600 font-extrabold text-base md:text-xl uppercase">
                                             HÀNH TRÌNH 11 TUẦN
                                         </span>
                                     </div>
@@ -174,15 +174,15 @@ export function SummerCourseTab() {
                                 <div className="relative flex flex-col sm:flex-row items-center lg:items-start gap-6">
 
                                     {/* BUTTON */}
-                                    <Button className="bg-[#4A55A2] text-white px-15 py-6 rounded-full text-xl font-black shadow-xl hover:scale-105 transition z-10">
+                                    <Button className="bg-[#4A55A2] text-white px-8 md:px-12 py-5 md:py-6 rounded-full text-lg md:text-xl font-black shadow-xl hover:scale-105 transition z-10 w-full sm:w-auto">
                                         ĐĂNG KÝ NGAY
                                     </Button>
 
                                     {/* ⭐ HOT FLOAT RIGHT */}
-                                    <div className="absolute right-[-20px] md:right-[5px] bottom-[-30px] md:bottom-[10px] z-20 rotate-[6deg] animate-soft-float">
+                                    <div className="absolute right-[-10px] md:right-[5px] bottom-[-20px] md:bottom-[10px] z-20 rotate-[6deg] animate-soft-float pointer-events-none">
                                         <img
                                             src="/images/summer-course/hot.png"
-                                            className="w-40 md:w-56 drop-shadow-2xl"
+                                            className="w-28 md:w-56 drop-shadow-2xl"
                                         />
                                     </div>
 
@@ -206,9 +206,9 @@ export function SummerCourseTab() {
             {/* 2. PROGRAM OVERVIEW (Timeline) */}
             <section className="py-16 bg-slate-50 relative">
                 <div className="container mx-auto px-4 md:px-8">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
-                        <h3 className="text-3xl md:text-5xl font-extrabold text-[#4A55A2] mb-3">TỔNG QUAN CHƯƠNG TRÌNH</h3>
-                        <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Program Overview</h4>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h3 className="text-2xl md:text-5xl font-extrabold text-[#4A55A2] mb-2 md:mb-3">TỔNG QUAN CHƯƠNG TRÌNH</h3>
+                        <h4 className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Program Overview</h4>
                     </motion.div>
 
                     <div className="flex overflow-x-auto pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative snap-x snap-mandatory hide-scrollbar pt-2">
@@ -296,9 +296,9 @@ export function SummerCourseTab() {
             {/* 5. AGE GROUPS (3 Cards) */}
             <section className="py-20 bg-slate-50">
                 <div className="container mx-auto px-4 md:px-8">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
-                        <h3 className="text-3xl md:text-5xl font-extrabold text-orange-500 mb-3">PHÂN BỐ THEO ĐỘ TUỔI</h3>
-                        <h4 className="text-xl md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Age Groups</h4>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h3 className="text-2xl md:text-5xl font-extrabold text-orange-500 mb-2 md:mb-3">PHÂN BỐ THEO ĐỘ TUỔI</h3>
+                        <h4 className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Age Groups</h4>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -370,12 +370,12 @@ export function SummerCourseTab() {
             <LearningOutcomes />
 
             {/* 7. FINAL OUTPUT / SHOWCASE */}
-            <section className="py-20 lg:py-28 bg-white">
+            <section className="py-20 lg:py-28 bg-white pb-32 md:pb-28">
                 <div className="container mx-auto px-4 md:px-8">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
-                        <h3 className="text-3xl md:text-5xl font-extrabold text-[#4A55A2] mb-3">SẢN PHẨM ĐẦU RA</h3>
-                        <h4 className="text-xl md:text-2xl text-orange-500 font-bold uppercase tracking-widest mb-4">Final Output / Showcase</h4>
-                        <p className="text-slate-600 text-lg">Những dấu ấn khó quên sau 11 tuần trưởng thành.</p>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                        <h3 className="text-2xl md:text-5xl font-extrabold text-[#4A55A2] mb-2 md:mb-3">SẢN PHẨM ĐẦU RA</h3>
+                        <h4 className="text-lg md:text-2xl text-orange-500 font-bold uppercase tracking-widest mb-4">Final Output / Showcase</h4>
+                        <p className="text-slate-600 text-sm md:text-lg px-4 md:px-0">Những dấu ấn khó quên sau 11 tuần trưởng thành.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

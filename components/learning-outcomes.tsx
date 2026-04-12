@@ -92,14 +92,14 @@ export function LearningOutcomes() {
 
             <motion.h2
               variants={itemVariants}
-              className="text-5xl md:text-6xl lg:text-[72px] font-extrabold text-white tracking-wide mb-8 leading-[1.1]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold text-white tracking-wide mb-6 md:mb-8 leading-[1.1]"
             >
               Học viên đạt được
             </motion.h2>
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-slate-300 font-medium mb-12 max-w-lg leading-[1.8]"
+              className="text-base sm:text-lg md:text-xl text-slate-300 font-medium mb-10 md:mb-12 max-w-lg leading-[1.8]"
             >
               Chương trình trang bị bộ kỹ năng toàn diện, tạo đà bứt phá cho năm học mới và sự tự tin bước vào tương lai vững chắc.
             </motion.p>
