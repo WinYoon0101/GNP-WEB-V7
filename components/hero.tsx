@@ -7,6 +7,55 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import Image from "next/image";
 import { useState, useEffect, useCallback, useRef } from "react";
 
+const AnimatedNumber = ({ valueStr }: { valueStr: string }) => {
+  const match = valueStr.match(/^(\d+)(.*)$/);
+  if (!match) return <>{valueStr}</>;
+  
+  const target = parseInt(match[1], 10);
+  const suffix = match[2];
+  
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
+  useEffect(() => {
+    if (!hasAnimated) return;
+    
+    let startTimestamp: number | null = null;
+    let animationFrame: number;
+    const duration = 1200; // Faster animation
+    
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeOut * target));
+      
+      if (progress < 1) {
+        animationFrame = window.requestAnimationFrame(step);
+      }
+    };
+    
+    animationFrame = window.requestAnimationFrame(step);
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [hasAnimated, target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
+
 const slides = [
   { image: "/banner.jpg" },
   { image: "/hero-1.jpg" },
@@ -172,7 +221,7 @@ export function Hero() {
                       {index > 0 && <div className="w-px h-10 bg-white/20" />}
                       <div className="text-center sm:text-left">
                         <div className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                          {stat.value}
+                          <AnimatedNumber valueStr={stat.value} />
                         </div>
                         <div className="text-[11px] sm:text-xs text-white/60 font-medium uppercase tracking-wider">
                           {stat.label}

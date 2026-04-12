@@ -174,7 +174,10 @@ export function SummerCourseTab() {
                                 <div className="relative flex flex-col sm:flex-row items-center lg:items-start gap-6">
 
                                     {/* BUTTON */}
-                                    <Button className="bg-[#4A55A2] text-white px-8 md:px-12 py-5 md:py-6 rounded-full text-lg md:text-xl font-black shadow-xl hover:scale-105 transition z-10 w-full sm:w-auto">
+                                    <Button 
+                                        onClick={() => window.dispatchEvent(new Event('open-summer-register'))}
+                                        className="bg-[#4A55A2] text-white px-8 md:px-12 py-5 md:py-6 rounded-full text-lg md:text-xl font-black shadow-xl hover:scale-105 transition z-10 w-full sm:w-auto"
+                                    >
                                         ĐĂNG KÝ NGAY
                                     </Button>
 
@@ -211,7 +214,7 @@ export function SummerCourseTab() {
                         <h4 className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Program Overview</h4>
                     </motion.div>
 
-                    <div className="flex overflow-x-auto pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative snap-x snap-mandatory hide-scrollbar pt-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8 relative pt-2">
                         {[
                             {
                                 phase: "PHASE 1",
@@ -262,24 +265,26 @@ export function SummerCourseTab() {
                                 border: "border-slate-500"
                             }
                         ].map((item, idx) => (
-                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className="w-[85vw] sm:w-[50vw] flex-shrink-0 snap-center md:w-auto md:flex-shrink md:snap-align-none relative z-10 flex flex-col items-center text-center group">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className="w-full md:w-auto relative z-10 flex flex-row items-center md:flex-col md:items-center text-left md:text-center group bg-white md:bg-transparent rounded-2xl md:rounded-none p-3 sm:p-4 md:p-0 shadow-sm border border-slate-100 md:shadow-none md:border-none">
                                 {/* Connecting Line per item */}
                                 {idx < 3 && (
-                                    <div className={`absolute top-12 -translate-y-1/2 left-[50%] w-[calc(100%+1.5rem)] lg:w-[calc(100%+2rem)] h-[3px] bg-gradient-to-r -z-10
+                                    <div className={`absolute -z-10
+                                        top-[2.5rem] left-[2.5rem] w-[2px] h-[calc(100%+0.75rem)] bg-gradient-to-b
+                                        md:bg-gradient-to-r md:h-[3px] md:top-12 md:-translate-y-1/2 md:left-[50%] md:w-[calc(100%+1.5rem)] lg:w-[calc(100%+2rem)]
                                         ${idx === 0 ? 'from-orange-500/40 to-[#4A55A2]/40' : ''}
                                         ${idx === 1 ? 'from-[#4A55A2]/40 to-orange-500/40 md:hidden lg:block' : ''}
                                         ${idx === 2 ? 'from-orange-500/40 to-slate-500/40' : ''}
                                     `} />
                                 )}
-                                <div className={`w-24 h-24 rounded-full flex-shrink-0 flex items-center justify-center bg-white border-4 ${item.border} shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10`}>
-                                    <item.icon className={`w-10 h-10 ${item.color}`} />
+                                <div className={`w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full flex-shrink-0 flex items-center justify-center bg-white border-2 md:border-4 ${item.border} md:shadow-lg md:mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10`}>
+                                    <item.icon className={`w-6 h-6 sm:w-7 sm:h-7 md:w-10 md:h-10 ${item.color}`} />
                                 </div>
-                                <div className={`bg-white w-full p-6 rounded-3xl shadow-md border-t-4 border-transparent hover:${item.border} transition-colors duration-300 h-full flex flex-col`}>
-                                    <div className="text-xs font-bold text-slate-400 mb-1">{item.phase} • {item.weeks}</div>
-                                    <h5 className={`text-xl font-bold ${item.color} mb-1`}>{item.titleVI}</h5>
-                                    <h6 className="text-sm text-slate-500 font-bold mb-4">{item.titleEN}</h6>
-                                    <p className="text-slate-700 text-sm md:text-base font-medium">{item.descVI}</p>
-                                    <p className="text-slate-500 text-xs md:text-sm italic mt-2">{item.descEN}</p>
+                                <div className={`ml-4 md:ml-0 md:bg-white w-full md:p-6 md:rounded-3xl md:shadow-md border-t-0 md:border-t-4 md:border-transparent md:hover:${item.border} transition-colors duration-300 md:h-full flex flex-col`}>
+                                    <div className="text-[10px] sm:text-xs font-bold text-slate-400 mb-0.5 md:mb-1">{item.phase} • {item.weeks}</div>
+                                    <h5 className={`text-sm sm:text-base md:text-xl font-bold ${item.color} mb-0.5 md:mb-1`}>{item.titleVI}</h5>
+                                    <h6 className="hidden md:block text-sm text-slate-500 font-bold mb-4">{item.titleEN}</h6>
+                                    <p className="text-slate-700 text-[11px] sm:text-xs leading-tight md:text-base font-medium">{item.descVI}</p>
+                                    <p className="hidden md:block text-slate-500 text-xs md:text-sm italic mt-2">{item.descEN}</p>
                                 </div>
                             </motion.div>
                         ))}
