@@ -1,244 +1,270 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  Sun,
-  Sunset,
-  Brain,
-  Users,
-  Wrench,
-  Sprout,
-  Lightbulb,
-  UserPlus,
-} from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+const steps = [
+  {
+    num: "01",
+    subtitle: "7:30 – 9:30 | MỞ ĐẦU",
+    title: "Khởi động ngày mới với năng lượng tích cực",
+    desc: "Bắt đầu ngày mới không vội vã. Các kỹ năng tư duy và quản lý cảm xúc được sắp xếp hài hòa sẽ là nền tảng vững vàng để con sẵn sàng bắt nhịp vào hành trình học tập và trải nghiệm thực tiễn phía trước.",
+    points: [
+      "Sinh hoạt và tương tác đầu ngày để kết nối bạn bè.",
+      "Rèn luyện Tư duy phát triển tập trung vào sự tích cực.",
+      "Làm quen với thói quen tự lập và kỷ luật cá nhân."
+    ],
+    badge: "Năng lượng tích cực",
+    images: {
+      main: "/images/summer-course/img-1.jpg",
+      topRight: "/images/summer-course/img-2.jpg",
+      bottomLeft: "/images/summer-course/img-3.jpg",
+    }
   },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+  {
+    num: "02",
+    subtitle: "9:30 – 11:30 | KỸ NĂNG",
+    title: "Thực hành kỹ năng mềm, thấu hiểu giá trị",
+    desc: "Đây là lúc các con đi sâu vào hiểu mình và đồng cảm cùng môi trường thông qua các chủ đề kỹ năng được lồng ghép. Lớp học trở thành không gian để các bạn tương tác đa chiều dưới sự gợi mở của đội ngũ học vụ.",
+    points: [
+      "Thực hành truyền đạt ý tưởng mạch lạc, tự tin.",
+      "Hiểu cách điều phối cảm xúc của bản thân.",
+      "Dành không gian tĩnh tâm để phản tư (Reflection)."
+    ],
+    badge: "Hiểu mình và kết nối",
+    images: {
+      main: "/images/summer-course/img-4.jpg",
+      topRight: "/images/summer-course/img-5.jpg",
+      bottomLeft: "/images/summer-course/img-1.jpg",
+    }
   },
-};
+  {
+    num: "03",
+    subtitle: "13:00 – 15:30 | DỰ ÁN",
+    title: "Khơi nguồn sáng tạo vào dự án thực tế",
+    desc: "Khoảng thời gian năng động nhất trong ngày được đan xen bởi nghệ thuật, thiết kế tư duy và đặc biệt là những dự án nhóm với định hướng giải quyết vấn đề cộng đồng nhỏ.",
+    points: [
+      "Hợp tác làm dự án theo chủ đề của tuần.",
+      "Đánh thức sự khéo léo qua các workshop nghệ thuật.",
+      "Thực hành giải quyết vấn đề bằng trải nghiệm."
+    ],
+    badge: "Sáng tạo không rào cản",
+    images: {
+      main: "/images/summer-course/img-2.jpg",
+      topRight: "/images/summer-course/img-3.jpg",
+      bottomLeft: "/images/summer-course/img-4.jpg",
+    }
+  },
+  {
+    num: "04",
+    subtitle: "15:30 – 17:00 | CUỐI NGÀY",
+    title: "Vận động, tổng kết và lưu giữ nụ cười",
+    desc: "Chúng tôi coi những trò chơi thể chất tập thể không chỉ giúp tái tạo thể lực mà còn là sợi dây kết nối thân thiết. Để khi tạm biệt nhau, các con đều ra về với tâm trạng tự hào về một ngày ý nghĩa.",
+    points: [
+      "Phát triển sức bền và sự khéo léo cá nhân.",
+      "Tôn vinh, khích lệ các giá trị nhỏ bé con làm được.",
+      "Xây dựng hành trang gắn bó xuyên suốt mùa hè."
+    ],
+    badge: "Thân thiện và tích cực",
+    images: {
+      main: "/images/summer-course/img-5.jpg",
+      topRight: "/images/summer-course/img-1.jpg",
+      bottomLeft: "/images/summer-course/img-2.jpg",
+    }
+  }
+];
 
 export function DailyStructure() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Kéo lấy giá trị cuộn BÊN TRONG thẻ div chứa nội dung (Tránh lỗi giật lag JS Animation khi cuộn bằng chuột)
+  const { scrollYProgress } = useScroll({
+    container: scrollContainerRef,
+  });
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Trích xuất index dựa trên tỷ lệ cuộn
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const stepSize = 1 / (steps.length - 1);
+    let newIndex = Math.round(latest / stepSize);
+    if (newIndex >= steps.length) newIndex = steps.length - 1;
+    if (newIndex < 0) newIndex = 0;
+    if (newIndex !== activeIndex) {
+      setActiveIndex(newIndex);
+    }
+  });
+
   return (
-    <section className="py-20 md:py-32 lg:py-48 bg-white relative overflow-hidden font-sans">
-      {/* Immersive Ambient Glow */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[120px] mix-blend-multiply opacity-50" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[800px] h-[800px] bg-orange-100/40 rounded-full blur-[120px] mix-blend-multiply opacity-50" />
-      </div>
-
-      <div className="max-w-[85rem] mx-auto px-6 md:px-12 relative z-10">
-        {/* Main Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="text-center mb-32 lg:mb-48 flex flex-col items-center"
-        >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-100 mb-8 shadow-sm">
-            <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-800">
-              Daily Routine
-            </span>
-          </motion.div>
+    <div className="w-full">
+      {/* ── BẢN DESKTOP (SỬ DỤNG VÙNG CUỘN CỤC BỘ BẢO ĐẢM CSS STICKY MƯỢT 100%) ── */}
+      <section className="bg-[#FFFDFB] relative font-sans w-full hidden lg:block py-16 overflow-hidden">
+        
+        {/* Decorative Flares */}
+        <div className="absolute top-[5%] left-[-10%] w-[500px] h-[500px] bg-orange-100/60 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-yellow-100/40 rounded-full blur-[130px] pointer-events-none" />
+        
+        <div className="container mx-auto px-5 lg:px-8 max-w-[88rem] relative z-10 w-full flex flex-col justify-center">
           
-          <motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] mb-6 md:mb-8 relative">
-            CẤU TRÚC MỘT NGÀY
-          </motion.h2>
-          
-          <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl text-slate-500 font-medium max-w-3xl text-balance leading-relaxed">
-            Mỗi ngày là một hành trình được thiết kế chuyên biệt để đem lại sự cân bằng hoàn hảo giữa <strong className="text-blue-600 font-semibold">Tập trung</strong> và <strong className="text-orange-500 font-semibold">Sáng tạo</strong>.
-          </motion.p>
-        </motion.div>
-
-        {/* Timeline Layout */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="relative"
-        >
-          {/* Extremely subtle central dividing line (Desktop only) */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-slate-100 via-slate-200/80 to-slate-100 -translate-x-1/2" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-0 relative">
-            
-            {/* LEFT COLUMN: Morning */}
-            <div className="md:pr-16 lg:pr-24 flex flex-col md:items-end z-10 w-full">
-              {/* Section Header */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col md:flex-row-reverse items-start md:items-center gap-8 mb-20 w-full md:justify-start"
-              >
-                {/* Massive Premium Icon */}
-                <div className="w-28 h-28 rounded-[2rem] bg-gradient-to-br from-[#1E3A8A] to-[#2563EB] flex items-center justify-center p-1 shrink-0 shadow-[0_20px_60px_rgba(37,99,235,0.25)] relative group">
-                  <div className="absolute inset-0 bg-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-[2rem]"></div>
-                  <div className="w-full h-full rounded-[1.8rem] flex items-center justify-center bg-gradient-to-b from-white/20 to-transparent border border-white/30 backdrop-blur-md">
-                    <Sun className="w-12 h-12 text-white drop-shadow-md" strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <div className="md:text-right text-left flex-1">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                    Buổi sáng
-                    <span className="font-light text-slate-400 ml-1.5 md:ml-2">
-                      | GPS
-                    </span>
-                  </h3>
-                  <p className="mt-2 md:mt-4 uppercase tracking-[0.2em] font-bold text-xs md:text-sm text-blue-600">
-                    Morning Focus
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Items List */}
-              <div className="flex flex-col gap-12 w-full md:max-w-md">
-                <Item
-                  align="right"
-                  icon={<Brain className="w-6 h-6" />}
-                  vi="Tư duy phát triển"
-                  en="Growth mindset"
-                  theme="blue"
-                />
-                <Item
-                  align="right"
-                  icon={<Users className="w-6 h-6" />}
-                  vi="Con người"
-                  en="People & Interactions"
-                  theme="blue"
-                />
-                <Item
-                  align="right"
-                  icon={<Wrench className="w-6 h-6" />}
-                  vi="Kỹ năng"
-                  en="Essential Skills"
-                  theme="blue"
-                />
-              </div>
+          {/* Header */}
+          <div className="text-center mb-0 shrink-0 relative z-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200 mb-4 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block" />
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-orange-600">
+                Nhịp điệu một ngày
+              </span>
             </div>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-[-0.03em] mb-10">
+              LỊCH TRÌNH TIÊU BIỂU
+            </h2>
+          </div>
 
-            {/* RIGHT COLUMN: Afternoon */}
-            <div className="md:pl-16 lg:pl-24 flex flex-col items-start z-10 md:mt-64 pt-20 md:pt-0 relative w-full">
+          {/* VÙNG CUỘN ĐỘC LẬP - MIỄN NHIỄM VỚI LỖI GIẬT VÀ OVERFLOW CỦA WEB */}
+          <div 
+             ref={scrollContainerRef}
+             className="w-full h-[75vh] overflow-y-auto flex gap-12 xl:gap-20 relative overscroll-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-2"
+          >
               
-              {/* Divider for mobile to separate Morning and Afternoon */}
-              <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-slate-200" />
-              
-              {/* Section Header */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-20 w-full"
-              >
-                {/* Massive Premium Icon */}
-                <div className="w-28 h-28 rounded-[2rem] bg-gradient-to-br from-[#F97316] to-[#FB923C] flex items-center justify-center p-1 shrink-0 shadow-[0_20px_60px_rgba(249,115,22,0.25)] relative group">
-                  <div className="absolute inset-0 bg-orange-400 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-[2rem]"></div>
-                  <div className="w-full h-full rounded-[1.8rem] flex items-center justify-center bg-gradient-to-b from-white/20 to-transparent border border-white/30 backdrop-blur-md">
-                    <Sunset className="w-12 h-12 text-white drop-shadow-md" strokeWidth={1.5} />
-                  </div>
+              {/* Bên trái: Hộp ảnh ghim cục bộ - Cứng chắc mượt mà hoàn toàn bằng phần cứng đồ họa */}
+              <div className="w-1/2 sticky top-0 h-[75vh] shrink-0 py-[3vh] z-10">
+                <div className="w-full h-full bg-slate-50/70 rounded-[3.5rem] p-8 relative flex items-center justify-center border border-orange-100/80 shadow-md overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeIndex}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="absolute inset-0 w-full h-full"
+                    >
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] h-[65%] rounded-[2rem] overflow-hidden shadow-2xl bg-white p-2">
+                        <img src={steps[activeIndex].images.main} className="w-full h-full object-cover rounded-[1.5rem]" />
+                      </div>
+                      <div className="absolute top-[6%] right-[6%] w-[32%] h-[32%] rounded-2xl overflow-hidden shadow-xl rotate-[8deg] ring-[6px] ring-white bg-white">
+                        <img src={steps[activeIndex].images.topRight} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="absolute bottom-[8%] left-[6%] w-[32%] h-[32%] rounded-2xl overflow-hidden shadow-xl -rotate-[8deg] ring-[6px] ring-white bg-white">
+                        <img src={steps[activeIndex].images.bottomLeft} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="absolute bottom-[6%] right-[4%] bg-gradient-to-br from-orange-500 to-orange-600 text-white px-6 py-5 rounded-2xl shadow-xl shadow-orange-500/20 max-w-[55%] z-10 transform hover:scale-105 transition-transform duration-300">
+                        <p className="font-bold text-[14px] leading-snug">
+                          {steps[activeIndex].badge}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
-
-                <div className="text-left flex-1">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                    Buổi chiều
-                    <span className="font-light text-slate-400 ml-1.5 md:ml-2">
-                      | GNP
-                    </span>
-                  </h3>
-                  <p className="mt-2 md:mt-4 uppercase tracking-[0.2em] font-bold text-xs md:text-sm text-orange-500">
-                    Afternoon Expression
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Items List */}
-              <div className="flex flex-col gap-12 w-full md:max-w-md">
-                <Item
-                  align="left"
-                  icon={<Sprout className="w-6 h-6" />}
-                  vi="Trải nghiệm"
-                  en="Growth through experience"
-                  theme="orange"
-                />
-                <Item
-                  align="left"
-                  icon={<Lightbulb className="w-6 h-6" />}
-                  vi="Sáng tạo"
-                  en="Novelty activities"
-                  theme="orange"
-                />
-                <Item
-                  align="left"
-                  icon={<UserPlus className="w-6 h-6" />}
-                  vi="Xã hội"
-                  en="Team & social activities"
-                  theme="orange"
-                />
               </div>
+
+              {/* Bên phải: Hộp text cuộn */}
+              <div className="w-1/2 flex-1 flex flex-col pt-0 pb-[0vh]">
+                    {steps.map((step, index) => (
+                      <div 
+                        key={index} 
+                        className="w-full h-[75vh] flex flex-col justify-center shrink-0 pr-6 lg:pr-10"
+                        style={{ 
+                            opacity: activeIndex === index ? 1 : 0.3, 
+                            scale: activeIndex === index ? 1 : 0.98,
+                            transformOrigin: "left center",
+                            transition: "all 0.4s ease-out" 
+                        }}
+                      >
+                        <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-black text-xl mb-6 shadow-sm border border-orange-200">
+                          {step.num}
+                        </div>
+                        <h4 className="text-orange-500 font-black uppercase tracking-widest text-sm mb-3">
+                          {step.subtitle}
+                        </h4>
+                        <h2 className="text-slate-900 font-black text-[2.2rem] leading-[1.25] tracking-tight mb-5">
+                          {step.title}
+                        </h2>
+                        <p className="text-slate-600 font-medium text-[1.05rem] leading-relaxed mb-7">
+                          {step.desc}
+                        </p>
+                        <ul className="space-y-4">
+                          {step.points.map((pt, i) => (
+                            <li key={i} className="flex items-start gap-4">
+                              <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-b from-orange-400 to-orange-600 mt-2 shrink-0" />
+                              <p className="text-slate-600 font-medium text-[15px] leading-relaxed">{pt}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+              </div>
+
             </div>
           </div>
-        </motion.div>
-      </div>
-    </section>
+      </section>
+
+      {/* ── BẢN MOBILE (Layout kéo dọc xếp khối thẳng tự động cho mobile cực kỳ mượt & ổn định) ── */}
+      <section className="bg-[#FFFDFB] relative font-sans w-full block lg:hidden py-16 overflow-hidden">
+         <div className="absolute top-[5%] left-[-10%] w-[300px] h-[300px] bg-orange-100/60 rounded-full blur-[100px] pointer-events-none" />
+          
+         <div className="container mx-auto px-5 relative z-10 w-full">
+            <div className="text-center mb-10 shrink-0 relative z-20">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200 mb-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block" />
+                <span className="text-[11px] font-extrabold uppercase tracking-widest text-orange-600">
+                  Nhịp điệu một ngày
+                </span>
+              </div>
+              <h2 className="text-3xl font-black text-slate-900 tracking-[-0.03em]">
+                LỊCH TRÌNH MỘT NGÀY
+              </h2>
+            </div>
+
+            <div className="flex flex-col gap-12">
+               {steps.map((step, index) => (
+                 <div key={index} className="w-full flex flex-col gap-6 relative">
+                    
+                    {/* Hình ảnh */}
+                    <div className="w-full aspect-[4/3] bg-slate-50/70 rounded-[2.5rem] p-4 relative flex items-center justify-center border border-orange-100/80 shadow-sm overflow-hidden z-20">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] rounded-[1.5rem] overflow-hidden shadow-xl bg-white p-1.5">
+                          <img src={step.images.main} className="w-full h-full object-cover rounded-[1rem]" />
+                        </div>
+                        <div className="absolute top-[6%] right-[6%] w-[32%] h-[32%] rounded-xl overflow-hidden shadow-lg rotate-[8deg] ring-[4px] ring-white bg-white">
+                          <img src={step.images.topRight} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="absolute bottom-[8%] left-[6%] w-[32%] h-[32%] rounded-xl overflow-hidden shadow-lg -rotate-[8deg] ring-[4px] ring-white bg-white">
+                          <img src={step.images.bottomLeft} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="absolute bottom-[6%] right-[4%] bg-gradient-to-br from-orange-500 to-orange-600 text-white px-4 py-3 rounded-xl shadow-lg shadow-orange-500/20 max-w-[65%] z-10">
+                          <p className="font-bold text-[11px] leading-snug shadow-sm">
+                            {step.badge}
+                          </p>
+                        </div>
+                    </div>
+
+                    {/* Nội dung */}
+                    <div className="w-full px-2">
+                        <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-black text-lg mb-4 shadow-sm border border-orange-200">
+                          {step.num}
+                        </div>
+                        <h4 className="text-orange-500 font-black uppercase tracking-widest text-[11px] mb-2">
+                          {step.subtitle}
+                        </h4>
+                        <h2 className="text-slate-900 font-black text-2xl leading-[1.25] tracking-tight mb-4">
+                          {step.title}
+                        </h2>
+                        <p className="text-slate-600 font-medium text-sm leading-relaxed mb-5">
+                          {step.desc}
+                        </p>
+                        <ul className="space-y-3">
+                          {step.points.map((pt, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-b from-orange-400 to-orange-600 mt-2 shrink-0" />
+                              <p className="text-slate-600 font-medium text-[13px] leading-relaxed">{pt}</p>
+                            </li>
+                          ))}
+                        </ul>
+                    </div>
+                 </div>
+               ))}
+            </div>
+         </div>
+      </section>
+    </div>
   );
 }
 
-// Minimal & Elegant Item Component
-function Item({
-  align,
-  icon,
-  vi,
-  en,
-  theme,
-}: {
-  align: "left" | "right";
-  icon: React.ReactNode;
-  vi: string;
-  en: string;
-  theme: "blue" | "orange";
-}) {
-  const isRight = align === "right"; // Indicates position relative to the center timeline (Right means left column looking right)
-
-  return (
-    <motion.div
-      variants={itemVariants}
-      className={`group flex items-center gap-6 md:gap-8 cursor-default ${
-        isRight ? "md:flex-row-reverse" : "flex-row"
-      }`}
-    >
-      <div
-        className={`w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] flex items-center justify-center shrink-0 transition-all duration-500 border
-          ${
-            theme === "blue"
-              ? "border-blue-100/50 bg-blue-50/50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 group-hover:shadow-[0_0_40px_rgba(37,99,235,0.35)]"
-              : "border-orange-100/50 bg-orange-50/50 text-orange-500 group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-500 group-hover:shadow-[0_0_40px_rgba(249,115,22,0.35)]"
-          }
-        `}
-      >
-        <div className="transform group-hover:scale-110 transition-transform duration-500 ease-out">
-          {icon}
-        </div>
-      </div>
-
-      <div className={`flex flex-col flex-1 ${isRight ? "md:text-right" : "text-left"}`}>
-        <h4 className="text-2xl lg:text-[28px] font-bold text-slate-800 tracking-[-0.02em] group-hover:text-black transition-colors">
-          {vi}
-        </h4>
-        <p className="text-slate-500 font-medium text-base lg:text-lg mt-2 tracking-wide group-hover:text-slate-600 transition-colors">
-          {en}
-        </p>
-      </div>
-    </motion.div>
-  );
-}

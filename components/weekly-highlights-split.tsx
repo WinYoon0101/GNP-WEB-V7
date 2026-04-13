@@ -2,32 +2,19 @@
 
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Sparkles, Target, BookOpen, Star } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const mascots = {
-    "Lion": "🦁",
-    "Panda": "🐼",
-    "Fox": "🦊",
-    "Elephant": "🐘",
-    "Rabbit": "🐰",
-    "Bear": "🐻",
-    "Cat": "🐱",
-    "Dog": "🐶",
-    "Owl": "🦉",
-    "Penguin": "🐧",
-    "Koala": "🐨"
-}
+
 
 const weeksData = [
     {
         week: 1,
         titleEN: "I Am Unique",
         titleVI: "Nhận diện bản thân",
-        mascot: "Lion",
         learnPoints: [
             "Nhận diện bản thân: tính cách – sở thích – điểm mạnh",
-            "Nhật ký “This is me”"
+            "Nhật ký 'This is me'"
         ],
         activity: "Vẽ chân dung bản thân / My Identity Card"
     },
@@ -35,18 +22,16 @@ const weeksData = [
         week: 2,
         titleEN: "Healthy Me",
         titleVI: "Thói quen lành mạnh",
-        mascot: "Panda",
         learnPoints: [
             "Thói quen lành mạnh: ăn uống – vận động – ngủ nghỉ – vệ sinh chung",
             "Kỹ năng: tự chăm sóc bản thân"
         ],
-        activity: "Thiết kế “1 ngày khỏe mạnh của tôi”"
+        activity: "Thiết kế '1 ngày khỏe mạnh của tôi'"
     },
     {
         week: 3,
         titleEN: "My Feelings Matter",
         titleVI: "Cảm xúc của tôi",
-        mascot: "Fox",
         learnPoints: [
             "Nhận diện & quản lý cảm xúc",
             "Giao tiếp khi buồn – giận – thất vọng"
@@ -57,7 +42,6 @@ const weeksData = [
         week: 4,
         titleEN: "Growth Mindset in Action",
         titleVI: "Tư duy phát triển",
-        mascot: "Elephant",
         learnPoints: [
             "Sai không xấu – bỏ cuộc mới đáng sợ",
             "Thử thách cá nhân hằng ngày"
@@ -68,7 +52,6 @@ const weeksData = [
         week: 5,
         titleEN: "Time & Self-Management",
         titleVI: "Quản lý thời gian",
-        mascot: "Rabbit",
         learnPoints: [
             "Quản lý thời gian – việc học – giải trí",
             "Lập kế hoạch đơn giản"
@@ -79,7 +62,6 @@ const weeksData = [
         week: 6,
         titleEN: "Communication & Teamwork",
         titleVI: "Giao tiếp & Làm việc nhóm",
-        mascot: "Bear",
         learnPoints: [
             "Lắng nghe – chia sẻ – làm việc nhóm",
             "Giải quyết mâu thuẫn"
@@ -90,7 +72,6 @@ const weeksData = [
         week: 7,
         titleEN: "People Around Me",
         titleVI: "Người xung quanh tôi",
-        mascot: "Cat",
         learnPoints: [
             "Gia đình – thầy cô – bạn bè – cộng đồng",
             "Biết ơn & tôn trọng sự khác biệt"
@@ -101,7 +82,6 @@ const weeksData = [
         week: 8,
         titleEN: "Little Citizens",
         titleVI: "Công dân nhỏ",
-        mascot: "Dog",
         learnPoints: [
             "Quyền & trách nhiệm của công dân nhỏ",
             "Giữ gìn môi trường – không gian chung"
@@ -112,7 +92,6 @@ const weeksData = [
         week: 9,
         titleEN: "World of Work",
         titleVI: "Thế giới nghề nghiệp",
-        mascot: "Owl",
         learnPoints: [
             "Khám phá nghề nghiệp (phù hợp độ tuổi)",
             "Nhóm nhỏ: giúp việc gia đình",
@@ -125,7 +104,6 @@ const weeksData = [
         week: 10,
         titleEN: "I Can Contribute",
         titleVI: "Tôi có thể đóng góp",
-        mascot: "Penguin",
         learnPoints: [
             "Làm dự án cộng đồng nhỏ",
             "Làm việc thật – giá trị thật"
@@ -136,7 +114,6 @@ const weeksData = [
         week: 11,
         titleEN: "My Summer, My Growth",
         titleVI: "Mùa hè trưởng thành",
-        mascot: "Koala",
         learnPoints: [
             "Tổng kết – nhìn lại – trình bày hành trình",
             "Showcase cho phụ huynh"
@@ -147,287 +124,374 @@ const weeksData = [
 
 const phases = [
     {
-        title: "PHASE 1: DISCOVER ME",
+        id: 0,
+        label: "PHASE 1",
+        title: "DISCOVER ME",
         subtitle: "Hiểu bản thân – hình thành thói quen – nền tảng tư duy",
         weeks: [1, 2, 3],
-        color: "text-[#FF7A00]",
-        bg: "bg-[#FF7A00]",
-        ring: "ring-[#FF7A00]/40",
+        gradient: "from-orange-400 to-orange-600",
+        softBg: "bg-orange-50",
+        border: "border-orange-200",
+        ring: "ring-orange-400/30",
+        text: "text-orange-500",
+        dot: "bg-orange-400",
+        hex: "#f97316",
+        emoji: "🌟",
     },
     {
-        title: "PHASE 2: GROW ME",
-        subtitle: "Kỹ năng – tư duy – chủ động",
+        id: 1,
+        label: "PHASE 2",
+        title: "GROW ME",
+        subtitle: "Kỹ năng – tư duy – chủ động phát triển bản thân",
         weeks: [4, 5, 6],
-        color: "text-[#1E90FF]",
-        bg: "bg-[#1E90FF]",
-        ring: "ring-[#1E90FF]/40",
+        gradient: "from-blue-400 to-blue-600",
+        softBg: "bg-blue-50",
+        border: "border-blue-200",
+        ring: "ring-blue-400/30",
+        text: "text-blue-500",
+        dot: "bg-blue-400",
+        hex: "#3b82f6",
+        emoji: "🌱",
     },
     {
-        title: "PHASE 3: EXPLORE THE WORLD",
+        id: 2,
+        label: "PHASE 3",
+        title: "EXPLORE THE WORLD",
         subtitle: "Khám phá xã hội – nghề nghiệp – trách nhiệm",
         weeks: [7, 8, 9],
-        color: "text-[#10B981]", // Emerald
-        bg: "bg-[#10B981]",
-        ring: "ring-[#10B981]/40"
+        gradient: "from-emerald-400 to-emerald-600",
+        softBg: "bg-emerald-50",
+        border: "border-emerald-200",
+        ring: "ring-emerald-400/30",
+        text: "text-emerald-500",
+        dot: "bg-emerald-400",
+        hex: "#10b981",
+        emoji: "🌍",
     },
     {
-        title: "PHASE 4: CONTRIBUTE ME & SHINE",
+        id: 3,
+        label: "PHASE 4",
+        title: "CONTRIBUTE & SHINE",
         subtitle: "Cho đi – thể hiện bản thân – tổng kết hành trình",
         weeks: [10, 11],
-        color: "text-[#8B5CF6]", // Violet
-        bg: "bg-[#8B5CF6]",
-        ring: "ring-[#8B5CF6]/40"
-    }
+        gradient: "from-violet-400 to-violet-600",
+        softBg: "bg-violet-50",
+        border: "border-violet-200",
+        ring: "ring-violet-400/30",
+        text: "text-violet-500",
+        dot: "bg-violet-400",
+        hex: "#8b5cf6",
+        emoji: "✨",
+    },
 ]
 
-const containerVariants = {
-    hidden: { opacity: 0, x: -30, scale: 0.98 },
-    visible: { 
-        opacity: 1, x: 0, scale: 1,
-        transition: { duration: 0.4, ease: "easeOut", staggerChildren: 0.1, delayChildren: 0.1 } 
-    },
-    exit: { opacity: 0, x: 30, scale: 0.98, transition: { duration: 0.2, ease: "easeIn" } }
-}
-
-const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
-}
-
 export function WeeklyHighlightsSplit() {
-    const [activeWeek, setActiveWeek] = useState(1)
-    const activeData = weeksData.find(w => w.week === activeWeek) || weeksData[0]
+    const [activePhase, setActivePhase] = useState(0)
+    const [expandedWeek, setExpandedWeek] = useState<number | null>(1)
 
-    // Find current phase color
-    const currentPhase = phases.find(p => p.weeks.includes(activeWeek))
-    const themeColor = currentPhase ? currentPhase.bg : "bg-[#FF7A00]"
-    const themeText = currentPhase ? currentPhase.color : "text-[#FF7A00]"
+    const phase = phases[activePhase]
+    const phaseWeeks = weeksData.filter(w => phase.weeks.includes(w.week))
 
     return (
-        <div className="w-full bg-slate-50 py-16 md:py-24 relative overflow-hidden">
-            {/* Background elements */}
-            <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] opacity-10 transition-colors duration-1000 ${themeColor} pointer-events-none -translate-y-1/2 translate-x-1/3`} />
-            
+        <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
+            {/* Decorative BG blobs */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: `radial-gradient(ellipse 60% 50% at 80% 20%, ${phase.hex}12 0%, transparent 70%),
+                                 radial-gradient(ellipse 50% 40% at 10% 80%, ${phase.hex}08 0%, transparent 70%)`
+                }}
+            />
+
             <div className="container mx-auto px-4 lg:px-8 max-w-7xl relative z-10">
-                <div className="text-center mb-10 md:mb-16 px-4">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#FF7A00] mb-3 md:mb-4 tracking-tight drop-shadow-sm">HÀNH TRÌNH 11 TUẦN</h2>
-                    <h3 className="text-base sm:text-lg md:text-xl text-[#1E90FF] font-bold uppercase tracking-widest">11-Week Learning Journey</h3>
-                    <p className="mt-3 md:mt-4 text-slate-600 max-w-2xl mx-auto text-base md:text-lg">Chương trình được thiết kế bài bản kết hợp giữa kiến thức khoa học và câu chuyện thú vị, giúp các em phát triển toàn diện từng ngày.</p>
+
+                {/* ── HEADER ── */}
+                <div className="text-center mb-12 md:mb-16">
+                    <motion.h2
+                        key={activePhase + "h"}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-3xl sm:text-4xl md:text-5xl font-black text-[#FF7A00] mb-3 tracking-tight"
+                    >
+                        HÀNH TRÌNH 11 TUẦN
+                    </motion.h2>
+                    <h3 className="text-base sm:text-lg md:text-xl text-[#4A55A2] font-bold uppercase tracking-widest mb-4">
+                        11-Week Learning Journey
+                    </h3>
+                    <p className="text-slate-500 max-w-2xl mx-auto text-base md:text-lg">
+                        Chương trình được thiết kế bài bản, kết hợp giữa kiến thức khoa học và câu chuyện thú vị, giúp các em phát triển toàn diện từng ngày.
+                    </p>
                 </div>
 
-                {/* DASHBOARD CONTAINER */}
-                <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden flex flex-col md:flex-row w-full h-[85vh] min-h-[750px] md:min-h-[650px] max-h-[950px] md:max-h-[900px] items-stretch">
-                    
-                    {/* MOBILE TOP SECTION - HORIZONTAL SCROLL SELECTOR */}
-                    <div className="md:hidden w-full bg-slate-50/95 backdrop-blur-md pb-4 pt-4 border-b border-slate-200 z-40 shadow-sm relative">
-                        <div className="flex gap-3 overflow-x-auto custom-scrollbar snap-x snap-mandatory pb-2 px-4 -mx-4">
-                            {weeksData.map(week => {
-                                const isActive = activeWeek === week.week
-                                const weekPhase = phases.find(p => p.weeks.includes(week.week))
-                                const activeColor = weekPhase ? weekPhase.bg : "bg-[#FF7A00]"
-                                const activeRing = weekPhase ? weekPhase.ring : "ring-[#FF7A00]/40"
-                                
-                                return (
-                                    <div 
-                                        key={week.week}
-                                        onClick={() => setActiveWeek(week.week)}
-                                        className={cn(
-                                            "flex-shrink-0 snap-center w-[110px] p-2.5 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all cursor-pointer",
-                                            isActive 
-                                                ? `${activeColor} text-white shadow-lg border-transparent scale-105 ring-2 ring-offset-2 ${activeRing} z-10` 
-                                                : "bg-white text-slate-700 border-slate-100 hover:bg-slate-50 active:scale-95"
-                                        )}
-                                    >
-                                        <motion.div 
-                                            whileTap={{ scale: 0.8 }}
+                {/* ── PHASE TABS ── */}
+                <div className="flex flex-wrap justify-center gap-3 mb-10 md:mb-14">
+                    {phases.map((p) => (
+                        <button
+                            key={p.id}
+                            onClick={() => {
+                                setActivePhase(p.id)
+                                setExpandedWeek(p.weeks[0])
+                            }}
+                            className={cn(
+                                "relative px-5 py-3 rounded-2xl font-black text-sm md:text-base transition-all duration-300 border-2 group overflow-hidden",
+                                activePhase === p.id
+                                    ? `bg-gradient-to-r ${p.gradient} text-white border-transparent shadow-lg shadow-${p.dot}/20 scale-105`
+                                    : `bg-white ${p.text} border-slate-100 hover:border-current hover:shadow-md`
+                            )}
+                        >
+                            {/* Active pill glow */}
+                          
+                            <span className="relative z-10 flex items-center gap-2">
+                                <span className="text-[10px] font-black opacity-70 tracking-widest hidden sm:inline">{p.label}</span>
+                                <span>{p.title}</span>
+                            </span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* ── MAIN CONTENT ── */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activePhase}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 lg:gap-10 items-start"
+                    >
+
+                        {/* ── LEFT: Phase Info Card ── */}
+                        <div className={cn("rounded-3xl p-7 md:p-8 border-2 sticky top-24", phase.softBg, phase.border)}>
+                            {/* Phase badge */}
+                            <div className={cn(
+                                "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-white font-black text-xs uppercase tracking-widest mb-5 shadow-md bg-gradient-to-r",
+                                phase.gradient
+                            )}>
+                                {phase.emoji}
+                                {phase.label}
+                            </div>
+
+                            <h3 className={cn("text-2xl md:text-3xl font-black mb-2", phase.text)}>
+                                {phase.title}
+                            </h3>
+                            <p className="text-slate-600 font-medium text-sm md:text-base mb-7 leading-relaxed">
+                                {phase.subtitle}
+                            </p>
+
+                            {/* Week Navigation */}
+                            <div className="flex flex-col gap-3 mb-2">
+                                {phase.weeks.map(wn => {
+                                    const wd = weeksData.find(w => w.week === wn)!
+                                    const isActive = expandedWeek === wn
+                                    return (
+                                        <button
+                                            key={wn}
+                                            onClick={() => setExpandedWeek(isActive ? null : wn)}
                                             className={cn(
-                                                "w-12 h-12 rounded-full flex items-center justify-center text-3xl shadow-sm transition-transform",
-                                                isActive ? "bg-white/20 animate-in zoom-in" : "bg-slate-50 border border-slate-100"
+                                                "flex items-center gap-4 px-4 py-3 rounded-2xl text-left transition-all border-2",
+                                                isActive
+                                                    ? `bg-white ${phase.border} shadow-md`
+                                                    : "bg-white/40 border-transparent hover:bg-white/80 hover:shadow-sm text-slate-500"
                                             )}
                                         >
-                                            {mascots[week.mascot as keyof typeof mascots]}
-                                        </motion.div>
-                                        <div className="text-center w-full">
-                                            <div className="text-[10px] font-black uppercase tracking-wider mb-0.5 opacity-80">Tuần {week.week}</div>
-                                            <h4 className="font-bold text-xs truncate max-w-full">{week.titleEN}</h4>
-                                        </div>
+                                            <span className={cn(
+                                                "w-11 h-11 rounded-xl flex flex-col items-center justify-center flex-shrink-0 transition-all",
+                                                isActive ? `bg-gradient-to-br ${phase.gradient} text-white shadow-md` : "bg-slate-100 text-slate-400"
+                                            )}>
+                                                <span className="text-[9px] uppercase font-black leading-none mb-0.5 opacity-80">Wk</span>
+                                                <span className="text-lg font-black leading-none">{wn}</span>
+                                            </span>
+                                            <div className="flex-1 min-w-0">
+                                                <div className={cn("text-sm font-black truncate", isActive ? "text-slate-800" : "")}>
+                                                    {wd.titleVI}
+                                                </div>
+                                                <div className={cn("text-[11px] font-semibold truncate", isActive ? phase.text : "text-slate-400")}>
+                                                    Tuần {wn} · {wd.titleEN}
+                                                </div>
+                                            </div>
+                                        </button>
+                                    )
+                                })}
+                            </div>
+
+                            {/* Progress dots */}
+                            <div className="mt-7 pt-6 border-t border-current/10">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <div className={cn("h-1.5 rounded-full flex-1 bg-current/10")}>
+                                        <div
+                                            className={cn("h-full rounded-full bg-gradient-to-r transition-all duration-700", phase.gradient)}
+                                            style={{ width: `${(activePhase + 1) / phases.length * 100}%` }}
+                                        />
                                     </div>
+                                </div>
+                                <p className="text-slate-400 text-xs font-semibold">
+                                    Giai đoạn {activePhase + 1} / {phases.length} · {phase.weeks.length} tuần
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* ── RIGHT: Week Accordion Cards ── */}
+                        <div className="space-y-4">
+                            {phaseWeeks.map((week, idx) => {
+                                const isOpen = expandedWeek === week.week
+                                return (
+                                    <motion.div
+                                        key={week.week}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: idx * 0.08, duration: 0.4 }}
+                                        className={cn(
+                                            "rounded-2xl border-2 overflow-hidden transition-all duration-300 bg-white",
+                                            isOpen ? `${phase.border} shadow-lg` : "border-slate-100 hover:border-slate-200 shadow-sm hover:shadow-md"
+                                        )}
+                                    >
+                                        {/* Card Header */}
+                                        <button
+                                            className="w-full flex items-center gap-4 p-5 md:p-6 text-left group"
+                                            onClick={() => setExpandedWeek(isOpen ? null : week.week)}
+                                        >
+                                            {/* Week Badge */}
+                                            <div className={cn(
+                                                "w-14 h-14 rounded-2xl flex flex-col items-center justify-center flex-shrink-0 transition-all duration-300",
+                                                isOpen
+                                                    ? `bg-gradient-to-br ${phase.gradient} shadow-md text-white`
+                                                    : "bg-slate-50 group-hover:bg-slate-100 text-slate-400"
+                                            )}>
+                                                <span className="text-[10px] uppercase font-black leading-none mb-1 opacity-80">Tuần</span>
+                                                <span className="text-2xl font-black leading-none">{week.week}</span>
+                                            </div>
+
+                                            {/* Title block */}
+                                            <div className="flex-1 min-w-0">
+                                                <div className={cn("text-[10px] font-black uppercase tracking-widest mb-0.5", isOpen ? phase.text : "text-slate-400")}>
+                                                    Tuần {week.week} · Week {week.week}
+                                                </div>
+                                                <h4 className="font-black text-lg md:text-xl text-slate-800 leading-tight">
+                                                    {week.titleEN}
+                                                </h4>
+                                                <p className={cn("text-sm font-semibold truncate", isOpen ? phase.text : "text-slate-500")}>
+                                                    {week.titleVI}
+                                                </p>
+                                            </div>
+
+                                            {/* Expand icon */}
+                                            <motion.div
+                                                animate={{ rotate: isOpen ? 180 : 0 }}
+                                                transition={{ duration: 0.3 }}
+                                                className={cn(
+                                                    "w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors",
+                                                    isOpen
+                                                        ? `bg-gradient-to-br ${phase.gradient} text-white shadow-sm`
+                                                        : "bg-slate-100 text-slate-400 group-hover:bg-slate-200"
+                                                )}
+                                            >
+                                                <ChevronDown className="w-5 h-5" />
+                                            </motion.div>
+                                        </button>
+
+                                        {/* Accordion Body */}
+                                        <AnimatePresence initial={false}>
+                                            {isOpen && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                                                    className="overflow-hidden"
+                                                >
+                                                    <div className={cn("px-5 pb-6 md:px-6 md:pb-7 pt-0 border-t", phase.border)}>
+                                                        <div className="pt-5 grid sm:grid-cols-2 gap-4">
+
+                                                            {/* Học gì? */}
+                                                            <div className={cn("rounded-2xl p-5", phase.softBg)}>
+                                                                <div className="flex items-center gap-2 mb-4">
+                                                                    <span className="text-lg">📚</span>
+                                                                    <h5 className="font-black text-slate-800 text-sm">Con sẽ khám phá</h5>
+                                                                </div>
+                                                                <ul className="space-y-2.5">
+                                                                    {week.learnPoints.map((pt, i) => (
+                                                                        <li key={i} className="flex items-start gap-2.5">
+                                                                            <div className={cn("w-2 h-2 rounded-full mt-1.5 flex-shrink-0", phase.dot)} />
+                                                                            <p className="text-slate-700 text-sm font-medium leading-relaxed">{pt}</p>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+
+                                                            {/* Hoạt động */}
+                                                            <div className="rounded-2xl p-5 bg-white border-2 border-current/10 flex flex-col justify-between">
+                                                                <div className="flex items-center gap-2 mb-4">
+                                                                    <span className="text-lg">🎯</span>
+                                                                    <h5 className="font-black text-slate-800 text-sm">Hoạt động của tuần</h5>
+                                                                </div>
+                                                                <div className={cn(
+                                                                    "rounded-xl px-4 py-3 mt-auto",
+                                                                    phase.softBg
+                                                                )}>
+                                                                    <p className={cn("font-bold text-sm md:text-base", phase.text)}>
+                                                                        {week.activity}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
                                 )
                             })}
-                        </div>
-                    </div>
 
-                    {/* LEFT PANEL (100% Mobile, 65% Tablet, 60% Desktop) - Content Area */}
-                    <div className="w-full md:w-[65%] lg:w-[60%] relative flex-shrink-0 h-full overflow-y-auto md:overflow-hidden bg-white custom-scrollbar">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeWeek}
-                                variants={containerVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                className="relative flex flex-col min-h-full w-full p-6 pb-20 md:p-10 md:pb-10 lg:p-12"
-                            >
-                                {/* Decorative Big Mascot */}
-                                <motion.div 
-                                    initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
-                                    animate={{ opacity: 0.04, scale: 1, rotate: 12 }}
-                                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                                    className="absolute -top-10 -right-10 w-48 h-48 md:w-64 md:h-64 pointer-events-none flex items-center justify-center"
+                            {/* Navigation between phases */}
+                            <div className="flex items-center justify-between pt-2">
+                                <button
+                                    onClick={() => {
+                                        if (activePhase > 0) {
+                                            setActivePhase(activePhase - 1)
+                                            setExpandedWeek(phases[activePhase - 1].weeks[0])
+                                        }
+                                    }}
+                                    disabled={activePhase === 0}
+                                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-slate-500 bg-slate-100 hover:bg-slate-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                                 >
-                                     <span className="text-[200px] leading-none">{mascots[activeData.mascot as keyof typeof mascots]}</span>
-                                </motion.div>
-                                <div className={`absolute top-0 left-0 w-full h-3 ${themeColor} transition-colors duration-700`} />
-
-                                <div className="flex items-start justify-between gap-6 relative z-10 mb-8">
-                                    <motion.div variants={itemVariants} className="flex-1">
-                                        <div className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full ${themeColor} text-white font-black text-xs md:text-sm uppercase tracking-widest mb-3 md:mb-4 shadow-md`}>
-                                            Tuần / Week {activeData.week}
-                                        </div>
-                                        <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-800 leading-tight mb-2 md:mb-3" style={{ fontFamily: "var(--font-baloo, 'Nunito', sans-serif)" }}>
-                                            {activeData.titleEN}
-                                        </h3>
-                                        <h4 className={`text-lg sm:text-xl md:text-2xl font-bold ${themeText} mb-2`}>
-                                            {activeData.titleVI}
-                                        </h4>
-                                    </motion.div>
-                                    <motion.div 
-                                        animate={{ y: [0, -15, 0] }}
-                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                        className="hidden md:flex flex-shrink-0 w-28 h-28 bg-slate-50 rounded-full border-[6px] border-white shadow-xl items-center justify-center transform -rotate-6"
-                                    >
-                                        <span className="text-6xl drop-shadow-md">{mascots[activeData.mascot as keyof typeof mascots]}</span>
-                                    </motion.div>
+                                    ← Phase trước
+                                </button>
+                                <div className="flex gap-2">
+                                    {phases.map((_, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => {
+                                                setActivePhase(i)
+                                                setExpandedWeek(phases[i].weeks[0])
+                                            }}
+                                            className={cn(
+                                                "h-2 rounded-full transition-all duration-300",
+                                                i === activePhase
+                                                    ? `w-6 bg-gradient-to-r ${phases[i].gradient}`
+                                                    : "w-2 bg-slate-200 hover:bg-slate-300"
+                                            )}
+                                        />
+                                    ))}
                                 </div>
-
-                                {/* Content Sections */}
-                                <div className="space-y-8 relative z-10 flex-1">
-                                    
-                                    {/* Bạn sẽ học gì */}
-                                    <motion.div variants={itemVariants} className="bg-slate-50 rounded-2xl p-6 md:p-8 border border-slate-100">
-                                        <div className="flex items-center gap-3 mb-5">
-                                            <div className={`p-2 rounded-xl ${themeColor} text-white shadow-md`}>
-                                                <Target className="w-6 h-6" />
-                                            </div>
-                                            <h5 className="text-xl font-bold text-slate-800">Bạn sẽ học gì?</h5>
-                                        </div>
-                                        <ul className="space-y-4">
-                                            {activeData.learnPoints.map((point, idx) => (
-                                                <motion.li variants={itemVariants} key={idx} className="flex items-start gap-4">
-                                                    <div className={`w-2 h-2 rounded-full ${themeColor} mt-2.5 flex-shrink-0`} />
-                                                    <p className="text-slate-700 md:text-lg font-medium leading-relaxed">{point}</p>
-                                                </motion.li>
-                                            ))}
-                                        </ul>
-                                    </motion.div>
-
-                                    {/* Hoạt động nổi bật */}
-                                    <motion.div variants={itemVariants} className={`rounded-2xl p-6 md:p-8 border-2 transition-colors duration-700 ${currentPhase?.color === 'text-[#FF7A00]' ? 'border-orange-100 bg-orange-50/50' : currentPhase?.color === 'text-[#1E90FF]' ? 'border-blue-100 bg-blue-50/50' : currentPhase?.color === 'text-[#10B981]' ? 'border-emerald-100 bg-emerald-50/50' : 'border-violet-100 bg-violet-50/50'}`}>
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <div className={`p-2 rounded-xl bg-white shadow-sm ${themeText} transition-transform hover:scale-110`}>
-                                                <Star className="w-6 h-6" />
-                                            </div>
-                                            <h5 className="text-xl font-bold text-slate-800">Hoạt động nổi bật</h5>
-                                        </div>
-                                        <div className="pl-12">
-                                            <p className={`md:text-lg font-bold ${themeText}`}>{activeData.activity}</p>
-                                        </div>
-                                    </motion.div>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-
-                    {/* RIGHT PANEL (35% Tablet, 40% Desktop) - Phase & Week List */}
-                    <div className="hidden md:block w-full md:w-[35%] lg:w-[40%] bg-slate-50 border-l border-slate-100 overflow-y-auto custom-scrollbar p-6 lg:p-10 relative">
-                        <div className="space-y-12 pb-16">
-                            {phases.map((phase, pIdx) => (
-                                <div key={pIdx} className="relative">
-                                    {/* Phase Header */}
-                                    <div className="mb-4">
-                                        <div className="flex items-center gap-3 mb-1">
-                                            <div className={`h-[2px] w-8 ${phase.bg} rounded-full`} />
-                                            <h3 className={`text-lg font-black tracking-widest uppercase ${phase.color}`}>{phase.title}</h3>
-                                        </div>
-                                        <p className="text-slate-500 font-semibold text-sm pl-11">{phase.subtitle}</p>
-                                    </div>
-
-                                    {/* Weeks in Phase */}
-                                    <div className="space-y-4 pl-4 border-l-2 border-slate-200 ml-4 mt-4 relative">
-                                        
-                                        {phase.weeks.map(weekNum => {
-                                            const weekData = weeksData.find(w => w.week === weekNum)!
-                                            const isActive = activeWeek === weekNum
-
-                                            return (
-                                                <div 
-                                                    key={weekNum}
-                                                    onClick={() => setActiveWeek(weekNum)}
-                                                    className={cn(
-                                                        "relative cursor-pointer transition-all duration-300 rounded-[1.5rem] p-4 flex items-center gap-5 border-2 group",
-                                                        isActive 
-                                                            ? `${phase.bg} text-white shadow-xl shadow-slate-500/10 ring-4 ring-offset-2 ${phase.ring} border-transparent scale-[1.05] -ml-2 z-10` 
-                                                            : "bg-white text-slate-700 border-transparent hover:border-slate-200 hover:-translate-y-1.5 hover:shadow-lg shadow-sm"
-                                                    )}
-                                                >
-                                                    {/* Timeline Node overlay over the border line */}
-                                                    <div className={cn(
-                                                        "absolute -left-[27px] w-3 h-3 rounded-full border-2 transition-colors",
-                                                        isActive ? `${phase.bg} border-white shadow-sm bg-current scale-150` : "bg-white border-slate-300 group-hover:border-slate-400"
-                                                    )} />
-
-                                                    {/* Mascot Bubble */}
-                                                    <div className={cn(
-                                                        "w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-sm transition-transform duration-300 flex-shrink-0 origin-bottom",
-                                                        isActive ? "bg-white/20 animate-in zoom-in-50 scale-110" : "bg-slate-50 border border-slate-100 group-hover:-translate-y-1 group-hover:rotate-6"
-                                                    )}>
-                                                        {mascots[weekData.mascot as keyof typeof mascots]}
-                                                    </div>
-
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className={cn(
-                                                            "text-[10px] font-black uppercase tracking-wider mb-1",
-                                                            isActive ? "text-white/80" : phase.color
-                                                        )}>
-                                                            Tuần / Week {weekNum}
-                                                        </div>
-                                                        <h4 className={cn(
-                                                            "font-bold text-base md:text-lg mb-0.5 truncate",
-                                                            isActive ? "text-white" : "text-slate-800"
-                                                        )}>
-                                                            {weekData.titleEN}
-                                                        </h4>
-                                                        <p className={cn(
-                                                            "text-xs md:text-sm font-medium truncate",
-                                                            isActive ? "text-white/90" : "text-slate-500"
-                                                        )}>
-                                                            {weekData.titleVI}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                </div>
-                            ))}
+                                <button
+                                    onClick={() => {
+                                        if (activePhase < phases.length - 1) {
+                                            setActivePhase(activePhase + 1)
+                                            setExpandedWeek(phases[activePhase + 1].weeks[0])
+                                        }
+                                    }}
+                                    disabled={activePhase === phases.length - 1}
+                                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-slate-500 bg-slate-100 hover:bg-slate-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                                >
+                                    Phase tiếp →
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                    </motion.div>
+                </AnimatePresence>
+
             </div>
-            
-            <style jsx global>{`
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 6px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: transparent;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background-color: #cbd5e1;
-                    border-radius: 20px;
-                }
-            `}</style>
-        </div>
+        </section>
     )
 }

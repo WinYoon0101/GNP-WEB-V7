@@ -157,7 +157,7 @@ export default function TuyenDungPage() {
             {/* Title */}
             <h1 className="flex justify-center items-center -mt-1 mb-4">
               <Image
-                src="/Logo.png"
+                src="/logo.png"
                 alt="GNP English Academy"
                 width={1200}
                 height={360}

@@ -7,16 +7,29 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown } from "lucide-react"
 import clsx from "clsx"
+import { motion, easeInOut } from "framer-motion"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
+  // 🎯 animation lắc nhẹ
+  const shakeAnimation = {
+    rotate: [0, -8, 8, -6, 6, -3, 3, 0],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      repeatDelay: 4,
+      ease: easeInOut
+    }
+  }
+
   const navItems = [
     { name: "Trang chủ", href: "/" },
     { name: "Tin tức", href: "/tin-tuc" },
-    { 
-      name: "Khóa học", 
+
+    {
+      name: "Khóa học",
       href: "/khoa-hoc",
       submenu: [
         { title: "Explorer", age: "3.5 - 6 tuổi", href: "/khoa-hoc/explorer", color: "#FF8A00" },
@@ -26,6 +39,14 @@ export function Header() {
         { title: "Communicator", age: "Sinh viên & Đi làm", href: "/khoa-hoc/communicator", color: "#1E3A8A" },
       ]
     },
+
+    // 🌞 TAB SUMMER RIÊNG
+    {
+      name: "summer",
+      href: "/khoa-hoc-mua-he",
+      isSummer: true
+    },
+
     { name: "Tuyển dụng", href: "/tuyen-dung" },
     { name: "Liên hệ", href: "/lien-he" },
   ]
@@ -43,50 +64,67 @@ export function Header() {
 
           {/* LOGO */}
           <Link href="/" className="flex items-center">
-            <Image
-              src="/Logo.png"
-              alt="logo"
-              width={130}
-              height={40}
-              className="h-10 w-auto"
-            />
+            <Image src="/logo.png" alt="logo" width={130} height={40} className="h-10 w-auto" />
           </Link>
 
           {/* MENU DESKTOP */}
           <nav className="hidden md:flex items-center gap-6 h-full">
             {navItems.map((item) => (
               <div key={item.name} className="group relative h-full flex items-center">
+
                 <Link
                   href={item.href}
                   className={clsx(
-                    "relative px-3 py-2 font-medium transition-colors duration-300 flex items-center gap-1.5",
-                    isActive(item.href)
-                      ? "text-orange-500"
-                      : "text-gray-600 hover:text-orange-500" /* ĐÃ SỬA: hover thành màu cam */
+                    "relative py-2 font-medium transition-colors duration-300 flex items-center justify-center",
+                    item.isSummer
+                      ? "px-1"
+                      : isActive(item.href)
+                        ? "text-orange-500 px-3"
+                        : "text-gray-600 hover:text-orange-500 px-3"
                   )}
                 >
-                  {item.name}
-                  
-                  {/* Icon xổ xuống - Khi hover text thành cam thì icon cũng thành cam */}
-                  {item.submenu && (
-                    <ChevronDown size={14} className="mt-[2px] group-hover:rotate-180 group-hover:text-orange-500 transition-transform duration-300 opacity-70" />
-                  )}
+                  {/* 🌞 SUMMER ICON */}
+                  {item.isSummer ? (
+                    <motion.div
+                      animate={shakeAnimation}
+                      whileHover={{ scale: 1.2, rotate: 0 }}
+                      className="cursor-pointer "
+                    >
+                      <Image
+                        src="/summer-logo.png"
+                        alt="summer"
+                        width={50}
+                        height={50}
+                        className="object-contain"
+                      />
+                    </motion.div>
+                  ) : (
+                    <>
+                      {item.name}
 
-                  {/* Underline hiệu ứng */}
-                  <span
-                    className={clsx(
-                      "absolute left-0 -bottom-1 h-[2px] w-full bg-orange-500 transition-all duration-300",
-                      isActive(item.href) ? "scale-x-100" : "scale-x-0"
-                    )}
-                  />
+                      {item.submenu && (
+                        <ChevronDown
+                          size={14}
+                          className="ml-1 mt-[2px] group-hover:rotate-180 group-hover:text-orange-500 transition-transform duration-300 opacity-70"
+                        />
+                      )}
+
+                      {/* underline */}
+                      <span
+                        className={clsx(
+                          "absolute left-0 -bottom-1 h-[2px] w-full bg-orange-500 transition-all duration-300",
+                          isActive(item.href) ? "scale-x-100" : "scale-x-0"
+                        )}
+                      />
+                    </>
+                  )}
                 </Link>
 
-                {/* SUBMENU DROPDOWN */}
-                {item.submenu && (
+                {/* SUBMENU (chỉ cho item thường) */}
+                {item.submenu && !item.isSummer && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                     <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2 flex flex-col gap-1 relative">
                       
-                      {/* Mũi tên nhỏ chỉ lên (Tail) */}
                       <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45"></div>
 
                       {item.submenu.map((sub, idx) => (
@@ -95,19 +133,16 @@ export function Header() {
                           href={sub.href} 
                           className="group/item flex items-center gap-3 p-3 rounded-lg hover:bg-orange-50 transition-colors relative z-10"
                         >
-                          {/* Chấm màu */}
                           <div 
-                            className="w-2.5 h-2.5 rounded-full shrink-0 transition-transform duration-300 group-hover/item:scale-150 shadow-sm" 
+                            className="w-2.5 h-2.5 rounded-full shrink-0 group-hover/item:scale-150 transition-transform"
                             style={{ backgroundColor: sub.color }}
                           />
                           
-                          {/* Thông tin khóa học */}
                           <div className="flex flex-col">
-                            {/* ĐÃ SỬA: Text khóa học đổi sang màu cam khi hover */}
-                            <span className="font-semibold text-sm text-gray-800 group-hover/item:text-orange-500 transition-colors uppercase tracking-wide">
+                            <span className="font-semibold text-sm text-gray-800 group-hover/item:text-orange-500 uppercase tracking-wide">
                               {sub.title}
                             </span>
-                            <span className="text-xs text-gray-500 mt-0.5">
+                            <span className="text-xs text-gray-500">
                               {sub.age}
                             </span>
                           </div>
@@ -122,17 +157,10 @@ export function Header() {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Button
-              asChild
-              variant="outline"
-              className="border-orange-400 text-orange-500 hover:bg-orange-50"
-            >
+            <Button asChild variant="outline" className="border-orange-400 text-orange-500 hover:bg-orange-50">
               <Link href="/kiem-tra-trinh-do">Kiểm tra trình độ</Link>
             </Button>
-            <Button
-              asChild
-              className="bg-gradient-to-r from-orange-500 to-orange-400 text-white shadow-md hover:shadow-lg"
-            >
+            <Button asChild className="bg-gradient-to-r from-orange-500 to-orange-400 text-white shadow-md hover:shadow-lg">
               <Link href="/lien-he">Đăng ký tư vấn</Link>
             </Button>
           </div>
@@ -147,12 +175,13 @@ export function Header() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU (giữ nguyên) */}
       {mobileMenuOpen && (
         <div className="border-t bg-white md:hidden shadow-lg absolute w-full">
           <nav className="mx-auto max-w-7xl flex flex-col px-4 py-4">
             {navItems.map((item) => (
               <div key={item.name} className="flex flex-col border-b border-gray-50 last:border-0">
+
                 {item.submenu ? (
                   <details className="group py-2">
                     <summary className={clsx(
@@ -160,23 +189,21 @@ export function Header() {
                       isActive(item.href) ? "text-orange-500" : "text-gray-700"
                     )}>
                       {item.name}
-                      <ChevronDown size={16} className="mt-[1px] group-open:rotate-180 transition-transform opacity-50" />
+                      <ChevronDown size={16} className="group-open:rotate-180 transition-transform opacity-50" />
                     </summary>
+
                     <div className="flex flex-col gap-1 pl-4 pr-2 pb-2 mt-1">
                       {item.submenu.map((sub, idx) => (
                         <Link
                           key={idx}
                           href={sub.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="text-sm text-gray-600 hover:text-orange-500 hover:bg-orange-50 px-3 py-2.5 rounded-md flex items-center gap-3 transition-colors"
+                          className="text-sm text-gray-600 hover:text-orange-500 hover:bg-orange-50 px-3 py-2.5 rounded-md flex items-center gap-3"
                         >
-                          <div 
-                            className="w-2 h-2 rounded-full shrink-0" 
-                            style={{ backgroundColor: sub.color }}
-                          />
-                          <div className="flex flex-col">
-                            <span className="font-semibold">{sub.title}</span>
-                            <span className="text-xs opacity-70">{sub.age}</span>
+                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: sub.color }} />
+                          <div>
+                            <div className="font-semibold">{sub.title}</div>
+                            <div className="text-xs opacity-70">{sub.age}</div>
                           </div>
                         </Link>
                       ))}
@@ -187,24 +214,15 @@ export function Header() {
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={clsx(
-                      "px-2 py-4 text-sm font-medium hover:text-orange-500 transition-colors",
+                      "px-2 py-4 text-sm font-medium hover:text-orange-500",
                       isActive(item.href) ? "text-orange-500" : "text-gray-700"
                     )}
                   >
-                    {item.name}
+                    {item.isSummer ? "Summer Camp" : item.name}
                   </Link>
                 )}
               </div>
             ))}
-
-            <div className="flex flex-col gap-3 pt-6 pb-2">
-              <Button asChild variant="outline" className="border-orange-400 text-orange-500 w-full h-10 hover:bg-orange-50 transition-colors">
-                <Link href="/kiem-tra-trinh-do" onClick={() => setMobileMenuOpen(false)}>Kiểm tra trình độ</Link>
-              </Button>
-              <Button asChild className="bg-orange-500 text-white hover:bg-orange-600 w-full h-10 transition-colors">
-                <Link href="/lien-he" onClick={() => setMobileMenuOpen(false)}>Đăng ký tư vấn</Link>
-              </Button>
-            </div>
           </nav>
         </div>
       )}

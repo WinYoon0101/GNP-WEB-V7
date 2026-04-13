@@ -13,27 +13,27 @@ import { Button } from '@/components/ui/button';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeInOut" as const } }
 };
 
 const popIn = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, type: "spring" as const, stiffness: 100 } }
 };
 
 const slideInLeft = {
     hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeInOut" as const } }
 };
 
 const slideInRight = {
     hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeInOut" as const } }
 };
 
 export function SummerCourseTab() {
     return (
-        <div className="w-full font-sans bg-white text-[#4A55A2] selection:bg-orange-200 overflow-hidden">
+        <div className="w-full font-sans bg-white text-[#4A55A2] selection:bg-orange-200 overflow-clip">
             {/* Custom Animations */}
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -89,7 +89,7 @@ export function SummerCourseTab() {
 
                 {/* ⭐ SUN */}
                 <div className="absolute top-6 right-6 md:right-16 z-10">
-                    <div className="w-20 h-20 md:w-48 md:h-48  animate-soft-float flex items-center justify-center">
+                    <div className="w-20 h-20 md:w-48 md:h-48  flex items-center justify-center">
                         <img src="/images/summer-course/mattroi.png" className="w-full" />
                     </div>
                 </div>
@@ -98,7 +98,7 @@ export function SummerCourseTab() {
                 <div className="absolute top-80 left-0 w-42 h-30 opacity-70">
                     <img src="/images/summer-course/may.png" className="w-full" />
                 </div>
-                <div className="absolute top-16 right-40 w-40 h-24 bg-blue-200 rounded-full blur-sm opacity-70"></div>
+                <div className="absolute top-16 right-40 w-40 h-24 bg-blue-300 rounded-full blur-sm opacity-70"></div>
 
                 {/* CONTENT */}
                 <div className="container mx-auto px-4 py-20 relative z-10">
@@ -197,7 +197,7 @@ export function SummerCourseTab() {
 
                 {/* ⭐ BOTTOM CURVE */}
                 <div className="absolute bottom-0 left-0 w-full z-30">
-                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[80px] fill-white">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[80px] fill-slate-50">
                         <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>
                     </svg>
                 </div>
@@ -207,9 +207,9 @@ export function SummerCourseTab() {
 
 
             {/* 2. PROGRAM OVERVIEW (Timeline) */}
-            <section className="py-16 bg-slate-50 relative">
+            <section className="py-16 bg-slate-50 relative pb-24 md:pb-32">
                 <div className="container mx-auto px-4 md:px-8">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                         <h3 className="text-2xl md:text-5xl font-extrabold text-[#4A55A2] mb-2 md:mb-3">TỔNG QUAN CHƯƠNG TRÌNH</h3>
                         <h4 className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Program Overview</h4>
                     </motion.div>
@@ -265,7 +265,7 @@ export function SummerCourseTab() {
                                 border: "border-slate-500"
                             }
                         ].map((item, idx) => (
-                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className="w-full md:w-auto relative z-10 flex flex-row items-center md:flex-col md:items-center text-left md:text-center group bg-white md:bg-transparent rounded-2xl md:rounded-none p-3 sm:p-4 md:p-0 shadow-sm border border-slate-100 md:shadow-none md:border-none">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className="w-full md:w-auto relative z-10 flex flex-row items-center md:flex-col md:items-center text-left md:text-center group bg-white md:bg-transparent rounded-2xl md:rounded-none p-3 sm:p-4 md:p-0 shadow-sm border border-slate-100 md:shadow-none md:border-none">
                                 {/* Connecting Line per item */}
                                 {idx < 3 && (
                                     <div className={`absolute -z-10
@@ -290,6 +290,13 @@ export function SummerCourseTab() {
                         ))}
                     </div>
                 </div>
+
+                {/* BOTTOM CURVE TO WHITE */}
+                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-20 fill-white block">
+                        <path d="M0,120 C300,0 900,0 1200,120 Z"></path>
+                    </svg>
+                </div>
             </section>
 
             {/* 3. WEEKLY HIGHLIGHT (Interactive Split Layout) */}
@@ -299,9 +306,15 @@ export function SummerCourseTab() {
             <DailyStructure />
 
             {/* 5. AGE GROUPS (3 Cards) */}
-            <section className="py-20 bg-slate-50">
-                <div className="container mx-auto px-4 md:px-8">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <section className="py-20 relative pb-28">
+                {/* TOP CURVE FROM WHITE TO SLATE-50 */}
+                <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 rotate-180">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-16 fill-white block">
+                        <path d="M0,120 C300,0 900,0 1200,120 Z"></path>
+                    </svg>
+                </div>
+                <div className="container mx-auto px-4 md:px-8 relative z-10">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                         <h3 className="text-2xl md:text-5xl font-extrabold text-orange-500 mb-2 md:mb-3">PHÂN BỐ THEO ĐỘ TUỔI</h3>
                         <h4 className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Age Groups</h4>
                     </motion.div>
@@ -336,7 +349,7 @@ export function SummerCourseTab() {
                                 shadow: "shadow-orange-500"
                             }
                         ].map((item, idx) => (
-                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} transition={{ delay: idx * 0.15 }} key={idx} className="bg-white rounded-[2.5rem] p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group border border-slate-100">
+                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUp} transition={{ delay: idx * 0.15 }} key={idx} className="bg-white rounded-[2.5rem] p-8 shadow-lg hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden group border border-slate-100">
                                 <div className={`absolute top-0 left-0 w-full h-3 bg-gradient-to-r ${item.color}`} />
 
                                 <div className="flex items-center gap-4 mb-6">
@@ -374,34 +387,183 @@ export function SummerCourseTab() {
             {/* 6. OUTCOMES SECTION (Premium SaaS) */}
             <LearningOutcomes />
 
-            {/* 7. FINAL OUTPUT / SHOWCASE */}
-            <section className="py-20 lg:py-28 bg-white pb-32 md:pb-28">
+            {/* 7. FINAL OUTPUT / SHOWCASE — Rocket Stage Design */}
+            <section className="py-20 lg:py-28 bg-gradient-to-b from-[#f0f4ff] to-white overflow-hidden pb-32 md:pb-28">
+                <style dangerouslySetInnerHTML={{ __html: `
+                    @keyframes rocket-float {
+                        0%, 100% { transform: translateY(0px); }
+                        50% { transform: translateY(-14px); }
+                    }
+                    .rocket-float { animation: rocket-float 5s ease-in-out infinite; }
+                    @keyframes flame-flicker {
+                        0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+                        33% { transform: scaleY(1.18) scaleX(0.92); opacity: 0.9; }
+                        66% { transform: scaleY(0.88) scaleX(1.06); opacity: 0.85; }
+                    }
+                    .flame-flicker { animation: flame-flicker 0.7s ease-in-out infinite; }
+                    @keyframes star-twinkle {
+                        0%, 100% { opacity: 0.3; transform: scale(1); }
+                        50% { opacity: 1; transform: scale(1.4); }
+                    }
+                    .star-twinkle { animation: star-twinkle 2s ease-in-out infinite; }
+                    .rocket-badge-left { animation: rocket-float 5s ease-in-out infinite; animation-delay: 0.3s; }
+                    .rocket-badge-right { animation: rocket-float 5s ease-in-out infinite; animation-delay: 0.8s; }
+                    @keyframes connector-draw {
+                        from { stroke-dashoffset: 200; }
+                        to { stroke-dashoffset: 0; }
+                    }
+                ` }} />
+
                 <div className="container mx-auto px-4 md:px-8">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                        <h3 className="text-2xl md:text-5xl font-extrabold text-[#4A55A2] mb-2 md:mb-3">SẢN PHẨM ĐẦU RA</h3>
-                        <h4 className="text-lg md:text-2xl text-orange-500 font-bold uppercase tracking-widest mb-4">Final Output / Showcase</h4>
-                        <p className="text-slate-600 text-sm md:text-lg px-4 md:px-0">Những dấu ấn khó quên sau 11 tuần trưởng thành.</p>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
+                        <h3 className="text-2xl md:text-5xl font-extrabold text-orange-500 mb-2 md:mb-3">SẢN PHẨM ĐẦU RA</h3>
+
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* ===== ROCKET DIAGRAM ===== */}
+                    <div className="relative max-w-5xl mx-auto select-none">
+
+                        {/* Background stars */}
                         {[
-                            { vi: "Hồ sơ cá nhân", en: "Portfolio", icon: FileText, bg: "bg-slate-100", text: "text-slate-800" },
-                            { vi: "Nhật ký cá nhân", en: "Personal journal", icon: BookOpen, bg: "bg-orange-50", text: "text-orange-600" },
-                            { vi: "Dự án cộng đồng", en: "Community project", icon: HeartHandshake, bg: "bg-orange-50", text: "text-orange-600" },
-                            { vi: "Ngày hội thuyết trình", en: "Presentation day", icon: Presentation, bg: "bg-slate-50", text: "text-slate-800" }
-                        ].map((item, idx) => (
-                            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={popIn} transition={{ delay: idx * 0.1 }} key={idx} className={`${item.bg} rounded-3xl p-8 text-center hover:-translate-y-2 transition-transform duration-300`}>
-                                <div className={`w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6 ${item.text}`}>
-                                    <item.icon className="w-10 h-10" />
+                            { top: '5%', left: '4%', delay: '0s', size: 8 },
+                            { top: '12%', right: '6%', delay: '0.6s', size: 6 },
+                            { top: '28%', left: '2%', delay: '1.1s', size: 5 },
+                            { top: '40%', right: '3%', delay: '0.4s', size: 7 },
+                            { top: '55%', left: '5%', delay: '1.5s', size: 5 },
+                            { top: '70%', right: '7%', delay: '0.9s', size: 6 },
+                        ].map((s, i) => (
+                            <div key={i} className="absolute star-twinkle pointer-events-none" style={{ top: s.top, left: (s as any).left, right: (s as any).right, animationDelay: s.delay }}>
+                                <Star className="text-yellow-400 fill-yellow-400" style={{ width: s.size, height: s.size }} />
+                            </div>
+                        ))}
+
+                        {/* ===== ROCKET BODY (center column) ===== */}
+                        <div className="flex flex-col items-center">
+
+
+                            {/* SEGMENT 1 — CONTRIBUTE & SHINE (pink/purple) */}
+                            <motion.div
+                                initial={{ opacity: 0, scaleX: 0.6 }} whileInView={{ opacity: 1, scaleX: 1 }}
+                                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+                                className="relative z-10 w-[220px] md:w-[280px]"
+                            >
+                                <svg width="100%" viewBox="0 0 280 72" className="overflow-visible drop-shadow-lg">
+                                    <defs>
+                                        <linearGradient id="seg1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#e879f9" />
+                                            <stop offset="100%" stopColor="#a855f7" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="4" y="0" width="272" height="72" rx="16" fill="url(#seg1Grad)" />
+                                    <rect x="4" y="62" width="272" height="10" rx="0" fill="#7c3aed" opacity="0.35" />
+                                </svg>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4">
+                                    <span className="text-white font-black text-xs md:text-sm uppercase tracking-widest drop-shadow text-center">NGÀY HỘI THUYẾT TRÌNH</span>
+                                    <span className="text-white/80 text-[10px] md:text-xs font-bold mt-0.5">Showcase & Presentation Day</span>
                                 </div>
-                                <h4 className={`text-xl font-bold mb-2 ${item.text}`}>{item.vi}</h4>
-                                <h5 className="text-sm font-bold text-slate-500 uppercase tracking-widest">{item.en}</h5>
+                            </motion.div>
+
+                            {/* SEGMENT 2 — DỰ ÁN CỘNG ĐỒNG (indigo) */}
+                            <motion.div
+                                initial={{ opacity: 0, scaleX: 0.6 }} whileInView={{ opacity: 1, scaleX: 1 }}
+                                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
+                                className="relative z-10 w-[250px] md:w-[310px] -mt-1"
+                            >
+                                <svg width="100%" viewBox="0 0 310 72" className="overflow-visible drop-shadow-lg">
+                                    <defs>
+                                        <linearGradient id="seg2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#6366f1" />
+                                            <stop offset="100%" stopColor="#4A55A2" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="4" y="0" width="302" height="72" rx="16" fill="url(#seg2Grad)" />
+                                    <rect x="4" y="62" width="302" height="10" rx="0" fill="#3730a3" opacity="0.35" />
+                                </svg>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4">
+                                    <span className="text-white font-black text-xs md:text-sm uppercase tracking-widest drop-shadow text-center">DỰ ÁN CỘNG ĐỒNG</span>
+                                    <span className="text-white/80 text-[10px] md:text-xs font-bold mt-0.5">Community Impact Project</span>
+                                </div>
+                            </motion.div>
+
+                            {/* SEGMENT 3 — HỒ SƠ CÁ NHÂN (teal/green) */}
+                            <motion.div
+                                initial={{ opacity: 0, scaleX: 0.6 }} whileInView={{ opacity: 1, scaleX: 1 }}
+                                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
+                                className="relative z-10 w-[280px] md:w-[340px] -mt-1"
+                            >
+                                <svg width="100%" viewBox="0 0 340 72" className="overflow-visible drop-shadow-lg">
+                                    <defs>
+                                        <linearGradient id="seg3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#14b8a6" />
+                                            <stop offset="100%" stopColor="#0d9488" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="4" y="0" width="332" height="72" rx="16" fill="url(#seg3Grad)" />
+                                    <rect x="4" y="62" width="332" height="10" rx="0" fill="#0f766e" opacity="0.35" />
+                                </svg>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4">
+                                    <span className="text-white font-black text-xs md:text-sm uppercase tracking-widest drop-shadow text-center">HỒ SƠ CÁ NHÂN</span>
+                                    <span className="text-white/80 text-[10px] md:text-xs font-bold mt-0.5">Personal Growth Portfolio</span>
+                                </div>
+                            </motion.div>
+
+                            {/* SEGMENT 4 — NHẬT KÝ / KỸNĂNG (orange) */}
+                            <motion.div
+                                initial={{ opacity: 0, scaleX: 0.6 }} whileInView={{ opacity: 1, scaleX: 1 }}
+                                viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}
+                                className="relative z-10 w-[300px] md:w-[370px] -mt-1"
+                            >
+                                <svg width="100%" viewBox="0 0 370 76" className="overflow-visible drop-shadow-lg">
+                                    <defs>
+                                        <linearGradient id="seg4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#f97316" />
+                                            <stop offset="100%" stopColor="#ea580c" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="4" y="0" width="362" height="76" rx="16" fill="url(#seg4Grad)" />
+                                    <rect x="4" y="66" width="362" height="10" rx="0" fill="#c2410c" opacity="0.35" />
+                                </svg>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4">
+                                    <span className="text-white font-black text-xs md:text-sm uppercase tracking-widest drop-shadow text-center">NHẬT KÝ HÀNH TRÌNH</span>
+                                    <span className="text-white/80 text-[10px] md:text-xs font-bold mt-0.5">Personal Journal & Skills Log</span>
+                                </div>
+                            </motion.div>
+
+
+
+                        </div>
+
+                      
+
+                    </div>
+
+                    {/* ===== MOBILE CARDS (shown below rocket on sm screens) ===== */}
+                    <div className="md:hidden mt-10 grid grid-cols-2 gap-4">
+                        {[
+                            { num: '01', label: 'Nhật ký hành trình', sub: 'Tuần 1–3', color: 'border-orange-400 text-orange-500' },
+                            { num: '02', label: 'Hồ sơ cá nhân', sub: 'Tuần 4–6', color: 'border-teal-400 text-teal-500' },
+                            { num: '03', label: 'Dự án cộng đồng', sub: 'Tuần 7–9', color: 'border-indigo-400 text-indigo-500' },
+                            { num: '04', label: 'Ngày hội Showcase', sub: 'Tuần 10–11', color: 'border-fuchsia-400 text-fuchsia-500' },
+                        ].map((b, i) => (
+                            <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={popIn} transition={{ delay: i * 0.1 }}
+                                className={`bg-white rounded-2xl p-4 shadow-md border-2 ${b.color.split(' ')[0]} text-center`}>
+                                <span className={`font-black text-2xl ${b.color.split(' ')[1]}`}>{b.num}</span>
+                                <p className="font-bold text-slate-800 text-sm mt-1 leading-tight">{b.label}</p>
+                                <p className="text-slate-500 text-xs mt-0.5">{b.sub}</p>
                             </motion.div>
                         ))}
                     </div>
 
+                    {/* ===== BOTTOM NOTE ===== */}
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} transition={{ delay: 0.4 }}
+                        className="mt-14 text-center">
+                        <p className="text-slate-500 text-sm md:text-base font-medium">
+                            ⏱ <strong className="text-[#4A55A2]">Thời lượng mỗi giai đoạn:</strong> 2–3 tuần tập trung · Tổng 11 tuần chương trình
+                        </p>
+                    </motion.div>
+
                     {/* Gallery Section */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mt-12 md:mt-16 bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl shadow-slate-200/50 border border-slate-100">
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUp} className="mt-16 bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl shadow-slate-200/50 border border-slate-100 relative z-10">
                         <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
                             <div>
                                 <h4 className="text-2xl md:text-3xl font-extrabold text-[#4A55A2] flex items-center gap-3">
@@ -415,7 +577,7 @@ export function SummerCourseTab() {
                                 </p>
                             </div>
                             <div className="hidden md:block">
-                                <div className="flex gap-1.5 object-right">
+                                <div className="flex gap-1.5">
                                     <div className="w-3 h-3 rounded-full bg-orange-500/20" />
                                     <div className="w-3 h-3 rounded-full bg-orange-500/50" />
                                     <div className="w-3 h-3 rounded-full bg-orange-500" />
@@ -424,7 +586,6 @@ export function SummerCourseTab() {
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4 md:grid-rows-2 gap-3 md:gap-4 min-h-[500px] md:h-[550px]">
-                            {/* Large Image */}
                             <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl shadow-sm border border-slate-100/50">
                                 <img src="/images/summer-course/img-1.jpg" alt="Summer course moment 1" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -433,8 +594,6 @@ export function SummerCourseTab() {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Small Images */}
                             {[2, 3, 4, 5].map((num) => (
                                 <div key={num} className="col-span-1 row-span-1 relative group overflow-hidden rounded-2xl shadow-sm border border-slate-100/50">
                                     <img src={`/images/summer-course/img-${num}.jpg`} alt={`Summer course moment ${num}`} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" />
@@ -469,3 +628,61 @@ function UserIcon(props: any) {
         </svg>
     );
 }
+
+
+const RocketBadge = ({
+    side = "left",
+    color = "orange",
+    title,
+    subtitle,
+    index
+}: {
+    side?: "left" | "right";
+    color?: string;
+    title: string;
+    subtitle: string;
+    index: string;
+}) => {
+    const isLeft = side === "left";
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className={`absolute hidden md:flex items-center gap-3 top-1/2 -translate-y-1/2 ${
+                isLeft ? "-left-[240px]" : "-right-[240px] flex-row-reverse"
+            }`}
+        >
+            {/* Badge */}
+            <div className={`flex items-center gap-2 bg-white rounded-2xl px-4 py-3 shadow-lg border-2 border-${color}-400 hover:scale-105 transition`}>
+                <span className={`text-${color}-500 font-black text-xl`}>
+                    {index}
+                </span>
+                <div>
+                    <p className="font-black text-slate-800 text-sm leading-tight">
+                        {title}
+                    </p>
+                    <p className="text-slate-500 text-xs">
+                        {subtitle}
+                    </p>
+                </div>
+            </div>
+
+            {/* Line */}
+            <svg width="80" height="2" className="flex-shrink-0">
+                <line
+                    x1="0"
+                    y1="1"
+                    x2="80"
+                    y2="1"
+                    stroke="currentColor"
+                    className={`text-${color}-400`}
+                    strokeWidth="2"
+                    strokeDasharray="5,3"
+                />
+            </svg>
+        </motion.div>
+    );
+};
