@@ -122,7 +122,7 @@ export function DailyStructure() {
           {/* VÙNG CUỘN ĐỘC LẬP - MIỄN NHIỄM VỚI LỖI GIẬT VÀ OVERFLOW CỦA WEB */}
           <div 
              ref={scrollContainerRef}
-             className="w-full h-[75vh] overflow-y-auto flex gap-12 xl:gap-20 relative overscroll-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-2"
+             className="w-full h-[75vh] overflow-y-auto flex gap-12 xl:gap-20 relative [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-2"
           >
               
               {/* Bên trái: Hộp ảnh ghim cục bộ - Cứng chắc mượt mà hoàn toàn bằng phần cứng đồ họa */}
