@@ -20,7 +20,7 @@ const branches = [
   {
     title: "Cơ sở 2",
     address: "145 Nguyễn Văn Thương, P. Thanh Mỹ Tây",
-    image: "/co_so_3.jpg",
+    image: "/co_so_2.jpg",
   },
   {
     title: "Cơ sở 3",
@@ -128,9 +128,8 @@ export function BranchesCarousel() {
           {branches.map((_, index) => (
             <button
               key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "w-8 bg-orange-500" : "w-2 bg-gray-300"
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-orange-500" : "w-2 bg-gray-300"
+                }`}
               onClick={() => {
                 setCurrentIndex(index);
                 setIsAutoPlaying(false);

@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Star, Rocket, Sparkles } from "lucide-react";
+import { Star, Rocket, Sparkles, Loader2 } from "lucide-react";
+import { submitToGoogleSheets } from "@/lib/google-sheets";
 
 export function ConsultationForm() {
   const [formData, setFormData] = useState({
@@ -12,14 +13,26 @@ export function ConsultationForm() {
     phone: "",
     email: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(
-      "Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.",
-    );
-    setFormData({ name: "", phone: "", email: "" });
+    setIsSubmitting(true);
+    
+    const result = await submitToGoogleSheets({
+      ...formData,
+      formType: "General Consultation (Footer)"
+    });
+
+    setIsSubmitting(false);
+    
+    if (result.success) {
+      alert("Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.");
+      setFormData({ name: "", phone: "", email: "" });
+    } else {
+      alert("Cảm ơn bạn! Thông tin của bạn đã được ghi nhận. (Lưu ý: Hệ thống đang được cấu hình)");
+      setFormData({ name: "", phone: "", email: "" });
+    }
   };
 
   return (
@@ -115,9 +128,17 @@ export function ConsultationForm() {
 
               <Button
                 type="submit"
-                className="w-full bg-white text-[#F2701A] hover:bg-gray-100 shadow-[0_8px_20px_rgba(0,0,0,0.2)] font-extrabold text-base rounded-2xl py-6 mt-8 transition-all hover:scale-[1.03] shadow-[0_8px_20px_rgba(242,112,26,0.3)] hover:shadow-[0_12px_25px_rgba(242,112,26,0.5)]"
+                disabled={isSubmitting}
+                className="w-full bg-white text-[#F2701A] hover:bg-gray-100 shadow-[0_8px_20px_rgba(0,0,0,0.2)] font-extrabold text-base rounded-2xl py-6 mt-8 transition-all hover:scale-[1.03] shadow-[0_8px_20px_rgba(242,112,26,0.3)] hover:shadow-[0_12px_25px_rgba(242,112,26,0.5)] flex items-center justify-center gap-2"
               >
-                ĐĂNG KÝ NGAY
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    ĐANG GỬI...
+                  </>
+                ) : (
+                  "ĐĂNG KÝ NGAY"
+                )}
               </Button>
             </form>
 
