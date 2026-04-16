@@ -63,8 +63,10 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
 
           {/* LOGO */}
-          <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="logo" width={130} height={40} className="h-10 w-auto" />
+          <Link href="/" className="flex items-center group">
+            <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center shadow-sm border border-slate-100 overflow-hidden transition-all duration-300 group-hover:shadow-md group-hover:scale-105">
+              <Image src="/images/gnp-logo.png" alt="logo" fill className="object-cover" priority />
+            </div>
           </Link>
 
           {/* MENU DESKTOP */}

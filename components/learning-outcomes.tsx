@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { MessageCircle, Clock, Users, Star, BookMarked, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -121,13 +120,13 @@ export function LearningOutcomes() {
               {/* Glowing pulse behind button */}
               <div className="absolute inset-0 bg-orange-500 rounded-full blur-xl opacity-40 group-hover/btn:opacity-80 animate-pulse transition-opacity duration-500 pointer-events-none"></div>
               
-              <Link
-                href="/lien-he"
+              <button
+                onClick={() => window.dispatchEvent(new Event('open-summer-register'))}
                 className="relative inline-flex items-center gap-3 bg-gradient-to-r from-[#F97316] to-[#FB923C] text-white hover:from-[#ea580c] hover:to-[#f97316] px-8 py-3.5 rounded-full font-bold transition-all duration-300 text-base md:text-lg group-hover/btn:scale-[1.03] shadow-lg"
               >
                 Nhận tư vấn chi tiết
                 <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
 

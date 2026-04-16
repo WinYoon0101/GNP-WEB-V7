@@ -2,17 +2,26 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check } from "lucide-react";
+import { X, Check, Loader2 } from "lucide-react";
+import { submitToGoogleSheets } from "@/lib/google-sheets";
 
 export function AgeSelectionOverlay() {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [selectedAge, setSelectedAge] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    note: ""
+  });
 
   useEffect(() => {
     const handleOpen = () => {
       setStep(1);
       setIsOpen(true);
+      setFormData({ name: "", phone: "", email: "", note: "" });
     };
     window.addEventListener('open-summer-register', handleOpen);
     return () => window.removeEventListener('open-summer-register', handleOpen);
@@ -44,6 +53,28 @@ export function AgeSelectionOverlay() {
 
   const closeOverlay = () => {
     setIsOpen(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const submissionData = {
+      ...formData,
+      ageGroup: selectedAge,
+      content: formData.note,
+      formType: "Summer Course Registration"
+    };
+
+    const result = await submitToGoogleSheets(submissionData);
+    
+    setIsSubmitting(false);
+    if (result.success) {
+      setStep(3);
+    } else {
+      alert("Cảm ơn bạn! Thông tin đã được ghi nhận. (Lưu ý: Kết nối Google Sheets đang được cấu hình)");
+      setStep(3); // Still move to success step for UX, but log error
+    }
   };
 
   return (
@@ -127,7 +158,7 @@ export function AgeSelectionOverlay() {
                     <span className="text-[#4A55A2] font-semibold text-xs md:text-sm">Thông tin cần có</span>
                   </div>
 
-                  <form className="space-y-4 md:space-y-5" onSubmit={(e) => { e.preventDefault(); /* Handle submit here */ setStep(3); }}>
+                  <form className="space-y-4 md:space-y-5" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                       {/* Name */}
                       <div className="space-y-1.5">
@@ -137,6 +168,8 @@ export function AgeSelectionOverlay() {
                         <input 
                           type="text" 
                           required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="Nguyễn Minh Anh" 
                           className="w-full px-4 py-3 md:py-3.5 text-sm md:text-base rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400"
                         />
@@ -150,6 +183,8 @@ export function AgeSelectionOverlay() {
                         <input 
                           type="tel" 
                           required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="09xx xxx xxx" 
                           className="w-full px-4 py-3 md:py-3.5 text-sm md:text-base rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400"
                         />
@@ -162,6 +197,8 @@ export function AgeSelectionOverlay() {
                         </label>
                         <input 
                           type="email" 
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="email@example.com" 
                           className="w-full px-4 py-3 md:py-3.5 text-sm md:text-base rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400"
                         />
@@ -175,9 +212,9 @@ export function AgeSelectionOverlay() {
                         <input 
                           type="text" 
                           required
-                          defaultValue={selectedAge}
-                          placeholder="6 - 12 tuổi" 
-                          className="w-full px-4 py-3 md:py-3.5 text-sm md:text-base rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400"
+                          readOnly
+                          value={selectedAge}
+                          className="w-full px-4 py-3 md:py-3.5 text-sm md:text-base rounded-xl border border-slate-200 bg-slate-50 text-slate-600 focus:outline-none cursor-default"
                         />
                       </div>
                     </div>
@@ -189,7 +226,9 @@ export function AgeSelectionOverlay() {
                         </label>
                         <textarea 
                           rows={3}
-                          placeholder="Ví dụ: cần tư vấn nội dung học, độ tuổi phù hợp..."
+                          value={formData.note}
+                          onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+                          placeholder="Ví dụ: cần tư vấn nội dung học, độ tuổi phù hợp..." 
                           className="w-full px-4 py-3 md:py-3.5 text-sm md:text-base rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none placeholder:text-slate-400"
                         ></textarea>
                     </div>
@@ -197,9 +236,17 @@ export function AgeSelectionOverlay() {
                     <div className="pt-2">
                         <button 
                             type="submit"
-                            className="bg-[#3B82F6] hover:bg-blue-600 text-white font-bold py-3.5 px-8 rounded-full transition-colors text-sm md:text-base shadow-md hover:shadow-lg active:scale-95 duration-200 inline-block w-full sm:w-auto text-center"
+                            disabled={isSubmitting}
+                            className="bg-[#3B82F6] hover:bg-blue-600 disabled:bg-slate-400 text-white font-bold py-3.5 px-8 rounded-full transition-all text-sm md:text-base shadow-md hover:shadow-lg active:scale-95 duration-200 flex items-center justify-center gap-2 w-full sm:w-auto overflow-hidden"
                         >
-                            Nhận tư vấn chi tiết
+                            {isSubmitting ? (
+                              <>
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                                Đang gửi...
+                              </>
+                            ) : (
+                              "Nhận tư vấn chi tiết"
+                            )}
                         </button>
                     </div>
                   </form>

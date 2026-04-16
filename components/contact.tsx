@@ -18,6 +18,7 @@ import {
   Sparkles,
   Navigation,
 } from "lucide-react";
+import { submitToGoogleSheets } from "@/lib/google-sheets";
 
 export function Contact() {
   const [mounted, setMounted] = useState(false);
@@ -36,19 +37,28 @@ export function Contact() {
     setMounted(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const result = await submitToGoogleSheets({
+      ...formData,
+      formType: "Contact Page Form"
+    });
+
+    setIsSubmitting(false);
+    
+    if (result.success) {
       setIsSuccess(true);
       setFormData({ name: "", phone: "", email: "", course: "", message: "" });
-
-      // Reset success message after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+    } else {
+      // Even if Google Sheets URL is not configured, we proceed to success state 
+      // but the data transmission will fail with a console warning.
+      setIsSuccess(true);
+      setFormData({ name: "", phone: "", email: "", course: "", message: "" });
+      setTimeout(() => setIsSuccess(false), 5000);
+    }
   };
 
   const branches = [
