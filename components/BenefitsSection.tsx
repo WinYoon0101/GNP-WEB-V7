@@ -55,7 +55,7 @@ export function BenefitsSection() {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center relative z-10">
             {/* Left Side: Text and Features */}
             <div className="animate-fade-in-up">
-              <h2 className="text-xl sm:text-4xl lg:text-5xl font-black text-[#1a365d] mb-6 sm:mb-8 lg:mb-10 leading-tight uppercase tracking-wide drop-shadow-sm sm:w-max sm:pr-12">
+              <h2 className="text-xl sm:text-4xl lg:text-5xl font-black text-[#FF7A00] mb-6 sm:mb-8 lg:mb-10 leading-tight uppercase tracking-wide drop-shadow-sm sm:w-max sm:pr-12">
                 ĐỘI NGŨ GIÁO VIÊN<br />
                 CHUYÊN NGHIỆP
               </h2>

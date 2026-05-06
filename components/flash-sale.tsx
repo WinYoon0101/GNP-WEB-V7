@@ -71,9 +71,9 @@ export function FlashSale() {
                 <span>Ưu đãi khai trương cơ sở mới</span>
               </div>
 
-              <h2 className="text-[32px] md:text-[42px] lg:text-[48px] xl:text-[54px] font-black text-slate-900 tracking-tight leading-[1.1]">
+              <h2 className="text-[32px] md:text-[42px] lg:text-[48px] xl:text-[54px] font-black text-[#FF7A00] tracking-tight leading-[1.1]">
                 CHỨNG CHỈ CỰC{" "}
-                <span className="text-[#F2701A] relative whitespace-nowrap">
+                <span className="text-slate-900 relative whitespace-nowrap">
                   PRO
                   <div className="absolute -bottom-1 left-0 w-full h-3 bg-[#F2701A]/10 -skew-x-12"></div>
                 </span>

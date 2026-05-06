@@ -131,7 +131,7 @@ export function Contact() {
 
               <div className="p-8 lg:p-10">
                 <div className="mb-8">
-                  <h3 className="text-2xl md:text-4xl font-black text-slate-800 mb-2">
+                  <h3 className="text-2xl md:text-4xl font-black text-[#FF7A00] mb-2">
                     Đăng ký tư vấn
                   </h3>
                   <p className="text-slate-500 font-medium text-sm">

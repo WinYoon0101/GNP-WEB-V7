@@ -518,7 +518,7 @@ function RocketNode({ course, index, isLeft, onClick }: any) {
                 <span className="text-lg sm:text-xl md:text-2xl font-black leading-none drop-shadow-sm" style={{ color: course.color }}>
                     0{index + 1}
                 </span>
-                <course.icon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-current opacity-40 absolute bottom-1.5 sm:bottom-2" style={{ color: course.color }} />
+                {/* <course.icon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-current opacity-40 absolute bottom-1.5 sm:bottom-2" style={{ color: course.color }} /> */}
            </div>
        </div>
     </div>

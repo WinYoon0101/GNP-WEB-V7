@@ -188,8 +188,8 @@ export default function TuyenDungPage() {
 
         <ScrollReveal animation="fadeInUp"><section className="py-24 bg-white">
           <div className="container mx-auto px-4 md:px-20">
-            <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-slate-900 uppercase tracking-tight">
-              Tại Sao Chọn <span className="text-primary">GNP?</span>
+            <h2 className="text-4xl md:text-5xl font-black text-center mb-16 text-[#FF7A00] uppercase tracking-tight">
+              Tại Sao Chọn GNP?
             </h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {benefits.map((benefit, index) => (
@@ -212,7 +212,7 @@ export default function TuyenDungPage() {
           <div className="container mx-auto px-4 md:px-20">
             <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
               <div className="max-w-2xl text-center md:text-left">
-                <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter mb-4 flex items-center justify-center md:justify-start gap-4">
+                <h2 className="text-4xl md:text-5xl font-black text-[#FF7A00] uppercase tracking-tighter mb-4 flex items-center justify-center md:justify-start gap-4">
                   <div className="w-3 h-12 bg-primary rounded-full hidden md:block" />
                   VỊ TRÍ TUYỂN DỤNG
                 </h2>
