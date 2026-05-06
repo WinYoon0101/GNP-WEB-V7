@@ -114,7 +114,7 @@ export function DailyStructure() {
                 Nhịp điệu một ngày
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-[-0.03em] mb-10">
+            <h2 className="text-3xl md:text-5xl font-black text-[#FF7A00] tracking-[-0.03em] mb-10">
               LỊCH TRÌNH TIÊU BIỂU
             </h2>
           </div>

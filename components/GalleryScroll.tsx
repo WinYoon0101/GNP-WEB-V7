@@ -14,11 +14,11 @@ export default function GalleryScroll() {
 
       {/* LEFT TEXT */}
       <div className="w-full lg:w-1/2 px-6 sm:px-10 lg:px-24 py-10 lg:py-0 z-20 text-center lg:text-left">
-        <p className="text-[#F2701A] uppercase tracking-[0.2em] mb-3 text-xs sm:text-sm font-bold">
+        <p className="text-slate-600 uppercase tracking-[0.2em] mb-3 text-xs sm:text-sm font-bold">
           Môi trường hiện đại – chuẩn quốc tế
         </p>
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-gray-900">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug text-[#FF7A00]">
           Khơi nguồn cảm hứng <br className="hidden sm:block" />
           học tập mỗi ngày
         </h1>

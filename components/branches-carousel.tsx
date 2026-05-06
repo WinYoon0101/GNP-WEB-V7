@@ -69,7 +69,7 @@ export function BranchesCarousel() {
     <section className="py-16 md:py-10 bg-white to-orange-50/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-primary">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#FF7A00]">
             HỆ THỐNG CƠ SỞ GNP
           </h2>
           <p className="text-gray-700 text-sm md:text-lg max-w-3xl mx-auto">

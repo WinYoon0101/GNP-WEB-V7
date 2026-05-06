@@ -4,16 +4,7 @@ export const teamMembers = [
     position: "Cố Vấn Chuyên Môn Học Thuật",
     image: "/thay-ho.jpg",
   },
-  {
-    name: "Thầy Nguyễn Quốc Hùng",
-    position: "Cố Vấn",
-    image: "/thay_hung.jpeg",
-  },
-  {
-    name: "ThS. Phùng Nguyễn Hạnh Nguyên",
-    position: "Chủ tịch Hội đồng quản trị",
-    image: "/co-nguyen.jpg",
-  },
+ 
   {
     name: "ThS. Phan Ngọc Hòa",
     position: "Quyền Tổng Giám đốc",
@@ -29,11 +20,7 @@ export const teamMembers = [
     position: "Giám đốc phát triển Ngoại ngữ - Tin học",
     image: "/thay_bao.jpg",
   },
-  {
-    name: "Cô Nguyễn Thị Thủy",
-    position: "Trưởng phòng hành chính nhân sự",
-    image: "/co_thuy.jpg",
-  },
+
   {
     name: "Ông Nguyễn Quốc Huy",
     position: "Trưởng phòng marketing",
@@ -44,11 +31,7 @@ export const teamMembers = [
     position: "Giám đốc chi nhánh trung tâm Ngoại ngữ - Tin học Nhân Tâm",
     image: "/thay_huy.jpg",
   },
-  {
-    name: "Cô Trần Thị Thanh Vân",
-    position: "Trưởng ban công tác xã hội",
-    image: "/co_van.jpg",
-  },
+ 
   {
     name: "Cô Nguyễn Thanh Hạ",
     position: "Trưởng phòng học thuật",

@@ -168,7 +168,7 @@ export function GPSPhilosophy() {
               >
                 {/* --- Front Side --- */}
                 <div
-                  className={`absolute inset-0 backface-hidden rounded-[2.5rem] overflow-hidden flex flex-col pt-10 px-8 ${card.frontBg} border-4 border-white`}
+                  className={`absolute inset-0 backface-hidden rounded-[2.5rem] overflow-hidden flex flex-col pt-10 px-8 ${card.frontBg} border-4 border-white `}
                 >
                   {/* Decorative Abstract Shapes */}
                   <div
@@ -186,7 +186,7 @@ export function GPSPhilosophy() {
 
                   {/* Image Container */}
                   <div className="relative flex-1 w-full rounded-t-[2.5rem] overflow-hidden z-10 border-t-8 border-l-8 border-r-8 border-white/60 shadow-inner mt-8 -mb-2 transform transition-transform duration-1000 group-hover:scale-110">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 "></div>
                     <Image
                       src={card.image}
                       alt={card.title}

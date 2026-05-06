@@ -210,7 +210,7 @@ export function SummerCourseTab() {
             <section className="py-16 bg-slate-50 relative pb-24 md:pb-32">
                 <div className="container mx-auto px-4 md:px-8">
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                        <h3 className="text-2xl md:text-5xl font-extrabold text-[#4A55A2] mb-2 md:mb-3">TỔNG QUAN CHƯƠNG TRÌNH</h3>
+                        <h3 className="text-2xl md:text-5xl font-extrabold text-[#FF7A00] mb-2 md:mb-3">TỔNG QUAN CHƯƠNG TRÌNH</h3>
                         <h4 className="text-lg md:text-2xl text-slate-500 font-bold uppercase tracking-widest mb-4">Program Overview</h4>
                     </motion.div>
 
@@ -416,7 +416,7 @@ export function SummerCourseTab() {
 
                 <div className="container mx-auto px-4 md:px-8">
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} className="text-center max-w-3xl mx-auto mb-16">
-                        <h3 className="text-2xl md:text-5xl font-extrabold text-orange-500 mb-2 md:mb-3">SẢN PHẨM ĐẦU RA</h3>
+                        <h3 className="text-2xl md:text-5xl font-extrabold text-[#FF7A00] mb-2 md:mb-3">SẢN PHẨM ĐẦU RA</h3>
 
                     </motion.div>
 
@@ -566,7 +566,7 @@ export function SummerCourseTab() {
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUp} className="mt-16 bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl shadow-slate-200/50 border border-slate-100 relative z-10">
                         <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
                             <div>
-                                <h4 className="text-2xl md:text-3xl font-extrabold text-[#4A55A2] flex items-center gap-3">
+                                <h4 className="text-2xl md:text-3xl font-extrabold text-[#FF7A00] flex items-center gap-3">
                                     <div className="p-2.5 bg-orange-100 rounded-xl">
                                         <Camera className="w-6 h-6 text-orange-500" />
                                     </div>

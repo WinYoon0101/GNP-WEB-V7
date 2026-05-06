@@ -26,7 +26,7 @@ export function About() {
           <div className="mb-4 inline-block rounded-full bg-[#F2701A]/10 border border-[#F2701A]/20 px-4 py-2 text-sm font-bold text-[#F2701A] uppercase tracking-wider">
             Vì sao chọn chúng tôi
           </div>
-          <h2 className="mb-4 text-balance text-3xl font-black md:text-5xl text-slate-900 uppercase tracking-tighter">
+          <h2 className="mb-4 text-balance text-3xl font-black md:text-5xl text-[#FF7A00] uppercase tracking-tighter">
             GNP English Academy
           </h2>
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
