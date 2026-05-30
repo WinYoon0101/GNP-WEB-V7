@@ -38,6 +38,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18192472871"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'AW-18192472871');
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.className} font-sans antialiased`}>
         {children}
         <ContactMenuButton />
