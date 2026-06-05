@@ -1,19 +1,14 @@
-"use client"
-
-import type React from "react"
-
-import { useState } from "react"
+// app/tuyen-dung/[id]/page.tsx
+import React from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Clock, DollarSign, Briefcase, Building2, ChevronLeft, CheckCircle2, Upload, Send } from "lucide-react"
+import { notFound } from "next/navigation"
+import { MapPin, Clock, DollarSign, Briefcase, Building2, ChevronLeft, CheckCircle2, Send } from "lucide-react"
 
+// 1. DỮ LIỆU TĨNH
 const jobData: Record<string, any> = {
   "giao-vien-tieng-anh": {
     title: "Giáo Viên Tiếng Anh",
@@ -21,8 +16,7 @@ const jobData: Record<string, any> = {
     location: "TP. Hồ Chí Minh",
     type: "Full-time",
     salary: "15 - 25 triệu VNĐ",
-    description:
-      "Giảng dạy các lớp từ thiếu nhi đến người lớn, có kinh nghiệm từ 1 năm trở lên. Ưu tiên ứng viên có chứng chỉ TESOL/CELTA.",
+    description: "Giảng dạy các lớp từ thiếu nhi đến người lớn, có kinh nghiệm từ 1 năm trở lên. Ưu tiên ứng viên có chứng chỉ TESOL/CELTA.",
     requirements: [
       "Bằng đại học chuyên ngành tiếng Anh hoặc tương đương",
       "Chứng chỉ IELTS 7.0+ hoặc TOEIC 850+",
@@ -42,6 +36,7 @@ const jobData: Record<string, any> = {
       "Team building và du lịch hàng năm",
       "Môi trường làm việc chuyên nghiệp, thân thiện",
     ],
+    applyLink: "mailto:tuyendung@gnp.edu.vn?subject=Ứng tuyển Giáo Viên Tiếng Anh", // Đổi thành link Google Form nếu muốn
   },
   "giao-vien-ielts-toeic": {
     title: "Giáo Viên IELTS/TOEIC",
@@ -49,8 +44,7 @@ const jobData: Record<string, any> = {
     location: "TP. Hồ Chí Minh",
     type: "Full-time",
     salary: "20 - 35 triệu VNĐ",
-    description:
-      "Chuyên giảng dạy các khóa luyện thi IELTS/TOEIC, có kinh nghiệm và đạt điểm số cao trong các kỳ thi quốc tế.",
+    description: "Chuyên giảng dạy các khóa luyện thi IELTS/TOEIC, có kinh nghiệm và đạt điểm số cao trong các kỳ thi quốc tế.",
     requirements: [
       "IELTS 8.0+ hoặc TOEIC 950+",
       "Kinh nghiệm giảng dạy IELTS/TOEIC ít nhất 2 năm",
@@ -70,6 +64,7 @@ const jobData: Record<string, any> = {
       "Môi trường làm việc chuyên nghiệp",
       "Hỗ trợ tài liệu giảng dạy",
     ],
+    applyLink: "mailto:tuyendung@gnp.edu.vn?subject=Ứng tuyển Giáo Viên IELTS/TOEIC",
   },
   "tro-giang-tieng-anh": {
     title: "Trợ Giảng Tiếng Anh",
@@ -77,8 +72,7 @@ const jobData: Record<string, any> = {
     location: "TP. Hồ Chí Minh",
     type: "Part-time",
     salary: "8 - 12 triệu VNĐ",
-    description:
-      "Hỗ trợ giáo viên trong quá trình giảng dạy, chấm bài, tư vấn học viên. Phù hợp cho sinh viên năm cuối hoặc mới tốt nghiệp.",
+    description: "Hỗ trợ giáo viên trong quá trình giảng dạy, chấm bài, tư vấn học viên. Phù hợp cho sinh viên năm cuối hoặc mới tốt nghiệp.",
     requirements: [
       "Sinh viên năm 3, 4 hoặc mới tốt nghiệp chuyên ngành tiếng Anh",
       "IELTS 6.5+ hoặc TOEIC 750+",
@@ -97,6 +91,7 @@ const jobData: Record<string, any> = {
       "Học hỏi kinh nghiệm giảng dạy",
       "Cơ hội trở thành giáo viên chính thức",
     ],
+    applyLink: "mailto:tuyendung@gnp.edu.vn?subject=Ứng tuyển Trợ Giảng Tiếng Anh",
   },
   "nhan-vien-tu-van": {
     title: "Nhân Viên Tư Vấn Tuyển Sinh",
@@ -104,8 +99,7 @@ const jobData: Record<string, any> = {
     location: "TP. Hồ Chí Minh",
     type: "Full-time",
     salary: "10 - 20 triệu VNĐ + Hoa hồng",
-    description:
-      "Tư vấn khóa học cho học viên, chăm sóc khách hàng, đạt chỉ tiêu tuyển sinh. Hoa hồng hấp dẫn theo doanh số.",
+    description: "Tư vấn khóa học cho học viên, chăm sóc khách hàng, đạt chỉ tiêu tuyển sinh. Hoa hồng hấp dẫn theo doanh số.",
     requirements: [
       "Kỹ năng giao tiếp và thuyết phục tốt",
       "Tiếng Anh giao tiếp cơ bản",
@@ -125,240 +119,151 @@ const jobData: Record<string, any> = {
       "Đào tạo kỹ năng bán hàng",
       "Cơ hội thăng tiến lên trưởng nhóm",
     ],
+    applyLink: "mailto:tuyendung@gnp.edu.vn?subject=Ứng tuyển Nhân Viên Tư Vấn Tuyển Sinh",
   },
 }
 
-import { use } from "react"
+// 2. KHAI BÁO CÁC ĐƯỜNG DẪN STATIC ĐỂ BUILD LỖI XUẤT FILE TĨNH
+export async function generateStaticParams() {
+  return Object.keys(jobData).map((id) => ({
+    id: id,
+  }))
+}
 
-export default function JobDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const unwrappedParams = use(params)
+export const dynamicParams = false
+
+// 3. COMPONENT CHÍNH (Server Component)
+export default async function JobDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const unwrappedParams = await params
   const job = jobData[unwrappedParams.id]
-  const [isApplicationOpen, setIsApplicationOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-    cvFile: null as File | null,
-  })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Application submitted:", formData)
-    alert("Cảm ơn bạn đã ứng tuyển! Chúng tôi sẽ liên hệ với bạn sớm nhất.")
-    setFormData({ name: "", phone: "", email: "", message: "", cvFile: null })
-    setIsApplicationOpen(false)
-  }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData({ ...formData, cvFile: e.target.files[0] })
-    }
-  }
 
   if (!job) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Không tìm thấy vị trí tuyển dụng</h1>
-          <Link href="/tuyen-dung">
-            <Button>Quay lại danh sách</Button>
-          </Link>
-        </div>
-      </div>
-    )
+    notFound()
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50/50">
       <Header />
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <Link
             href="/tuyen-dung"
-            className="inline-flex items-center gap-2 text-orange-600 mb-6"
+            className="inline-flex items-center gap-2 text-[#F2701A] hover:text-[#e06010] transition-colors mb-6 font-medium"
           >
             <ChevronLeft className="h-5 w-5" />
             <span>Quay lại danh sách</span>
           </Link>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
-            <div className="flex items-start gap-6 mb-6">
-              <div className="flex-shrink-0 w-20 h-20 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center">
+          {/* Header Job */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+            <div className="flex flex-col md:flex-row md:items-start gap-6 mb-6">
+              <div className="flex-shrink-0 w-20 h-20 bg-indigo-50/50 rounded-xl flex items-center justify-center border border-indigo-100">
                 <Image
                   src="/images/gnp-logo.png"
                   alt="GNP"
                   width={70}
                   height={70}
-                  className="w-16 h-16 object-contain"
+                  className="w-14 h-14 object-contain"
                 />
               </div>
               <div className="flex-1">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">{job.title}</h1>
-                <p className="text-lg text-gray-600 flex items-center gap-2 mb-4">
-                  <Building2 className="h-5 w-5" />
+                <p className="text-lg text-gray-600 flex items-center gap-2 mb-5 font-medium">
+                  <Building2 className="h-5 w-5 text-indigo-500" />
                   {job.company}
                 </p>
-                <div className="flex flex-wrap gap-4 text-gray-600">
-                  <div className="flex items-center gap-2">
-                    <DollarSign className="h-5 w-5 text-coral-500" />
-                    <span className="font-semibold text-coral-500">{job.salary}</span>
+                <div className="flex flex-wrap gap-y-3 gap-x-6 text-gray-600">
+                  <div className="flex items-center gap-2 bg-orange-50 px-3 py-1.5 rounded-full">
+                    <DollarSign className="h-5 w-5 text-[#F2701A]" />
+                    <span className="font-semibold text-[#F2701A]">{job.salary}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5" />
-                    <span>{job.location}</span>
+                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full">
+                    <MapPin className="h-5 w-5 text-gray-500" />
+                    <span className="font-medium">{job.location}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5" />
-                    <span>{job.type}</span>
+                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-full">
+                    <Clock className="h-5 w-5 text-gray-500" />
+                    <span className="font-medium">{job.type}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <Button
-              size="lg"
-              className="w-full md:w-auto bg-[#F2701A]  hover:bg-[#FD9800] shadow-lg"
-              onClick={() => setIsApplicationOpen(true)}
+            {/* Sử dụng thẻ <a> thay vì <Button> có onClick */}
+            <a 
+              href={job.applyLink}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3 bg-[#F2701A] hover:bg-[#e06010] text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
             >
               <Briefcase className="h-5 w-5 mr-2" />
               Ứng Tuyển Ngay
-            </Button>
+            </a>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Mô tả công việc</h2>
+          {/* Mô tả */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Mô tả công việc</h2>
             <p className="text-gray-700 leading-relaxed">{job.description}</p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Yêu cầu</h2>
-            <ul className="space-y-3">
+          {/* Yêu cầu */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Yêu cầu</h2>
+            <ul className="space-y-4">
               {job.requirements.map((req: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-3 text-gray-700">
                   <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>{req}</span>
+                  <span className="leading-relaxed">{req}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Trách nhiệm công việc</h2>
-            <ul className="space-y-3">
+          {/* Trách nhiệm */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Trách nhiệm công việc</h2>
+            <ul className="space-y-4">
               {job.responsibilities.map((resp: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-3 text-gray-700">
                   <CheckCircle2 className="h-5 w-5 text-indigo-500 flex-shrink-0 mt-0.5" />
-                  <span>{resp}</span>
+                  <span className="leading-relaxed">{resp}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Quyền lợi</h2>
-            <ul className="space-y-3">
+          {/* Quyền lợi */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">Quyền lợi</h2>
+            <ul className="space-y-4">
               {job.benefits.map((benefit: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-3 text-gray-700">
                   <CheckCircle2 className="h-5 w-5 text-purple-500 flex-shrink-0 mt-0.5" />
-                  <span>{benefit}</span>
+                  <span className="leading-relaxed">{benefit}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-200 text-center bg-indigo-50/50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Bạn Đã Sẵn Sàng Gia Nhập GNP?</h3>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+
+          {/* Bottom CTA */}
+          <div className="mt-12 pt-8 border-t border-gray-200 text-center bg-indigo-50/30 rounded-2xl p-8 md:p-12 border border-indigo-50">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Bạn Đã Sẵn Sàng Gia Nhập GNP?</h3>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-lg">
               Gửi thông tin ứng tuyển của bạn cho vị trí này. Chúng tôi luôn tìm kiếm những thành viên nhiệt huyết để phát triển cùng GNP English Academy.
             </p>
-            <Button
-              size="lg"
-              className="bg-[#F2701A] shadow-xl shadow-indigo-100 px-10 h-14 text-lg transform transition hover:-translate-y-1"
-              onClick={() => setIsApplicationOpen(true)}
+            <a
+              href={job.applyLink}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-[#F2701A] hover:bg-[#e06010] text-white px-10 h-14 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               <Send className="h-5 w-5 mr-2" />
-              Gửi thông tin CV ngay
-            </Button>
+              Gửi CV Ứng Tuyển
+            </a>
           </div>
         </div>
-      </main>      <Dialog open={isApplicationOpen} onOpenChange={setIsApplicationOpen}>
-        <DialogContent className="sm:max-w-[550px] max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl">Ứng tuyển: {job.title}</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-5 mt-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Họ và tên *</Label>
-              <Input
-                id="name"
-                placeholder="Nhập họ và tên"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                className="h-11"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Số điện thoại *</Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="Nhập số điện thoại"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                required
-                className="h-11"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Nhập email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-                className="h-11"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="cv">CV của bạn (PDF, DOC, DOCX) *</Label>
-              <div className="relative">
-                <Input
-                  id="cv"
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleFileChange}
-                  required
-                  className="h-11 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                />
-                {formData.cvFile && (
-                  <p className="text-sm text-gray-600 mt-2 flex items-center gap-2">
-                    <Upload className="h-4 w-4" />
-                    {formData.cvFile.name}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="message">Giới thiệu bản thân</Label>
-              <Textarea
-                id="message"
-                placeholder="Kinh nghiệm, kỹ năng và lý do bạn phù hợp với vị trí này..."
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="resize-none"
-              />
-            </div>
-            <Button type="submit" className="w-full h-11" size="lg">
-              Gửi đơn ứng tuyển
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
-
+      </main>
       <Footer />
-    </div >
+    </div>
   )
 }

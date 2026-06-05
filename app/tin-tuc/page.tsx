@@ -226,18 +226,7 @@ function SidebarForm() {
           >
             Tư vấn & Kiểm tra
           </h3>
-          <h3
-            className="text-[22px] font-black uppercase leading-tight tracking-wide mt-0.5"
-            style={{
-              color: "#fff",
-              textShadow:
-                "-2px -2px 0 #c2410c, 2px -2px 0 #c2410c, -2px 2px 0 #c2410c, 2px 2px 0 #c2410c, 0 3px 6px rgba(0,0,0,0.15)",
-              paintOrder: "stroke fill",
-              WebkitTextStroke: "1.5px #c2410c",
-            }}
-          >
-            Miễn phí
-          </h3>
+         
         </div>
 
         {/* Small pencil/pen decoration */}

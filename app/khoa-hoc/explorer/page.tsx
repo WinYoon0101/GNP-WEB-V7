@@ -83,11 +83,7 @@ export default function PreschoolEnglishPage() {
                         </div>
                      </div>
 
-                     {/* Hero Image - Order 1 on Mobile (Visual First) or Order 2? 
-                     User likes "Giống nhau", desktop is Text-left, Image-right. 
-                     Standard stacking is Text-top, Image-bottom (Order 2 here).
-                     Let's keep Text First (Order 1) on mobile too for consistency.
-                  */}
+               
                      <div className="relative animate-in fade-in zoom-in duration-700 delay-200 flex justify-center lg:block order-1 lg:order-2">
                         {/* Image Frame */}
                         <div className="relative z-10 w-[80vw] lg:w-full max-w-[400px] lg:max-w-[500px] aspect-[4/3] rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden shadow-2xl transform  transition-all duration-700 border-[6px] lg:border-[8px] border-white/20 mx-auto">
