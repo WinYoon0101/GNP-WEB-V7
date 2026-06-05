@@ -85,7 +85,7 @@ export function Header() {
                         : "text-gray-600 hover:text-orange-500 px-3"
                   )}
                 >
-                  {/* 🌞 SUMMER ICON */}
+             
                   {item.isSummer ? (
                     <motion.div
                       animate={shakeAnimation}

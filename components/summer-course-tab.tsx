@@ -77,7 +77,7 @@ export function SummerCourseTab() {
             {/* 1. HERO SECTION */}
             <section className="relative overflow-hidden bg-[#FD7400] lg:min-h-[650px] flex items-center">
 
-                {/* ⭐ TOP SKY CURVE */}
+            
                 <div className="absolute top-0 left-0 w-full z-0">
                     <svg viewBox="0 0 1200 200" preserveAspectRatio="none" className="w-full h-[180px] md:h-[220px]">
                         <path
@@ -87,14 +87,13 @@ export function SummerCourseTab() {
                     </svg>
                 </div>
 
-                {/* ⭐ SUN */}
+     
                 <div className="absolute top-6 right-6 md:right-16 z-10">
                     <div className="w-20 h-20 md:w-48 md:h-48  flex items-center justify-center">
                         <img src="/images/summer-course/mattroi.png" className="w-full" />
                     </div>
                 </div>
 
-                {/* ⭐ CLOUDS */}
                 <div className="absolute top-80 left-0 w-42 h-30 opacity-70">
                     <img src="/images/summer-course/may.png" className="w-full" />
                 </div>
@@ -129,10 +128,7 @@ export function SummerCourseTab() {
                                 {/* Glow */}
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-white/20 rounded-full blur-3xl -z-10" />
 
-                                {/* ⭐ ICON FLOAT GIỮ NGUYÊN */}
-                                {/* <div className="absolute -top-10 -left-6 w-16 h-16 lg:w-20 lg:h-20 animate-soft-float z-30" style={{ animationDelay: '0.5s' }}>
-                        <img src="/graduation.png" className="w-full rotate-[-15deg] drop-shadow-xl" />
-                    </div> */}
+                            
 
                                 <div className="absolute bottom-[7%] -right-10 w-20 h-20 lg:w-54 lg:h-54 animate-soft-float z-30" style={{ animationDelay: '1.2s' }}>
                                     <img src="/images/summer-course/khicau.png" className="w-full rotate-[15deg] drop-shadow-2xl" />
@@ -181,7 +177,7 @@ export function SummerCourseTab() {
                                         ĐĂNG KÝ NGAY
                                     </Button>
 
-                                    {/* ⭐ HOT FLOAT RIGHT */}
+                                   
                                     <div className="absolute right-[-10px] md:right-[5px] bottom-[-20px] md:bottom-[10px] z-20 rotate-[6deg] animate-soft-float pointer-events-none">
                                         <img
                                             src="/images/summer-course/hot.png"
@@ -195,7 +191,7 @@ export function SummerCourseTab() {
                     </div>
                 </div>
 
-                {/* ⭐ BOTTOM CURVE */}
+
                 <div className="absolute bottom-0 left-0 w-full z-30">
                     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[80px] fill-slate-50">
                         <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"></path>

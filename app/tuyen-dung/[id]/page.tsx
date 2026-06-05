@@ -188,7 +188,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
                 </div>
               </div>
             </div>
-            {/* Sử dụng thẻ <a> thay vì <Button> có onClick */}
+     
             <a 
               href={job.applyLink}
               target="_blank" 

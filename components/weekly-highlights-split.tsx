@@ -194,7 +194,7 @@ export function WeeklyHighlightsSplit() {
 
     return (
         <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
-            {/* Decorative BG blobs */}
+
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -402,7 +402,7 @@ export function WeeklyHighlightsSplit() {
                                                     <div className={cn("px-5 pb-6 md:px-6 md:pb-7 pt-0 border-t", phase.border)}>
                                                         <div className="pt-5 grid sm:grid-cols-2 gap-4">
 
-                                                            {/* Học gì? */}
+                                                       
                                                             <div className={cn("rounded-2xl p-5", phase.softBg)}>
                                                                 <div className="flex items-center gap-2 mb-4">
                                                                     <span className="text-lg">📚</span>
@@ -418,7 +418,7 @@ export function WeeklyHighlightsSplit() {
                                                                 </ul>
                                                             </div>
 
-                                                            {/* Hoạt động */}
+                                                         
                                                             <div className="rounded-2xl p-5 bg-white border-2 border-current/10 flex flex-col justify-between">
                                                                 <div className="flex items-center gap-2 mb-4">
                                                                     <span className="text-lg">🎯</span>

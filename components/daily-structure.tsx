@@ -119,13 +119,13 @@ export function DailyStructure() {
             </h2>
           </div>
 
-          {/* VÙNG CUỘN ĐỘC LẬP - MIỄN NHIỄM VỚI LỖI GIẬT VÀ OVERFLOW CỦA WEB */}
+         
           <div 
              ref={scrollContainerRef}
              className="w-full h-[75vh] overflow-y-auto flex gap-12 xl:gap-20 relative [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-2"
           >
               
-              {/* Bên trái: Hộp ảnh ghim cục bộ - Cứng chắc mượt mà hoàn toàn bằng phần cứng đồ họa */}
+
               <div className="w-1/2 sticky top-0 h-[75vh] shrink-0 py-[3vh] z-10">
                 <div className="w-full h-full bg-slate-50/70 rounded-[3.5rem] p-8 relative flex items-center justify-center border border-orange-100/80 shadow-md overflow-hidden">
                   <AnimatePresence mode="wait">
