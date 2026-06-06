@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { ContactMenuButton } from "@/components/contact-menu-button"
+
 
 import "./globals.css"
 
@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   },
 }
 
+import { Providers } from "@/components/Providers"
+import { ContactWrapper } from "@/components/ContactWrapper"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,9 +56,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} font-sans antialiased`}>
-        {children}
-        <ContactMenuButton />
-        <Analytics />
+        <Providers>
+          {children}
+          <ContactWrapper />
+          <Analytics />
+        </Providers>
       </body>
     </html>
   )

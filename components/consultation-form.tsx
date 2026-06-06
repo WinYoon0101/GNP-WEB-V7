@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Star, Rocket, Sparkles, Loader2 } from "lucide-react";
 import { submitToGoogleSheets } from "@/lib/google-sheets";
+import { createBrowserClient } from "@supabase/ssr"; // Import Supabase client
 
 export function ConsultationForm() {
   const [formData, setFormData] = useState({
@@ -19,19 +20,48 @@ export function ConsultationForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const result = await submitToGoogleSheets({
-      ...formData,
-      formType: "General Consultation (Footer)"
-    });
+    try {
+      // 1. Khởi tạo Supabase client
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
 
-    setIsSubmitting(false);
-    
-    if (result.success) {
-      alert("Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.");
+      // 2. Gửi dữ liệu lên bảng consultations của Supabase
+      const { error: supabaseError } = await supabase
+        .from('consultations')
+        .insert([
+          { 
+            name: formData.name, 
+            phone: formData.phone, 
+            email: formData.email || null 
+          }
+        ]);
+
+      if (supabaseError) {
+        console.error("Lỗi khi lưu vào Supabase:", supabaseError);
+      }
+
+      // 3. Tiếp tục gửi dữ liệu lên Google Sheets
+      const result = await submitToGoogleSheets({
+        ...formData,
+        formType: "General Consultation (Footer)"
+      });
+
+      if (result.success) {
+        alert("Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.");
+      } else {
+        alert("Cảm ơn bạn! Thông tin của bạn đã được ghi nhận. (Lưu ý: Hệ thống đang được cấu hình)");
+      }
+      
+      // Xóa form sau khi gửi
       setFormData({ name: "", phone: "", email: "" });
-    } else {
-      alert("Cảm ơn bạn! Thông tin của bạn đã được ghi nhận. (Lưu ý: Hệ thống đang được cấu hình)");
-      setFormData({ name: "", phone: "", email: "" });
+
+    } catch (error) {
+      console.error("Lỗi tổng thể quá trình submit:", error);
+      alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

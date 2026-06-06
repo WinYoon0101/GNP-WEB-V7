@@ -1,6 +1,5 @@
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
-import { FlashSale } from "@/components/flash-sale";
 import { StatsSection } from "@/components/stats-section";
 import { About } from "@/components/about";
 import { GPSPhilosophy } from "@/components/gps-philosophy";
@@ -12,10 +11,10 @@ import { ConsultationForm } from "@/components/consultation-form";
 import { Footer } from "@/components/footer";
 import { TrialBanner } from "@/components/trial-banner";
 import { ExpandingCourseCards } from "@/components/expanding-course-cards";
-import { WhatsHot } from "@/components/whats-hot";
 import GalleryScroll from "@/components/GalleryScroll";
 import { BranchesCarousel } from "@/components/branches-carousel";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { FooterWrapper } from "@/components/FooterWrapper";
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -23,7 +22,7 @@ export default function Home() {
       <main>
         <Hero />
         <ScrollReveal animation="fadeInUp"><ExpandingCourseCards /></ScrollReveal>
-        <ScrollReveal animation="fadeInUp" delay={0.1}><FlashSale /></ScrollReveal>
+        {/* <ScrollReveal animation="fadeInUp" delay={0.1}><FlashSale /></ScrollReveal> */}
         <ScrollReveal animation="fadeInUp"><About /></ScrollReveal>
         <ScrollReveal animation="fadeInUp"><BranchesCarousel /></ScrollReveal>
         <ScrollReveal animation="fadeInUp"><GalleryScroll /></ScrollReveal>
@@ -33,7 +32,7 @@ export default function Home() {
         <ScrollReveal animation="popIn"><LearningMethods /></ScrollReveal>
         <ScrollReveal animation="fadeInUp"><ConsultationForm /></ScrollReveal>
       </main>
-      <Footer />
+      <FooterWrapper />
     </div>
   );
 }

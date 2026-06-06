@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,6 +19,7 @@ import {
   Navigation,
 } from "lucide-react";
 import { submitToGoogleSheets } from "@/lib/google-sheets";
+import { createBrowserClient } from "@supabase/ssr"; // Thêm import Supabase
 
 export function Contact() {
   const [mounted, setMounted] = useState(false);
@@ -41,23 +42,46 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const result = await submitToGoogleSheets({
-      ...formData,
-      formType: "Contact Page Form"
-    });
+    try {
 
-    setIsSubmitting(false);
-    
-    if (result.success) {
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+
+   
+      const { error: supabaseError } = await supabase
+        .from('consultations')
+        .insert([
+          { 
+            name: formData.name, 
+            phone: formData.phone, 
+            email: formData.email || null,
+            course: formData.course || null,
+            message: formData.message || null
+          }
+        ]);
+
+      if (supabaseError) {
+        console.error("Lỗi khi lưu vào Supabase:", supabaseError);
+       
+      }
+
+   
+      const result = await submitToGoogleSheets({
+        ...formData,
+        formType: "Contact Page Form"
+      });
+
+  
       setIsSuccess(true);
       setFormData({ name: "", phone: "", email: "", course: "", message: "" });
       setTimeout(() => setIsSuccess(false), 5000);
-    } else {
-      // Even if Google Sheets URL is not configured, we proceed to success state 
-      // but the data transmission will fail with a console warning.
-      setIsSuccess(true);
-      setFormData({ name: "", phone: "", email: "", course: "", message: "" });
-      setTimeout(() => setIsSuccess(false), 5000);
+
+    } catch (error) {
+      console.error("Lỗi tổng thể quá trình submit:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -65,26 +89,22 @@ export function Contact() {
     {
       name: "Trụ sở chính",
       address: "33B Trần Bình Trọng, P. Bình Lợi, TP. HCM",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752921c1ad4ddd%3A0x7c1c3d3b3f5e5e5e!2s33B%20Tr%E1%BA%A7n%20B%C3%ACnh%20Tr%E1%BB%8Dng%2C%20B%C3%ACnh%20L%E1%BB%A3i%20Trung%2C%20B%C3%ACnh%20Th%E1%BA%A1nh%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1svi!2s!4v1234567890",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752921c1ad4ddd%3A0x7c1c3d3b3f5e5e5e!2s33B%20Tr%E1%BA%A7n%20B%C3%ACnh%20Tr%E1%BB%8Dng%2C%20B%C3%ACnh%20L%E1%BB%A3i%20Trung%2C%20B%C3%ACnh%20Th%E1%BA%A1nh%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1svi!2s!4v1234567890",
     },
     {
       name: "Cơ sở 1",
       address: "46A Trần Bình Trọng, P. Bình Lợi, TP. HCM",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752918cb29f037%3A0x6201ea5e48504015!2s46A%20Tr%E1%BA%A7n%20B%C3%ACnh%20Tr%E1%BB%8Dng%2C%20P.%20B%C3%ACnh%20L%E1%BB%A3i%2C%20TP.%20HCM!5e0!3m2!1svi!2s!4v1234567890",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752918cb29f037%3A0x6201ea5e48504015!2s46A%20Tr%E1%BA%A7n%20B%C3%ACnh%20Tr%E1%BB%8Dng%2C%20P.%20B%C3%ACnh%20L%E1%BB%A3i%2C%20TP.%20HCM!5e0!3m2!1svi!2s!4v1234567890",
     },
     {
       name: "Cơ sở 2",
       address: "145 Nguyễn Văn Thương, TP. HCM",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ5JzIyLjgiTiAxMDbCsDQxJzIwLjQiRQ!5e0!3m2!1svi!2s!4v1234567890",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ5JzIyLjgiTiAxMDbCsDQxJzIwLjQiRQ!5e0!3m2!1svi!2s!4v1234567890",
     },
     {
       name: "Cơ sở 3",
       address: "134 Nơ Trang Long, P. Bình Thạnh, TP. HCM",
-      mapUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ5JzIyLjgiTiAxMDbCsDQxJzIwLjQiRQ!5e0!3m2!1svi!2s!4v1234567890",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.854!2d106.689!3d10.823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ5JzIyLjgiTiAxMDbCsDQxJzIwLjQiRQ!5e0!3m2!1svi!2s!4v1234567890",
     },
   ];
 
@@ -108,7 +128,7 @@ export function Contact() {
       <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         {/* Header Section */}
         <div className="mx-auto mb-12 lg:mb-20 max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
+          <span className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4 text-orange-600 font-medium">
             Khởi đầu hành trình mới
           </span>
           <h2 className="mb-4 text-balance text-4xl lg:text-5xl font-black text-[#FD9800] tracking-tight">
@@ -292,7 +312,6 @@ export function Contact() {
                       <p className="font-bold text-lg md:text-xl tracking-tight">
                         083 999 0997
                       </p>
-
                     </div>
                   </div>
 

@@ -2,110 +2,84 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-const branches = [
-  {
-    title: "Trụ sở chính",
-    address: "33B Trần Bình Trọng, P. Bình Lợi Trung",
-    image: "/co_so_1.jpg",
-  },
-  {
-    title: "Cơ sở 1",
-    address: "46A Trần Bình Trọng, P. Bình Lợi Trung",
-    image: "/co_so_1.jpg",
-  },
-  {
-    title: "Cơ sở 2",
-    address: "145 Nguyễn Văn Thương, P. Thanh Mỹ Tây",
-    image: "/co_so_2.jpg",
-  },
-  {
-    title: "Cơ sở 3",
-    address: "134 Nơ Trang Long, P. Bình Thạnh",
-    image: "/co_so_3.jpg",
-  },
-];
+import { createBrowserClient } from "@supabase/ssr";
 
 export function BranchesCarousel() {
+  const [branches, setBranches] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const isMobile = useIsMobile();
 
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+
+  // Fetch dữ liệu từ Supabase
   useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % branches.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+    const fetchBranches = async () => {
+      const { data, error } = await supabase
+        .from("branches")
+        .select("*")
+        .order("sort_order", { ascending: true });
+      
+      if (!error && data) setBranches(data);
+      setIsLoading(false);
+    };
+    fetchBranches();
+  }, [supabase]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % branches.length);
-    setIsAutoPlaying(false);
   };
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + branches.length) % branches.length);
-    setIsAutoPlaying(false);
   };
 
   const getVisibleBranches = () => {
-    const branchesToShow = [];
+    if (branches.length === 0) return [];
     const count = isMobile ? 1 : 3;
+    const items = [];
     for (let i = 0; i < count; i++) {
-      branchesToShow.push(branches[(currentIndex + i) % branches.length]);
+      items.push(branches[(currentIndex + i) % branches.length]);
     }
-    return branchesToShow;
+    return items;
   };
 
-  const cardWidth = isMobile ? "w-full" : "w-[calc(33.333%-1rem)]";
+  if (isLoading) return <div className="h-96 flex items-center justify-center"><Loader2 className="animate-spin text-orange-500" /></div>;
+  if (branches.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-10 bg-white to-orange-50/30">
+    <section className="py-16 md:py-10 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#FF7A00]">
-            HỆ THỐNG CƠ SỞ GNP
-          </h2>
-          <p className="text-gray-700 text-sm md:text-lg max-w-3xl mx-auto">
-            Khám phá các chi nhánh hiện đại của chúng tôi tại các địa điểm chiến
-            lược trong TP. HCM
-          </p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#FF7A00]">HỆ THỐNG CƠ SỞ GNP</h2>
         </div>
 
         <div className="relative max-w-7xl mx-auto">
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur hover:bg-white shadow-lg -ml-3 md:-ml-6 h-10 w-10 md:h-12 md:w-12"
-            onClick={prevSlide}
-          >
-            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+          <Button variant="outline" size="icon" className="absolute left-0 top-1/2 z-10 -ml-4 md:-ml-6" onClick={prevSlide}>
+            <ChevronLeft className="h-6 w-6" />
           </Button>
 
-          <div className="overflow-hidden px-4 md:px-8">
-            <div className="flex gap-3 md:gap-6 justify-center transition-transform duration-500 ease-in-out">
+          <div className="overflow-hidden px-4">
+            <div className="flex gap-6 justify-center">
               {getVisibleBranches().map((branch, index) => (
-                <div
-                  key={`${branch.title}-${index}`}
-                  className={`flex-shrink-0 ${cardWidth} transition-all duration-500`}
-                >
-                  <div className="group relative overflow-hidden rounded-3xl shadow-lg transition-all hover:scale-105 hover:shadow-2xl">
+                <div key={branch.id} className={`flex-shrink-0 ${isMobile ? "w-full" : "w-[30%]"}`}>
+                  <div className="group relative overflow-hidden rounded-3xl shadow-lg transition-transform hover:scale-105">
                     <Image
-                      src={branch.image || "/placeholder.svg"}
+                      src={branch.image_url}
                       alt={branch.title}
                       width={400}
                       height={300}
-                      className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="h-72 w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-100 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 text-white">
-                      <p className="font-semibold text-lg">{branch.title}</p>
+                      <p className="font-bold text-lg">{branch.title}</p>
                       <p className="text-sm">{branch.address}</p>
                     </div>
                   </div>
@@ -114,13 +88,8 @@ export function BranchesCarousel() {
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur hover:bg-white shadow-lg -mr-3 md:-mr-6 h-10 w-10 md:h-12 md:w-12"
-            onClick={nextSlide}
-          >
-            <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+          <Button variant="outline" size="icon" className="absolute right-0 top-1/2 z-10 -mr-4 md:-mr-6" onClick={nextSlide}>
+            <ChevronRight className="h-6 w-6" />
           </Button>
         </div>
 
@@ -128,12 +97,8 @@ export function BranchesCarousel() {
           {branches.map((_, index) => (
             <button
               key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-orange-500" : "w-2 bg-gray-300"
-                }`}
-              onClick={() => {
-                setCurrentIndex(index);
-                setIsAutoPlaying(false);
-              }}
+              className={`h-2 rounded-full transition-all ${index === currentIndex ? "w-8 bg-orange-500" : "w-2 bg-gray-300"}`}
+              onClick={() => setCurrentIndex(index)}
             />
           ))}
         </div>
