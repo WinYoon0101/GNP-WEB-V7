@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,9 +12,10 @@ import {
   Clock,
   ChevronLeft,
   ChevronRight,
+  Search,
+  Filter,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 /* ──────────────────── MINI CALENDAR ──────────────────── */
 function MiniCalendar() {
@@ -47,43 +48,43 @@ function MiniCalendar() {
         <div className="flex gap-1">
           <button
             onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
-            className="w-7 h-7 rounded-full hover:bg-primary/10 flex items-center justify-center"
+            className="w-7 h-7 rounded-full hover:bg-orange-100 flex items-center justify-center transition-colors"
           >
-            <ChevronLeft className="w-4 h-4 text-slate-400" />
+            <ChevronLeft className="w-4 h-4 text-slate-500" />
           </button>
           <button
             onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
-            className="w-7 h-7 rounded-full hover:bg-primary/10 flex items-center justify-center"
+            className="w-7 h-7 rounded-full hover:bg-orange-100 flex items-center justify-center transition-colors"
           >
-            <ChevronRight className="w-4 h-4 text-slate-400" />
+            <ChevronRight className="w-4 h-4 text-slate-500" />
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-0.5 mb-2">
+      <div className="grid grid-cols-7 gap-1 mb-2">
         {dayNames.map((n) => (
           <div
             key={n}
-            className="text-center text-[10px] font-bold text-primary/60 py-1"
+            className="text-center text-[10px] font-bold text-slate-400 py-1"
           >
             {n}
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-0.5">
+      <div className="grid grid-cols-7 gap-1">
         {days.map((d, i) => (
           <div key={i} className="flex items-center justify-center">
             {d ? (
               <div
-                className={`w-8 h-8 rounded-full text-[11px] font-semibold flex items-center justify-center ${
+                className={`w-7 h-7 rounded-full text-[11px] font-medium flex items-center justify-center transition-all ${
                   isToday(d)
-                    ? "bg-primary text-white shadow shadow-primary/30"
-                    : "text-slate-500 hover:bg-primary/5"
+                    ? "bg-orange-500 text-white shadow-md shadow-orange-500/30 font-bold"
+                    : "text-slate-600 hover:bg-orange-50 hover:text-orange-600 cursor-pointer"
                 }`}
               >
                 {d}
               </div>
             ) : (
-              <div className="w-8 h-8" />
+              <div className="w-7 h-7" />
             )}
           </div>
         ))}
@@ -103,57 +104,27 @@ function SidebarForm() {
   };
 
   return (
-    <div className="rounded-2xl overflow-hidden shadow-lg border border-orange-200/60">
-      {/* Header - Orange background with decorative cartoon text */}
-      <div className="bg-gradient-to-br from-primary via-orange-500 to-amber-500 px-5 py-6 text-center relative overflow-hidden">
-        {/* Decorative circles */}
-        <div className="absolute -top-6 -right-6 w-20 h-20 bg-white/10 rounded-full" />
-        <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-white/8 rounded-full" />
-        <div className="absolute top-3 left-6 w-3 h-3 bg-white/20 rounded-full" />
-        <div className="absolute bottom-4 right-8 w-2 h-2 bg-white/15 rounded-full" />
-
-        {/* Stylized text with stroke effect */}
+    <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white">
+      <div className="bg-slate-900 px-6 py-8 text-center relative overflow-hidden">
+        {/* Modern decorative elements */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-500/20 rounded-full blur-xl transform -translate-x-1/2 translate-y-1/2" />
+        
         <div className="relative z-10">
-          <h3
-            className="text-[22px] font-black uppercase leading-tight tracking-wide"
-            style={{
-              color: "#fff",
-              textShadow:
-                "-2px -2px 0 #c2410c, 2px -2px 0 #c2410c, -2px 2px 0 #c2410c, 2px 2px 0 #c2410c, 0 3px 6px rgba(0,0,0,0.15)",
-              paintOrder: "stroke fill",
-              WebkitTextStroke: "1.5px #c2410c",
-            }}
-          >
+          <h3 className="text-2xl font-bold text-white mb-2">
             Tư vấn & Kiểm tra
           </h3>
-          <h3
-            className="text-[22px] font-black uppercase leading-tight tracking-wide mt-0.5"
-            style={{
-              color: "#fff",
-              textShadow:
-                "-2px -2px 0 #c2410c, 2px -2px 0 #c2410c, -2px 2px 0 #c2410c, 2px 2px 0 #c2410c, 0 3px 6px rgba(0,0,0,0.15)",
-              paintOrder: "stroke fill",
-              WebkitTextStroke: "1.5px #c2410c",
-            }}
-          >
-            Miễn phí
-          </h3>
-        </div>
-
-        {/* Small pencil/pen decoration */}
-        <div className="absolute -right-1 -bottom-1 rotate-[-30deg] opacity-20">
-          <svg width="50" height="50" viewBox="0 0 24 24" fill="white">
-            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-          </svg>
+          <p className="text-orange-400 font-medium tracking-wide uppercase text-sm">
+            Hoàn toàn miễn phí
+          </p>
         </div>
       </div>
 
-      {/* Form body */}
-      <div className="bg-white p-6 pt-7">
-        <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="p-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
-              className="w-full border-0 border-b-2 border-slate-200 focus:border-primary outline-none py-3 text-sm text-slate-700 placeholder:text-slate-400 transition-colors bg-transparent"
+              className="w-full bg-slate-50 border border-slate-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 transition-all outline-none"
               placeholder="Họ và tên phụ huynh"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -162,7 +133,7 @@ function SidebarForm() {
           </div>
           <div>
             <input
-              className="w-full border-0 border-b-2 border-slate-200 focus:border-primary outline-none py-3 text-sm text-slate-700 placeholder:text-slate-400 transition-colors bg-transparent"
+              className="w-full bg-slate-50 border border-slate-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 transition-all outline-none"
               placeholder="Số điện thoại"
               type="tel"
               value={form.phone}
@@ -172,8 +143,8 @@ function SidebarForm() {
           </div>
           <div>
             <input
-              className="w-full border-0 border-b-2 border-slate-200 focus:border-primary outline-none py-3 text-sm text-slate-700 placeholder:text-slate-400 transition-colors bg-transparent"
-              placeholder="E-mail"
+              className="w-full bg-slate-50 border border-slate-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 transition-all outline-none"
+              placeholder="E-mail (tùy chọn)"
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -183,19 +154,18 @@ function SidebarForm() {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white font-extrabold text-sm py-3.5 rounded-full shadow-md shadow-orange-200 hover:shadow-lg hover:shadow-orange-300/50 transition-all hover:scale-[1.02] uppercase tracking-wider border-2 border-orange-300/50"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
             >
-              Đăng ký
+              Đăng ký ngay
             </button>
           </div>
         </form>
-        <p className="text-[10px] text-slate-400 text-center mt-4 leading-relaxed">
-          *Thông tin được đồng ý tuân theo{" "}
-          <span className="text-primary font-semibold cursor-pointer hover:underline">
+        <p className="text-xs text-slate-400 text-center mt-4">
+          Bằng việc đăng ký, bạn đồng ý với{" "}
+          <Link href="/chinh-sach-bao-mat" className="text-orange-500 hover:underline">
             chính sách bảo mật
-          </span>
-          <br />
-          và bảo vệ thông tin cá nhân.
+          </Link>{" "}
+          của chúng tôi.
         </p>
       </div>
     </div>
@@ -220,21 +190,46 @@ export default function TinTucClient({ posts }: { posts: any[] }) {
     [posts]
   );
 
+  // Lọc danh mục duy nhất
+  const categories = useMemo(() => {
+    const cats = new Map();
+    cats.set("all", { name: "Tất cả tin tức", slug: "all" });
+    allArticles.forEach((a) => {
+      if (!cats.has(a.categoryId)) {
+        cats.set(a.categoryId, { name: a.category, slug: a.categoryId });
+      }
+    });
+    return Array.from(cats.values());
+  }, [allArticles]);
+
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [showCount, setShowCount] = useState(6);
+
+  const filteredArticles = useMemo(() => {
+    if (activeCategory === "all") return allArticles;
+    return allArticles.filter((a) => a.categoryId === activeCategory);
+  }, [allArticles, activeCategory]);
+
   if (!allArticles.length) {
     return (
-      <div className="min-h-screen bg-[#faf9f7] text-slate-900">
+      <div className="min-h-screen bg-slate-50 flex flex-col">
         <Header />
-        <main className="py-32 text-center text-gray-500">Chưa có bài viết nào.</main>
+        <main className="flex-1 flex items-center justify-center flex-col gap-4">
+          <div className="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center">
+            <Filter className="w-10 h-10 text-orange-500" />
+          </div>
+          <p className="text-slate-500 font-medium">Chưa có bài viết nào được đăng.</p>
+        </main>
         <Footer />
       </div>
     );
   }
 
-  const featured = allArticles[0];
-  const sideNews = allArticles.slice(1, 5);
-  const rest = allArticles.slice(1);
+  // Phân chia layout: 1 Nổi bật, 4 Tin nhỏ, còn lại là Grid
+  const featured = filteredArticles[0];
+  const sideNews = filteredArticles.slice(1, 5);
+  const rest = filteredArticles.slice(5);
 
-  const [showCount, setShowCount] = useState(4);
   const gridItems = rest.slice(0, showCount);
   const hasMore = showCount < rest.length;
 
@@ -242,285 +237,306 @@ export default function TinTucClient({ posts }: { posts: any[] }) {
     (a) => new Date(a.date) >= new Date()
   );
 
-  const todayStr = new Date().toLocaleDateString("vi-VN");
-
   return (
-    <div className="min-h-screen bg-[#faf9f7] text-slate-900">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans">
       <Header />
-      <main className="relative overflow-hidden">
-        {/* ══════ HERO BANNER ══════ */}
-<div className="relative bg-gradient-to-br from-orange-100 via-orange-50 to-amber-100 pt-24 pb-20 overflow-hidden">
+      <main className="relative">
+        {/* ══════ MODERN HERO BANNER ══════ */}
+        <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-slate-900">
+          {/* Abstract Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-gradient-to-b from-orange-500/20 to-transparent rounded-full blur-3xl opacity-50" />
+            <div className="absolute bottom-0 left-0 w-3/4 h-1/2 bg-gradient-to-t from-blue-500/10 to-transparent rounded-full blur-3xl opacity-50" />
+            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
+          </div>
 
-  {/* Glow cam mềm */}
-  <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-orange-400/40 rounded-full blur-3xl" />
-  <div className="absolute -bottom-16 left-10 w-[240px] h-[240px] bg-amber-300/40 rounded-full blur-2xl" />
+          <div className="container mx-auto px-4 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl mx-auto"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-medium mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                </span>
+                Tin tức & Sự kiện
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+                Cập nhật thông tin <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">
+                  mới nhất từ GNP
+                </span>
+              </h1>
+              <p className="text-slate-300 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                Khám phá các bài viết chia sẻ kiến thức, kinh nghiệm học tập và thông tin sự kiện nổi bật dành cho học sinh và phụ huynh.
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-  {/* Grid nhẹ */}
-  <div
-    className="absolute inset-0 opacity-[0.06]"
-    style={{
-      backgroundImage:
-        "linear-gradient(rgba(251,146,60,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(251,146,60,0.25) 1px, transparent 1px)",
-      backgroundSize: "40px 40px",
-    }}
-  />
-
-  {/* Content */}
-  <div className="relative z-10 text-center px-4">
-
-    {/* Badge */}
-    <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-orange-200 rounded-full px-4 py-1.5 mb-4">
-      <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-      <span className="text-[#20385D] text-xs font-semibold uppercase tracking-widest">
-        Tin tức & Sự kiện
-      </span>
-    </div>
-
-    {/* Title */}
-    
-     <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 uppercase tracking-tight leading-normal drop-shadow-sm bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent">
-             Tin mới nhất
-          </h2>
-
-    {/* Sub */}
-    <p className="text-gray-700 mt-3 text-sm md:text-base">
-      Cập nhật nhanh các sự kiện và thông tin nổi bật
-    </p>
-
-    {/* Divider */}
-    <div className="flex items-center justify-center gap-2 mt-5">
-      <div className="h-px w-10 bg-orange-300" />
-      <div className="w-2.5 h-2.5 bg-orange-500 rounded-full shadow-md shadow-orange-400/40" />
-      <div className="h-px w-10 bg-orange-300" />
-    </div>
-
-  </div>
-
-  {/* Wave */}
-  <div className="absolute bottom-0 left-0 right-0">
-    <svg viewBox="0 0 1440 60" className="w-full h-[50px]" preserveAspectRatio="none">
-      <path
-        d="M0 60C120 40 240 20 360 20C480 20 600 40 720 45C840 50 960 40 1080 30C1200 20 1320 10 1440 10V60H0Z"
-        fill="#fff7ed"
-      />
-    </svg>
-  </div>
-</div>
-
-        {/* ── Background decorations for content area ── */}
-        <div className="absolute pointer-events-none" style={{ top: "500px", left: 0, right: 0, bottom: 0 }}>
-          <div
-            className="absolute top-0 right-[-100px] w-[400px] h-[400px] rounded-full opacity-[0.03]"
-            style={{
-              background: "radial-gradient(circle, #f97316, transparent)",
-            }}
-          />
-          <div
-            className="absolute top-[400px] left-[-100px] w-[300px] h-[300px] rounded-full opacity-[0.02]"
-            style={{
-              background: "radial-gradient(circle, #60a5fa, transparent)",
-            }}
-          />
+        {/* ══════ CATEGORY FILTER ══════ */}
+        <div className="sticky top-[72px] lg:top-[80px] z-30 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-sm">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-hide">
+              {categories.map((cat) => (
+                <button
+                  key={cat.slug}
+                  onClick={() => {
+                    setActiveCategory(cat.slug);
+                    setShowCount(6);
+                  }}
+                  className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                    activeCategory === cat.slug
+                      ? "bg-slate-900 text-white shadow-md"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 py-10 max-w-[1200px]">
-
-          {/* ════════════════ FEATURED ROW ════════════════ */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col lg:flex-row gap-5 mb-10"
-          >
-            {/* Featured card */}
-            <Link href={`/tin-tuc/${featured.slug}`} className="lg:w-[62%] group block">
-              <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-500 border border-slate-100 h-full flex flex-col">
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={featured.image}
-                    alt={featured.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width:1024px) 100vw, 62vw"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                  <span className="absolute left-4 top-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                    {featured.category}
-                  </span>
-                  <h2 className="absolute bottom-4 left-4 right-4 text-white font-extrabold text-lg md:text-xl leading-snug drop-shadow-md">
-                    {featured.title}
-                  </h2>
-                </div>
-                <div className="p-5 flex-1 flex flex-col">
-                  <p className="text-sm text-slate-500 leading-relaxed line-clamp-2 mb-4 flex-1">
-                    {featured.description}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {new Date(featured.date).toLocaleDateString("vi-VN")}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5" />
-                        {featured.readTime}
-                      </span>
-                    </div>
-                    <span className="text-primary font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Xem thêm <ArrowRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
+        <div className="container mx-auto px-4 py-12 lg:py-16 max-w-[1280px]">
+          {filteredArticles.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-8 h-8 text-slate-400" />
               </div>
-            </Link>
-
-            {/* Side news */}
-            <div className="lg:w-[38%] bg-white rounded-2xl border border-slate-100 shadow-md overflow-hidden flex flex-col">
-              <div className="px-5 py-4 border-b border-slate-100">
-                <h3 className="font-bold text-slate-700 flex items-center gap-2 text-sm">
-                  <div className="w-1 h-5 bg-primary rounded-full" />
-                  Tin nổi bật
-                </h3>
-              </div>
-              <div className="flex-1 divide-y divide-slate-50">
-                {sideNews.map((a) => (
-                  <Link key={`${a.categoryId}-${a.id}`} href={`/tin-tuc/${a.slug}`} className="group flex gap-3 p-4 hover:bg-orange-50/40 transition-colors"
-                  >
-                    <div className="relative w-[92px] h-[72px] rounded-lg overflow-hidden flex-shrink-0">
-                      <Image
-                        src={a.image}
-                        alt={a.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="72px"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-[13px] font-bold text-slate-700 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
-                        {a.title}
-                      </h4>
-                      <span className="text-[10px] text-slate-400 flex items-center gap-1 mt-1">
-                        <Calendar className="w-2.5 h-2.5" />
-                        {new Date(a.date).toLocaleDateString("vi-VN")}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <h3 className="text-xl font-semibold text-slate-700 mb-2">Không tìm thấy bài viết</h3>
+              <p className="text-slate-500">Chưa có bài viết nào trong danh mục này.</p>
+              <button
+                onClick={() => setActiveCategory("all")}
+                className="mt-6 text-orange-500 font-medium hover:underline"
+              >
+                Xem tất cả tin tức
+              </button>
             </div>
-          </motion.div>
-
-          {/* ════════════════ MAIN CONTENT ════════════════ */}
-          <div className="flex flex-col lg:flex-row gap-6">
-            {/* ── Grid (left) ── */}
-            <div className="lg:w-[62%]">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {gridItems.map((a, i) => (
+          ) : (
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+              {/* ── MAIN CONTENT AREA (LEFT) ── */}
+              <div className="lg:w-[65%] flex flex-col gap-10">
+                {/* Featured Section */}
+                {featured && (
                   <motion.div
-                    key={`g-${a.categoryId}-${a.id}`}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col md:flex-row gap-6 bg-white rounded-3xl p-4 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 group"
                   >
-                    <Link href={`/tin-tuc/${a.slug}`} className="group block h-full">
-                      <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-orange-100/50 transition-all duration-500 h-full flex flex-col">
-                        <div className="relative aspect-[16/10] overflow-hidden">
-                          <Image
-                            src={a.image}
-                            alt={a.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-700"
-                            sizes="(max-width:768px) 100vw, 350px"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                        <div className="p-4 flex flex-col flex-1">
-                          <h3 className="text-[15px] font-bold text-slate-800 line-clamp-2 group-hover:text-primary transition-colors leading-snug mb-2">
-                            {a.title}
-                          </h3>
-                          <p className="text-xs text-slate-500 line-clamp-2 mb-3 leading-relaxed flex-1">
-                            {a.description}
-                          </p>
-                          <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2.5 border-t border-slate-50">
-                            <span className="flex items-center gap-1">
-                              <Calendar className="w-3 h-3" />
-                              {new Date(a.date).toLocaleDateString("vi-VN")}
-                            </span>
-                            <span className="font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-0.5">
-                              Đọc tiếp
-                              <ArrowRight className="w-3 h-3" />
-                            </span>
-                          </div>
-                        </div>
+                    <Link href={`/tin-tuc/${featured.slug}`} className="md:w-1/2 block overflow-hidden rounded-2xl relative">
+                      <div className="aspect-[4/3] md:aspect-[4/5] relative w-full h-full">
+                        <Image
+                          src={featured.image}
+                          alt={featured.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                          sizes="(max-width:768px) 100vw, 50vw"
+                          priority
+                        />
+                      </div>
+                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                        {featured.category}
                       </div>
                     </Link>
+                    <div className="md:w-1/2 flex flex-col justify-center">
+                      <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
+                        <span className="flex items-center gap-1.5">
+                          <Calendar className="w-4 h-4 text-orange-500" />
+                          {new Date(featured.date).toLocaleDateString("vi-VN", { day: 'numeric', month: 'short', year: 'numeric' })}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Clock className="w-4 h-4 text-orange-500" />
+                          {featured.readTime}
+                        </span>
+                      </div>
+                      <Link href={`/tin-tuc/${featured.slug}`}>
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-tight group-hover:text-orange-600 transition-colors">
+                          {featured.title}
+                        </h2>
+                      </Link>
+                      <p className="text-slate-600 line-clamp-3 mb-6 leading-relaxed">
+                        {featured.description}
+                      </p>
+                      <Link
+                        href={`/tin-tuc/${featured.slug}`}
+                        className="inline-flex items-center gap-2 text-orange-600 font-semibold group/btn"
+                      >
+                        Đọc tiếp
+                        <span className="bg-orange-100 p-1.5 rounded-full group-hover/btn:bg-orange-500 group-hover/btn:text-white transition-colors">
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </Link>
+                    </div>
                   </motion.div>
-                ))}
-              </div>
+                )}
 
-              {hasMore && (
-                <div className="flex justify-center mt-8">
-                  <Button
-                    onClick={() => setShowCount((c) => c + 4)}
-                    variant="outline"
-                    className="border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-4 rounded-full transition-all hover:scale-105 text-sm"
-                  >
-                    Xem thêm
-                  </Button>
-                </div>
-              )}
-            </div>
-
-            {/* ── Sidebar (right) ── */}
-            <div className="lg:w-[38%]">
-              <div className="lg:sticky lg:top-20 space-y-5">
-                <SidebarForm />
-
-                {/* Calendar */}
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
-                  <MiniCalendar />
-                </div>
-
-                {/* Upcoming events */}
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-                  <div className="px-5 py-4 border-b border-slate-100">
-                    <h3 className="font-bold text-slate-700 flex items-center gap-2 text-sm uppercase tracking-wide">
-                      <div className="w-1 h-5 bg-primary rounded-full" />
-                      Sự kiện sắp diễn ra
+                {/* Trending Grid (Next 4 posts) */}
+                {sideNews.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-orange-500 rounded-full inline-block"></span>
+                      Đáng chú ý
                     </h3>
-                  </div>
-                  <div className="p-4">
-                    {upcoming.length > 0 ? (
-                      <div className="space-y-2">
-                        {upcoming.slice(0, 3).map((ev) => (
-                          <Link key={`ev-${ev.categoryId}-${ev.id}`} href={`/tin-tuc/${ev.slug}`} className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-orange-50/50 transition-colors"
-                          >
-                            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                              <Calendar className="w-4 h-4 text-primary" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {sideNews.map((a, i) => (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: i * 0.1 }}
+                          key={a.id}
+                        >
+                          <Link href={`/tin-tuc/${a.slug}`} className="group flex gap-4 bg-white p-4 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-50 hover:shadow-lg transition-all duration-300">
+                            <div className="relative w-28 h-28 rounded-xl overflow-hidden shrink-0">
+                              <Image
+                                src={a.image}
+                                alt={a.title}
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                sizes="112px"
+                              />
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-xs font-bold text-slate-700 line-clamp-2 group-hover:text-primary transition-colors">
-                                {ev.title}
+                            <div className="flex flex-col justify-center">
+                              <span className="text-xs text-orange-500 font-semibold uppercase tracking-wider mb-2">
+                                {a.category}
+                              </span>
+                              <h4 className="text-base font-bold text-slate-800 line-clamp-2 mb-2 group-hover:text-orange-600 transition-colors leading-snug">
+                                {a.title}
                               </h4>
-                              <span className="text-[10px] text-slate-400 mt-0.5 block">
-                                {new Date(ev.date).toLocaleDateString("vi-VN")}
+                              <span className="text-xs text-slate-400 flex items-center gap-1.5">
+                                <Calendar className="w-3.5 h-3.5" />
+                                {new Date(a.date).toLocaleDateString("vi-VN")}
                               </span>
                             </div>
                           </Link>
-                        ))}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Main Grid for remaining posts */}
+                {gridItems.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3 border-t border-slate-200 pt-8">
+                      Tất cả bài viết
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                      {gridItems.map((a, i) => (
+                        <motion.div
+                          key={a.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: "-50px" }}
+                          transition={{ duration: 0.5, delay: i * 0.1 }}
+                        >
+                          <Link href={`/tin-tuc/${a.slug}`} className="group block h-full bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div className="relative aspect-[16/10] overflow-hidden">
+                              <Image
+                                src={a.image}
+                                alt={a.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                sizes="(max-width:768px) 100vw, 350px"
+                              />
+                              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">
+                                {a.category}
+                              </div>
+                            </div>
+                            <div className="p-6">
+                              <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span className="flex items-center gap-1.5">
+                                  <Calendar className="w-3.5 h-3.5" />
+                                  {new Date(a.date).toLocaleDateString("vi-VN")}
+                                </span>
+                              </div>
+                              <h3 className="text-lg font-bold text-slate-800 line-clamp-2 mb-3 group-hover:text-orange-600 transition-colors leading-snug">
+                                {a.title}
+                              </h3>
+                              <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">
+                                {a.description}
+                              </p>
+                            </div>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {hasMore && (
+                      <div className="flex justify-center mt-12">
+                        <Button
+                          onClick={() => setShowCount((c) => c + 6)}
+                          className="bg-slate-900 hover:bg-slate-800 text-white rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+                        >
+                          Tải thêm bài viết
+                        </Button>
                       </div>
-                    ) : (
-                      <p className="text-sm text-slate-400 py-2">
-                        Ngày {todayStr} không có sự kiện nào.
-                      </p>
                     )}
+                  </div>
+                )}
+              </div>
+
+              {/* ── SIDEBAR (RIGHT) ── */}
+              <div className="lg:w-[35%]">
+                <div className="sticky top-[160px] space-y-8">
+                  {/* Registration Form Widget */}
+                  <SidebarForm />
+
+                  {/* Calendar Widget */}
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] p-6">
+                    <MiniCalendar />
+                  </div>
+
+                  {/* Upcoming Events Widget */}
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] overflow-hidden">
+                    <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
+                      <h3 className="font-bold text-slate-800 flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-orange-500" />
+                        Sự kiện sắp diễn ra
+                      </h3>
+                    </div>
+                    <div className="p-4">
+                      {upcoming.length > 0 ? (
+                        <div className="space-y-1">
+                          {upcoming.slice(0, 4).map((ev) => (
+                            <Link key={ev.id} href={`/tin-tuc/${ev.slug}`} className="group flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                              <div className="w-12 h-12 rounded-xl bg-orange-50 flex flex-col items-center justify-center shrink-0 border border-orange-100 group-hover:bg-orange-500 transition-colors">
+                                <span className="text-[10px] font-bold text-orange-600 group-hover:text-white uppercase leading-none mb-1">
+                                  {new Date(ev.date).toLocaleDateString("vi-VN", { month: "short" })}
+                                </span>
+                                <span className="text-lg font-black text-orange-600 group-hover:text-white leading-none">
+                                  {new Date(ev.date).getDate()}
+                                </span>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-semibold text-slate-700 line-clamp-2 group-hover:text-orange-600 transition-colors mb-1">
+                                  {ev.title}
+                                </h4>
+                                <span className="text-xs text-slate-500 flex items-center gap-1">
+                                  <Clock className="w-3 h-3" />
+                                  {new Date(ev.date).toLocaleTimeString("vi-VN", { hour: '2-digit', minute: '2-digit' })}
+                                </span>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-6">
+                          <p className="text-sm text-slate-500">
+                            Chưa có sự kiện nào trong thời gian tới.
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </main>
       <Footer />
