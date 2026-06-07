@@ -3,7 +3,7 @@
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 
-export function Footer({ branches }: { branches: any[] }) {
+export function Footer({ branches = [] }: { branches?: any[] }) {
   return (
     <footer id="contact" className="bg-gradient-to-r from-[#0a192f] via-[#112240] to-[#0a192f] text-gray-400 py-10 sm:py-16 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">

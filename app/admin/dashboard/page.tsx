@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { FileText, FolderTree, Users, Eye } from 'lucide-react'
-import { createAdminClient } from '@/lib/supabase/server' 
+import { createAdminClient } from '@/lib/supabase/admin' 
 import { DashboardChart } from './dashboard-chart'
 
 export default async function AdminDashboard() {

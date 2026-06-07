@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { createAdminClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { Calendar, Eye, ChevronRight, Share2, Facebook, Twitter, Linkedin } from 'lucide-react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'

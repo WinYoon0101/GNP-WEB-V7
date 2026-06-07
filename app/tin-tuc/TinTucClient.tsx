@@ -23,7 +23,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { createBrowserClient } from "@supabase/ssr";
-import { FooterWrapper } from "@/components/FooterWrapper";
 
 /* ──────────────────── MINI CALENDAR ──────────────────── */
 function MiniCalendar() {
@@ -250,7 +249,7 @@ function SidebarForm() {
 }
 
 /* ──────────────────── MAIN PAGE ──────────────────── */
-export default function TinTucClient({ posts }: { posts: any[] }) {
+export default function TinTucClient({ posts, branches }: { posts: any[]; branches: any[] }) {
   const allArticles = useMemo(
     () =>
       posts.map((p) => ({
@@ -296,7 +295,7 @@ export default function TinTucClient({ posts }: { posts: any[] }) {
           </div>
           <p className="text-slate-500 font-medium">Chưa có bài viết nào được đăng.</p>
         </main>
-        <FooterWrapper />
+        <Footer branches={branches} />
       </div>
     );
   }
@@ -576,7 +575,7 @@ export default function TinTucClient({ posts }: { posts: any[] }) {
           )}
         </div>
       </main>
-      <FooterWrapper />
+      <Footer branches={branches} />
     </div>
   );
 }

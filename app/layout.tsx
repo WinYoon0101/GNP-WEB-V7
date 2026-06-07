@@ -58,9 +58,9 @@ export default function RootLayout({
       <body className={`${inter.className} font-sans antialiased`}>
         <Providers>
           {children}
-          <ContactWrapper />
           <Analytics />
         </Providers>
+        <ContactWrapper />
       </body>
     </html>
   )
