@@ -63,13 +63,12 @@ export default function AdminLoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="admin@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-4">
               <Label htmlFor="password">Mật khẩu</Label>
               <Input
                 id="password"
