@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { FooterWrapper } from "@/components/FooterWrapper"
 
 
 export default function ContactPage() {
@@ -12,7 +13,7 @@ export default function ContactPage() {
         <ScrollReveal animation="fadeInUp"><Contact /></ScrollReveal>
 
       </main>
-      <Footer />
+      <FooterWrapper />
     </div>
   )
 }

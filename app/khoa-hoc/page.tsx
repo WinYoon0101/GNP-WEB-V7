@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { StaircaseCourseCards } from "@/components/staircase-course-cards"
 import { FAQSection } from "@/components/FAQSection"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { FooterWrapper } from "@/components/FooterWrapper"
 
 export default function CoursesPage() {
 
@@ -59,7 +60,7 @@ export default function CoursesPage() {
           </ScrollReveal>
         </section>
       </main>
-      <Footer />
+      <FooterWrapper />
     </div>
   )
 }
