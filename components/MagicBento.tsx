@@ -605,8 +605,13 @@ const MagicBento: React.FC<BentoProps> = ({
             const cardStyle = {
               backgroundColor: card.color || "var(--background-dark)",
               backgroundImage: card.image
-                ? `linear-gradient(to bottom, rgba(18, 11, 6, 0.2) 0%, rgba(18, 11, 6, 0.9) 100%), url(${card.image})`
-                : undefined,
+  ? `linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    url(${card.image})`
+  : undefined,
               backgroundSize: "cover",
               backgroundPosition: "center",
               borderColor: "var(--border-color)",

@@ -69,7 +69,7 @@ export function ExpandingCourseCards() {
     >
       <div className="absolute bottom-0 left-0 right-0 h-[45%] md:h-[55%] group-hover:h-full transition-all duration-500 ease-in-out z-0">
         <Image src={course.image} alt={course.title} fill className="object-cover" />
-        <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all duration-500"></div>
+        <div className="absolute inset-0  transition-all duration-500"></div>
       </div>
       <div className="relative z-10 p-5 md:p-6 h-full flex flex-col justify-between">
         <div className="flex flex-col gap-3 md:gap-4 transition-all duration-500">
@@ -77,15 +77,15 @@ export function ExpandingCourseCards() {
             {course.age}
           </span>
           <div>
-            <h3 className="text-xl md:text-[22px] font-bold text-gray-900 group-hover:text-white transition-colors duration-500 mb-1 md:mb-2">
+            <h3 className="text-xl md:text-[22px] font-bold text-gray-900 group-hover:text-[#F2701A] transition-colors duration-500 mb-1 md:mb-2">
               {course.title}
             </h3>
-            <p className="text-sm md:text-base text-gray-600 group-hover:text-gray-200 transition-colors duration-500 max-w-[200px] line-clamp-2 md:line-clamp-none">
+            <p className="text-sm md:text-base text-gray-600 group-hover:text-black transition-colors duration-500 max-w-[200px] line-clamp-2 md:line-clamp-none">
               {course.desc}
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 md:gap-3 bg-black/40 group-hover:bg-[#F2701A] w-fit pl-3 pr-1 py-1 md:pl-4 md:pr-1.5 md:py-1.5 rounded-full transition-all duration-500 backdrop-blur-sm group-hover:backdrop-blur-none mt-4">
+        <div className="flex items-center gap-2 md:gap-3 bg-white/20 group-hover:bg-[#F2701A] w-fit pl-3 pr-1 py-1 md:pl-4 md:pr-1.5 md:py-1.5 rounded-full transition-all duration-500 backdrop-blur-sm group-hover:backdrop-blur-none mt-4">
           <span className="text-white font-medium text-xs md:text-sm duration-500 whitespace-nowrap">
             Tìm hiểu thêm
           </span>

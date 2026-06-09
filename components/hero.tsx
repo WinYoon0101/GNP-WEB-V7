@@ -149,8 +149,7 @@ export function Hero() {
           </div>
         ))}
 
-        {/* ── GRADIENT OVERLAY (multi-layer) ── */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-900/85 via-slate-900/50 to-transparent" />
+
 
         {/* ── CONTENT ── */}
         <div className="absolute inset-0 z-20 flex items-center">
